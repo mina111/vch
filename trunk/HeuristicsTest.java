@@ -38,10 +38,18 @@ public class HeuristicsTest {
 		int[] latestXInput = new int[Integer.toBinaryString(boundaryMaxX).length()];
 		int latestResult;
 		
-		// Counts how many times the new input has been rejected in favour of the previous input.
+		// Which heuristic did we use last?
+		int lastChosenHeuristic = -1;
+		
+		// Which heuristic are we using this time?
+		int currentHeuristic = -1;
+		
+		// How many times have we used this heuristic in a row?		int sameHeuristicCount = 0;
+		
+		// Count how many times the new input has been rejected in favour of the previous input.
 		int haveChosenPreviousCount = 0;
 
-		// Counts how many times we've been doing this.
+		// Count how many times we've been doing this.
 		int count = 0;
 		int timeToGiveUp = 1000;
 		
@@ -63,6 +71,11 @@ public class HeuristicsTest {
 				
 				// Save the new int as the old int.
 				previousXInput = convertIntToArray(ltstInt);
+				
+				// See if the heuristic we used this time is the same as the one we used last time.
+				if( currentHeuristic == lastChosenHeuristic ){
+					sameHeuristicCount++;
+				}
 				
 				// Reset the count.
 				haveChosenPreviousCount = 0;
