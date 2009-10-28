@@ -2,14 +2,14 @@
 /////
 /////  UserName:		bxj08u
 /////  FullName:		Ben Jenkinson
-/////  CreationDate: 	2009-10-08
+/////  CreationDate:		2009-10-08
 /////  Module:			G52GRP
 /////
 ///////////////////////////////////////////////////
 
 
 
-// IMPORT VOODOO
+// IMPORT Java Libraries
 
 import java.io.*;
 import java.lang.*;
@@ -24,6 +24,7 @@ public class HeuristicsTest {
 	public static int boundaryMinX = 0;
 	public static int boundaryMaxX = 1024;
 	
+	// Create and seed the random number generator
 	public static Random random = new Random( System.nanoTime() );
 	
 	// MAIN PROGRAM
@@ -37,20 +38,25 @@ public class HeuristicsTest {
 		
 		int[] latestXInput = new int[Integer.toBinaryString(boundaryMaxX).length()];
 		int latestResult;
-		
+
+
 		// Which heuristic did we use last?
 		int lastChosenHeuristic = -1;
-		
+
 		// Which heuristic are we using this time?
+
 		int currentHeuristic = -1;
-		
-		// How many times have we used this heuristic in a row?		int sameHeuristicCount = 0;
-		
+
+
+		// How many times have we used this heuristic in a row?
+		int sameHeuristicCount = 0;
+
 		// Count how many times the new input has been rejected in favour of the previous input.
 		int haveChosenPreviousCount = 0;
 
 		// Count how many times we've been doing this.
 		int count = 0;
+
 		int timeToGiveUp = 1000;
 		
 		// MAIN PROGRAM
@@ -71,12 +77,14 @@ public class HeuristicsTest {
 				
 				// Save the new int as the old int.
 				previousXInput = convertIntToArray(ltstInt);
-				
+
 				// See if the heuristic we used this time is the same as the one we used last time.
+
 				if( currentHeuristic == lastChosenHeuristic ){
 					sameHeuristicCount++;
+
 				}
-				
+
 				// Reset the count.
 				haveChosenPreviousCount = 0;
 				
