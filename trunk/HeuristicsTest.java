@@ -182,7 +182,7 @@ public class HeuristicsTest {
 	public static void checkXValue(int x) {
 		
 		if( x>boundaryMaxX || x<boundaryMinX ) {
-			System.out.println("ERROR: Value ("+x+") not within x value boundary");
+			System.out.println("ERROR: Value (" + x + ") not within x value boundary");
 			System.exit(-1);
 		}
 		
