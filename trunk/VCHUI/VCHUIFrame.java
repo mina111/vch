@@ -9,7 +9,7 @@ public class VCHUIFrame extends JFrame {
 	
 	public VCHUIFrame(){
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(1100,900);
+		setSize(1200,900);
 		setVisible(true);
 		setTitle("VHC");
 	}
