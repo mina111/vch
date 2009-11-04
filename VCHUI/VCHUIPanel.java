@@ -13,10 +13,14 @@ public class VCHUIPanel extends JPanel implements Runnable{
 	public static int boundaryMaxX = 1024;
 	public static int OFFSETX = 150;
 	public static int OFFSETY = 20;
+	public static int GRAPHX = 512;
+	public static int GRAPHY = 512;
+	public static int SCALEY = (1024 * 1024) / GRAPHY;
+	public static int SCALEX = 1024 / GRAPHX;
 	public boolean vchrun = true;
 	public boolean DrawResultsTable = true;
 	public boolean DrawGridLines = true;
-	public static int THREADSPEED = 500;
+	public static int THREADSPEED = 300;
 	public int Current = 0;
 	public int GlobalBest = 1024;
 	public int count = 0;
@@ -141,41 +145,58 @@ public class VCHUIPanel extends JPanel implements Runnable{
 			}
 		}
 		
+
+
 				
 		//Draw Axis
-		g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, 800+OFFSETY));
-		g2.draw(new Line2D.Double(0+OFFSETX, 800+OFFSETY, 1024+OFFSETX, 800+OFFSETY));
+		g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
+		g2.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
 		
 		//Draw Axis Grid?
 		if(DrawGridLines == true){
 			int gridxoffset = 0;
 			int gridyoffset = 0;
-			while (gridxoffset <= 1024){
-				g2.draw(new Line2D.Double(gridxoffset+OFFSETX, 800+OFFSETY, gridxoffset+OFFSETX, 810+OFFSETY));
+			while (gridxoffset <= GRAPHX){
+				g2.draw(new Line2D.Double(gridxoffset+OFFSETX, GRAPHY+OFFSETY, gridxoffset+OFFSETX, GRAPHY+10+OFFSETY));
 				gridxoffset = gridxoffset + 8;
 			}
-			while (gridyoffset <= 800){
+			while (gridyoffset <= GRAPHY){
 				g2.draw(new Line2D.Double(OFFSETX-10, gridyoffset+OFFSETY, OFFSETX, gridyoffset+OFFSETY));
 				gridyoffset = gridyoffset + 8;
 			}
 		}
 		
-		//Draw current
-		g2.draw(new Line2D.Double(Current+OFFSETX, 800+OFFSETY, Current+OFFSETX, (800-((Current*Current)/1310.72))+OFFSETY)); //x
-		g2.draw(new Line2D.Double(0+OFFSETX, (800-((Current*Current)/1310.72))+OFFSETY, Current+OFFSETX, (800-((Current*Current)/1310.72))+OFFSETY)); //y
-		
-		//Draw best
-		g2.setColor(Color.green);
-		g2.draw(new Line2D.Double(GlobalBest+OFFSETX, 800+OFFSETY+10, GlobalBest+OFFSETX, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY)); //x
-		g2.draw(new Line2D.Double(0+OFFSETX-10, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY, GlobalBest+OFFSETX, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY)); //y
-		g2.setColor(Color.black);
-		
 		//Draw Graph
 		for (int x=0; x <= 1024; x++ ){
 			value = x * x;
-			g2.draw(new Line2D.Double(x+OFFSETX, (800-(value/1310.72))+OFFSETY, x+OFFSETX, (800-(value/1310.72))+OFFSETY));
-			
+			g2.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, (x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY));
 		}
+		
+		//Draw current black line
+		g2.draw(new Line2D.Double((Current/SCALEX)+OFFSETX, GRAPHY+OFFSETY+20, (Current/SCALEX)+OFFSETX, GRAPHY-((Current*Current)/SCALEY)+OFFSETY)); //x
+		g2.draw(new Line2D.Double(OFFSETX-20, GRAPHY-((Current*Current)/SCALEY)+OFFSETY, (Current/SCALEX)+OFFSETX, GRAPHY-((Current*Current)/SCALEY)+OFFSETY)); //y
+		
+		//Draw best green line
+		g2.setColor(Color.green);
+		g2.draw(new Line2D.Double((GlobalBest/SCALEX)+OFFSETX, GRAPHY+OFFSETY+20, (GlobalBest/SCALEX)+OFFSETX, GRAPHY-((GlobalBest*GlobalBest)/SCALEY)+OFFSETY)); //x
+		g2.draw(new Line2D.Double(OFFSETX-20, GRAPHY-((GlobalBest*GlobalBest)/SCALEY)+OFFSETY, (GlobalBest/SCALEX)+OFFSETX, GRAPHY-((GlobalBest*GlobalBest)/SCALEY)+OFFSETY)); //y
+		g2.setColor(Color.black);
+	
+		//Draw Previous results (Square)
+		for(int iterate2 = 0; resultsArray[iterate2] != 0; iterate2++){
+			int cord = resultsArray[iterate2];
+			int sizeOfBox = 10;
+			g.drawRect((cord/SCALEX)-3+OFFSETX, (int)(GRAPHY-((cord*cord)/SCALEY))+OFFSETY-3, 6, 6);
+			g.fillRect((cord/SCALEX)-3+OFFSETX, (int)(GRAPHY-((cord*cord)/SCALEY))+OFFSETY-3, 6, 6);
+		}
+				
+		//Draw Best result (square)
+		g.drawRect((GlobalBest/SCALEX)-3+OFFSETX, (int)(GRAPHY-((GlobalBest*GlobalBest)/SCALEY))+OFFSETY-3, 6, 6);
+		g.fillRect((GlobalBest/SCALEX)-3+OFFSETX, (int)(GRAPHY-((GlobalBest*GlobalBest)/SCALEY))+OFFSETY-3, 6, 6);
+		g.setColor(Color.green);
+		g.drawRect((GlobalBest/SCALEX)-2+OFFSETX, (int)(GRAPHY-((GlobalBest*GlobalBest)/SCALEY))+OFFSETY-2, 4, 4);
+		g.fillRect((GlobalBest/SCALEX)-2+OFFSETX, (int)(GRAPHY-((GlobalBest*GlobalBest)/SCALEY))+OFFSETY-2, 4, 4);
+		g.setColor(Color.black);
 		//Point2D.Double point = new Point2D.Double(100, 100);
 	}
 	
