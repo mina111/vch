@@ -1,0 +1,255 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.imageio.*;
+import java.io.*;
+import java.util.*;
+import java.awt.geom.*;
+
+public class VCHUIPanel extends JPanel implements Runnable{
+		// GLOBAL VARIABLES
+		
+	public static int boundaryMinX = 0;
+	public static int boundaryMaxX = 1024;
+	public static int OFFSETX = 50;
+	public static int OFFSETY = 30;
+	public boolean vchrun = true;
+	public boolean DrawGridLines = true;
+	public static int THREADSPEED = 500;
+	
+	
+	public int Current = 0;
+	public int GlobalBest = 1024;
+	
+		// Create and seed the random number generator
+	public static Random random = new Random( System.nanoTime() );
+
+
+		// Initialise Panel
+	JPanel VCHp = new JPanel();
+	
+		// Initialise Thread
+	private Thread t;
+	
+	
+	public VCHUIPanel(){
+		t = new Thread(this); 										
+        t.start();
+	}
+	
+		public void run()
+	{
+		// LOCAL VARIABLES
+		int[] previousXInput = new int[Integer.toBinaryString(boundaryMaxX).length()];
+		int previousResult;
+		
+		int[] latestXInput = new int[Integer.toBinaryString(boundaryMaxX).length()];
+		int latestResult;
+		
+		// Which heuristic did we use last?
+		int lastChosenHeuristic = -1;
+
+		// Which heuristic are we using this time?
+
+		int currentHeuristic = -1;
+
+
+		// How many times have we used this heuristic in a row?
+		int sameHeuristicCount = 0;
+
+		// Count how many times the new input has been rejected in favour of the previous input.
+		int haveChosenPreviousCount = 0;
+
+		// Count how many times we've been doing this.
+		int count = 0;
+
+		int timeToGiveUp = 200;
+		
+		// MAIN PROGRAM
+		
+		// Generate initial random number & save it in an array.
+		previousXInput = convertIntToArray( generateRandomInt() );
+		
+		
+		try{
+			while(vchrun){
+				Thread.sleep(THREADSPEED);
+			// Initiate main loop
+			int prevInt = convertArrayToInt(previousXInput);
+			
+			int ltstInt = applyHeuristic(prevInt);
+			
+			if( applyFunction(ltstInt) < applyFunction(prevInt) ) {
+				
+				System.out.println("\n" + ltstInt + " < " + prevInt);
+				
+				// Save the new int as the old int.
+				previousXInput = convertIntToArray(ltstInt);
+
+				// See if the heuristic we used this time is the same as the one we used last time.
+
+				if( currentHeuristic == lastChosenHeuristic ){
+					sameHeuristicCount++;
+
+				}
+
+				// Reset the count.
+				haveChosenPreviousCount = 0;
+				
+			} else {
+				
+				// Previous int is still 'better'.
+				System.out.println(ltstInt + " > " + prevInt);
+				GlobalBest = prevInt;
+				Current = ltstInt;
+				// Increment the count.
+				haveChosenPreviousCount++;
+			}
+			
+			count++;
+			
+			if(GlobalBest == 0){
+			System.out.println("\n" + "Final Result: " + convertArrayToInt(previousXInput));	
+			vchrun = false; // Stop Thread.
+			}
+					repaint();
+				}
+			}
+	        catch(InterruptedException inter)
+	        {
+	           System.out.println("Error!"); 
+	        }
+	}
+	
+	public void paintComponent(Graphics g){
+		int value;
+		
+		Graphics2D g2 = (Graphics2D) g;
+		super.paintComponent(g);
+		g.setColor(Color.black);
+		//g.drawString("Time: ",0,12);
+		
+		//Draw Axis
+		g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, 800+OFFSETY));
+		g2.draw(new Line2D.Double(0+OFFSETX, 800+OFFSETY, 1024+OFFSETX, 800+OFFSETY));
+		//Draw Axis Grid?
+		if(DrawGridLines == true){
+			int gridxoffset = 0;
+			int gridyoffset = 0;
+			while (gridxoffset <= 1024){
+				g2.draw(new Line2D.Double(gridxoffset+OFFSETX, 800+OFFSETY, gridxoffset+OFFSETX, 810+OFFSETY));
+				gridxoffset = gridxoffset + 8;
+			}
+			while (gridyoffset <= 800){
+				g2.draw(new Line2D.Double(OFFSETX-10, gridyoffset+OFFSETY, OFFSETX, gridyoffset+OFFSETY));
+				gridyoffset = gridyoffset + 8;
+			}
+		}
+		
+		//Draw current
+		g2.draw(new Line2D.Double(Current+OFFSETX, 800+OFFSETY, Current+OFFSETX, (800-((Current*Current)/1310.72))+OFFSETY)); //x
+		g2.draw(new Line2D.Double(0+OFFSETX, (800-((Current*Current)/1310.72))+OFFSETY, Current+OFFSETX, (800-((Current*Current)/1310.72))+OFFSETY)); //y
+		
+		//Draw best
+		g2.setColor(Color.green);
+		g2.draw(new Line2D.Double(GlobalBest+OFFSETX, 800+OFFSETY+10, GlobalBest+OFFSETX, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY)); //x
+		g2.draw(new Line2D.Double(0+OFFSETX-10, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY, GlobalBest+OFFSETX, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY)); //y
+		g2.setColor(Color.black);
+		
+		for (int x=0; x <= 1024; x++ ){
+			value = x * x;
+			g2.draw(new Line2D.Double(x+OFFSETX, (800-(value/1310.72))+OFFSETY, x+OFFSETX, (800-(value/1310.72))+OFFSETY));
+			
+		}
+		//Point2D.Double point = new Point2D.Double(100, 100);
+		//g2.draw(new Line2D.Double(200, 200, 200, 200));
+	}
+	
+	public void CalculatePoint(){
+		
+	}
+	
+		public static int convertArrayToInt(int[] i) {
+		
+		// Converts an array of 1s & 0s to a String of binary, and then to an Int
+		String str = Arrays.toString(i).replace(", ", "");
+		str = str.substring(1, str.length()-1);
+		
+		return Integer.parseInt(str, 2);
+		
+	} // END convertArrayToInt
+	
+	public static int[] convertIntToArray(int i) {
+		
+		// Converts an integer to a binary string, and then inserts each digit into an array.
+		
+		// Check X value does not exceed the boundaries.
+		checkXValue(i);
+		
+		String binaryString = Integer.toBinaryString(i);
+		while( binaryString.length() < Integer.toBinaryString(boundaryMaxX).length() ){
+			
+			binaryString = "0" + binaryString;
+			
+		}
+		int[] intArray = new int[binaryString.length()];
+		for( int j=0; j<binaryString.length(); j++ ) {
+			intArray[j] = Character.getNumericValue( binaryString.charAt(j) );
+		}
+		
+		return intArray;
+		
+	} // END convertIntToArray
+	
+	public static int applyHeuristic(int x) {
+		
+		int h = random.nextInt(2);
+		
+		if( h == 0 ){
+			x = generateRandomInt();
+		} else {
+			x = convertArrayToInt(heuristicFlip(convertIntToArray(x)));
+		}
+		
+		return x;
+		
+	} // END applyHeuristic
+	
+	public static int[] heuristicFlip(int[] ints) {
+		
+		// Flips a random bit of the array
+		int i = random.nextInt(ints.length);
+		
+		if( ints[i] == 1 ) {
+			ints[i] = 0;
+		} else {
+			ints[i] = 1;
+		}
+		
+		return ints;
+		
+	} // END heuristicFlip
+	
+	public static int applyFunction(int x) {
+		
+		x = x*x;
+		return x;
+		
+	} // END applyFunction(int x)
+	
+	public static int generateRandomInt() {
+		
+		// Returns a random int, between the two boundaries.
+		return random.nextInt(boundaryMaxX-boundaryMinX)+boundaryMinX;
+		
+	} // END generateRandomInt()
+	
+	public static void checkXValue(int x) {
+		
+		if( x>boundaryMaxX || x<boundaryMinX ) {
+			System.out.println("ERROR: Value (" + x + ") not within x value boundary");
+			System.exit(-1);
+		}
+		
+	} // END checkXValue(int x)
+}
