@@ -8,18 +8,18 @@ import java.awt.geom.*;
 
 public class VCHUIPanel extends JPanel implements Runnable{
 		// GLOBAL VARIABLES
-		
+	int[] resultsArray = new int[2048];
 	public static int boundaryMinX = 0;
 	public static int boundaryMaxX = 1024;
-	public static int OFFSETX = 50;
-	public static int OFFSETY = 30;
+	public static int OFFSETX = 150;
+	public static int OFFSETY = 20;
 	public boolean vchrun = true;
+	public boolean DrawResultsTable = true;
 	public boolean DrawGridLines = true;
 	public static int THREADSPEED = 500;
-	
-	
 	public int Current = 0;
 	public int GlobalBest = 1024;
+	public int count = 0;
 	
 		// Create and seed the random number generator
 	public static Random random = new Random( System.nanoTime() );
@@ -61,7 +61,7 @@ public class VCHUIPanel extends JPanel implements Runnable{
 		int haveChosenPreviousCount = 0;
 
 		// Count how many times we've been doing this.
-		int count = 0;
+		
 
 		int timeToGiveUp = 200;
 		
@@ -105,7 +105,7 @@ public class VCHUIPanel extends JPanel implements Runnable{
 				// Increment the count.
 				haveChosenPreviousCount++;
 			}
-			
+			resultsArray[count] = ltstInt;
 			count++;
 			
 			if(GlobalBest == 0){
@@ -123,15 +123,29 @@ public class VCHUIPanel extends JPanel implements Runnable{
 	
 	public void paintComponent(Graphics g){
 		int value;
-		
+		int tableStartYOffset = 75;
 		Graphics2D g2 = (Graphics2D) g;
 		super.paintComponent(g);
 		g.setColor(Color.black);
-		//g.drawString("Time: ",0,12);
+		g.drawString("Current best:       " + GlobalBest,5,12);
+		g.drawString("         Current:       " + Current,5,24);
+		g.drawString("      Iterations:       " + count,5,36);
 		
+		//Draw Results Table
+			if(DrawResultsTable == true){
+			g.drawString("Previous Results",20,60);
+			g.drawString("__________________",5,60);
+			for(int iterate = 0; resultsArray[iterate] != 0; iterate++){
+				g.drawString(""+resultsArray[iterate],55,tableStartYOffset);
+				tableStartYOffset = tableStartYOffset + 12;
+			}
+		}
+		
+				
 		//Draw Axis
 		g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, 800+OFFSETY));
 		g2.draw(new Line2D.Double(0+OFFSETX, 800+OFFSETY, 1024+OFFSETX, 800+OFFSETY));
+		
 		//Draw Axis Grid?
 		if(DrawGridLines == true){
 			int gridxoffset = 0;
@@ -156,13 +170,13 @@ public class VCHUIPanel extends JPanel implements Runnable{
 		g2.draw(new Line2D.Double(0+OFFSETX-10, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY, GlobalBest+OFFSETX, (800-((GlobalBest*GlobalBest)/1310.72))+OFFSETY)); //y
 		g2.setColor(Color.black);
 		
+		//Draw Graph
 		for (int x=0; x <= 1024; x++ ){
 			value = x * x;
 			g2.draw(new Line2D.Double(x+OFFSETX, (800-(value/1310.72))+OFFSETY, x+OFFSETX, (800-(value/1310.72))+OFFSETY));
 			
 		}
 		//Point2D.Double point = new Point2D.Double(100, 100);
-		//g2.draw(new Line2D.Double(200, 200, 200, 200));
 	}
 	
 	public void CalculatePoint(){
