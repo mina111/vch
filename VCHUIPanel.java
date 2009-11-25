@@ -109,6 +109,7 @@ public class VCHUIPanel extends JPanel implements Runnable{
                                 // Increment the count.
                                 haveChosenPreviousCount++;
                         }
+                        
                         resultsArray[count] = ltstInt;
                         count++;
                         
@@ -289,4 +290,9 @@ public class VCHUIPanel extends JPanel implements Runnable{
                 }
                 
         } // END checkXValue(int x)
+        
+        public void setRun(boolean x){
+        	vchrun = x;
+        	System.out.println(""+x);
+        }
 }
