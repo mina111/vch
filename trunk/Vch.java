@@ -20,7 +20,7 @@ import java.awt.geom.*;
 
 
 
-public class Vch extends JFrame implements Runnable{
+public class Vch extends JFrame implements ActionListener {
 		// GLOBAL VARIABLES
         int[] resultsArray = new int[2048];
         public static int boundaryMinX = 0;
@@ -43,15 +43,12 @@ public class Vch extends JFrame implements Runnable{
 		
         public  static final int WIDTH=960, HEIGHT=768;
         JPanel problemDomainArea, state,jp;
-        //MyPanel process;
+        VCHUIPanel vchPanel = new VCHUIPanel();
         JComboBox problemDomain;
         JButton start, end;
         JEditorPane currentResult, times, currentMethod;
         int count,methodNum;
         public int [] bit = new int[10];
-        
-        /*Initialise Thread*/
-       	private Thread t;
         
         
         public Vch(){
@@ -72,10 +69,17 @@ public class Vch extends JFrame implements Runnable{
                 JTextPane jfp = new JTextPane();
                 jfp.setText("Problem Domain");
                 jfp.setBounds(40,100,100,30);
+                
                 end = new JButton("end");
                 end.setBounds(110,30,80,39);
+                end.setActionCommand("end");
+                end.addActionListener(this);
+                
                 start = new JButton("start");
                 start.setBounds(20,30,80,39);
+                start.setActionCommand("start");
+                start.addActionListener(this);
+                
                 problemDomainArea.add(jfp);
                 problemDomainArea.add(problemDomain);
                 problemDomainArea.add(start);
@@ -95,110 +99,23 @@ public class Vch extends JFrame implements Runnable{
                 jp.add(problemDomainArea,BorderLayout.NORTH);
                 jp.add(state,BorderLayout.CENTER);
                 jp.setBorder(new BevelBorder(BevelBorder.RAISED));
-                //process = new MyPanel();
-                //process.setBorder(new BevelBorder(BevelBorder.LOWERED));
-               	//process.setPreferredSize (new Dimension(1024,768));
-               	//this.add(process,BorderLayout.CENTER);   
-               	//process.requestFocus();
-               	
-               	/*VCHUIPanel vhcP = new VCHUIPanel();
-                vhcP.setPreferredSize (new Dimension(700,600));
-                vhcP.setBorder(new BevelBorder(BevelBorder.LOWERED));*/
+
+                vchPanel.setPreferredSize (new Dimension(700,600));
+                vchPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
                 
                 this.add(jp,BorderLayout.WEST);
-                //this.add(vhcP,BorderLayout.CENTER);  
+                this.add(vchPanel,BorderLayout.CENTER);  
                 this.setResizable(false);              
                 this.setVisible(true);
-                
-                //vhcP.requestFocus(true);
-                
-                // Thread
-        		t = new Thread(this);                                                                           
-        		t.start();
+                vchPanel.requestFocus(true);
         }
 
-        @Override
-        public void run() {     
-        	
-        		// LOCAL VARIABLES
-                int[] previousXInput = new int[Integer.toBinaryString(boundaryMaxX).length()];
-                int previousResult;
-                int[] latestXInput = new int[Integer.toBinaryString(boundaryMaxX).length()];
-                int latestResult;
-                
-                // Which heuristic did we use last?
-                int lastChosenHeuristic = -1;
-
-                // Which heuristic are we using this time?
-                int currentHeuristic = -1;
-
-                // How many times have we used this heuristic in a row?
-                int sameHeuristicCount = 0;
-
-                // Count how many times the new input has been rejected in favour of the previous input.
-                int haveChosenPreviousCount = 0;
-
-                // Count how many times we've been doing this.
-                int timeToGiveUp = 200;
-                
-                // MAIN PROGRAM
-                // Generate initial random number & save it in an array.
-                previousXInput = convertIntToArray( generateRandomInt() );             
-                try{
-                        while(vchrun){
-                                Thread.sleep(THREADSPEED);
-                        // Initiate main loop
-                        int prevInt = convertArrayToInt(previousXInput);
-                        
-                        int ltstInt = applyHeuristic(prevInt);
-                        
-                        if( applyFunction(ltstInt) < applyFunction(prevInt) ) {
-                                
-                                System.out.println("\n" + ltstInt + " < " + prevInt);
-                                
-                                // Save the new int as the old int.
-                                previousXInput = convertIntToArray(ltstInt);
-
-                                // See if the heuristic we used this time is the same as the one we used last time.
-
-                                if( currentHeuristic == lastChosenHeuristic ){
-                                        sameHeuristicCount++;
-
-                                }
-
-                                // Reset the count.
-                                haveChosenPreviousCount = 0;
-                                
-                        } else {
-                                
-                                // Previous int is still 'better'.
-                                System.out.println(ltstInt + " > " + prevInt);
-                                GlobalBest = prevInt;
-                                Current = ltstInt;
-                                // Increment the count.
-                                haveChosenPreviousCount++;
-                        }
-                        resultsArray[count] = ltstInt;
-                        count++;
-                        
-                        if(GlobalBest == 0){
-                        System.out.println("\n" + "Final Result: " + convertArrayToInt(previousXInput));        
-                        vchrun = false; // Stop Thread.
-                        }
-                                        repaint();
-                                }
-                        }
-                catch(InterruptedException inter)
-                {
-                   System.out.println("Error!"); 
-                }
-        }
         
         public static void main(String[] args){
                 new Vch();     
         }
        
-        private class MyPanel extends JPanel{
+        /*private class MyPanel extends JPanel{
                  MyPanel (){
 			         this.setSize(700, 600);
 			         this.setBackground(Color.BLUE);
@@ -218,7 +135,7 @@ public class Vch extends JFrame implements Runnable{
 	                 g.setColor(c);
 	                 g.setFont(F);
                  }              
-        }
+        }*/
         
         public static int convertArrayToInt(int[] i) {
                 
@@ -303,6 +220,23 @@ public class Vch extends JFrame implements Runnable{
                 }
                 
         } // END checkXValue(int x)
+        
+        public void actionPerformed(ActionEvent e) {
+        	if ("start".equals(e.getActionCommand())) {
+        		vchPanel.setRun(true);
+        	} 
+        	if ("end".equals(e.getActionCommand())) {
+        		vchPanel.setRun(false);
+        	}
+        }
+        
+        public void setCount(int counter){
+        	times.setText("Iterations:"+counter);
+        }
+        
+        public void setCurrentResult(int currentRes){
+        	currentResult.setText("Current:"+currentRes);
+        }
 }
 
 
