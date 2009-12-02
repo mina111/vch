@@ -10,6 +10,7 @@
 
 // IMPORT Java Libraries
 import java.awt.*;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
@@ -25,6 +26,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 
 
 
@@ -86,8 +88,8 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 	int count,methodNum;
 	double current;
 	double original;
-    public int OFFSETX = 200;
-    public int OFFSETY = 175;
+    public int OFFSETX = 450;
+    public int OFFSETY = 200;
     public int GRAPHX = 512;
     public int GRAPHY = 512;
     public int SCALEY = (1024 * 1024) / GRAPHY;
@@ -526,11 +528,60 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 					g.setColor(Color.BLACK);
 					g.drawString("Heuristic Selection:", 250, 70);
 					g.drawString("simple random",250,90);
-					g.drawString("Acceptance Check ", 650, 70);
+					g.drawString("Acceptance Method:", 650, 55);
+					g.drawString("Improving & Equal", 650,70);
 					g.setColor(Color.yellow);
 					g.drawOval(650,100,150,60);
 					continueRun = true;
 				}
+				
+				
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setColor(Color.black);							
+                g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
+                g2.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
+                
+                int gridxoffset = 0;
+                int gridyoffset = 0;
+                while (gridxoffset <= GRAPHX){
+                        g2.draw(new Line2D.Double(gridxoffset+OFFSETX, GRAPHY+OFFSETY, gridxoffset+OFFSETX, GRAPHY+10+OFFSETY));
+                        gridxoffset = gridxoffset + 8;
+                }
+                while (gridyoffset <= GRAPHY){
+                        g2.draw(new Line2D.Double(OFFSETX-10, gridyoffset+OFFSETY, OFFSETX, gridyoffset+OFFSETY));
+                        gridyoffset = gridyoffset + 8;
+                }
+                for (int t=0; t <= 1024; t++ ){
+                    g2.draw(new Line2D.Double((t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY, (t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY));
+                }	
+                g2.draw(new Line2D.Double((original/SCALEX)+OFFSETX, GRAPHY+OFFSETY+20, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //x
+                g2.draw(new Line2D.Double(OFFSETX-20, GRAPHY-((original*original)/SCALEY)+OFFSETY, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //y
+                
+                for(int i=0,k=(int)(original/SCALEX)+OFFSETX;i<10;i++,k=k+10){
+                	g2.drawString(""+bit[i],k,GRAPHY+OFFSETY+30);
+                }
+                g2.drawString(""+original*original,OFFSETX, (int) (GRAPHY-((original*original)/SCALEY)+OFFSETY));
+                for(int i=0;i<(statistics.size()-1);i++){
+               System.out.println(statistics.size());
+                	g.setColor(Color.RED);
+                	int x_dot = 0;
+                	if(function(decode(statistics.get(i).curValue))>function(decode(statistics.get(i).preValue))){
+                		x_dot =(int) decode(statistics.get(i).curValue);
+                	}else{
+                		x_dot =(int) decode(statistics.get(i).preValue);
+                	}
+                	g.fillRect((x_dot/SCALEX)+OFFSETX, (GRAPHY-(x_dot*x_dot/SCALEY)+OFFSETY)-5, 6,6);
+                }
+                g.setColor(Color.yellow);
+                g.drawLine(140, 600, 250,600);
+                g.drawString("Current Value",50, 605);
+                g.setColor(Color.black);
+                g.drawLine(140, 625, 250,625);
+                g.drawString("Original Value",50, 630);
+                g.setColor(Color.red);
+                g.fillRect(155, 645, 8, 8);
+                g.drawString("Previous Results",50, 655);
+                
 				if(method1){
 					drawMethod1(g);
 				}else if (method2){
@@ -558,21 +609,29 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		g.drawRect(250, 100, 150, 60);
 		g.setColor(Color.BLACK);
 		g.setColor(Color.yellow);
-		g.drawOval(650,100,150,60);
+		g.drawLine(650, 130, 725, 80);
+		g.drawLine(800, 130, 725, 80);
+		g.drawLine(650, 130, 725, 180);
+		g.drawLine(800, 130, 725, 180);
+		g.setColor(Color.DARK_GRAY);
+		g.fill3DRect(0, 180, 1024, 20, true);
+		g.draw3DRect(30, 240, 90, 90, true);
+		g.draw3DRect(30, 350, 90, 90, true);
+		g.draw3DRect(30, 460, 90, 90, true);
 		Font F2=new Font("Font2",Font.BOLD+Font.ITALIC,20);
 		Font F = g.getFont();
 		g.setFont(F2);
 		Color c = g.getColor();		
 		g.setColor(Color.BLACK);
+
 		g.drawString("Heuristic Selection:", 250, 70);
 		g.drawString("simple random",250,90);
-		g.drawString("Acceptance Check ", 650, 70);
-        g.setColor(Color.yellow);
-        g.drawLine(GRAPHX+OFFSETX+40, GRAPHY+OFFSETY-60, GRAPHX+OFFSETX+100,GRAPHY+OFFSETY-60);
-        g.drawString("Current Value",GRAPHX+OFFSETX+120, GRAPHY+OFFSETY-50);
-        g.setColor(Color.black);
-        g.drawLine(GRAPHX+OFFSETX+40, GRAPHY+OFFSETY-80, GRAPHX+OFFSETX+100,GRAPHY+OFFSETY-80);
-        g.drawString("Original Value",GRAPHX+OFFSETX+120, GRAPHY+OFFSETY-70);
+		g.drawString("Acceptance Method:", 650, 55);
+		g.drawString("Improving & Equal", 650,70);
+		g.drawString("Low Level Heuristic", 30, 220);
+		g.drawString("Method1", 35, 280);
+		g.drawString("Method2", 35, 390);
+		g.drawString("Method3", 35, 500);
 		if(x12<255){
 			x111 = x12;
 			for(int i=0;i<10;i++){
@@ -583,6 +642,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		}else{
 			if(y11<400){
 				g.drawString("Method1", 260, 130);
+				g.setColor(Color.red);
+				g.drawLine(125, 285,175,285);
+				g.drawLine(125, 285, 135, 300);
+				g.drawLine(125, 285, 135, 270);
+				g.draw3DRect(25, 235, 100, 100, true);
+				g.setColor(Color.black);
 				for(int i=0;i<10;i++){
 					g.drawString(""+bit[i],x,y11);
 					x=x+10;
@@ -592,7 +657,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 				if(y1<=500){
 					if(y1<500){
 					g.drawString("Method1", 260, 130);
-					g.drawString("Low Level Heuristic: Method1",100, 200);
+					g.setColor(Color.red);
+					g.drawLine(125, 285,175,285);
+					g.drawLine(125, 285, 135, 300);
+					g.drawLine(125, 285, 135, 270);
+					g.draw3DRect(25, 235, 100, 100, true);
+					g.setColor(Color.black);
 					for(int i=0;i<10;i++){
 						
 						if(i==postion1||i==postion2){
@@ -613,6 +683,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 					}
 				}
 				if(y1==501){
+					g.setColor(Color.red);
+					g.drawLine(125, 285,175,285);
+					g.drawLine(125, 285, 135, 300);
+					g.drawLine(125, 285, 135, 270);
+					g.draw3DRect(25, 235, 100, 100, true);
+					g.setColor(Color.black);
 					g.setColor(Color.yellow);
 					x=250;
 					if(y12>125){
@@ -634,33 +710,9 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 
 							
 			                Graphics2D g2 = (Graphics2D) g;
-			                g2.setColor(Color.black);							
-			                g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
-			                g2.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
-			                
-	                        int gridxoffset = 0;
-	                        int gridyoffset = 0;
-	                        while (gridxoffset <= GRAPHX){
-	                                g2.draw(new Line2D.Double(gridxoffset+OFFSETX, GRAPHY+OFFSETY, gridxoffset+OFFSETX, GRAPHY+10+OFFSETY));
-	                                gridxoffset = gridxoffset + 8;
-	                        }
-	                        while (gridyoffset <= GRAPHY){
-	                                g2.draw(new Line2D.Double(OFFSETX-10, gridyoffset+OFFSETY, OFFSETX, gridyoffset+OFFSETY));
-	                                gridyoffset = gridyoffset + 8;
-	                        }
-	                        for (int t=0; t <= 1024; t++ ){
-	                            g2.draw(new Line2D.Double((t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY, (t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY));
-	                        }	
-	                        g2.draw(new Line2D.Double((original/SCALEX)+OFFSETX, GRAPHY+OFFSETY+20, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //x
-	                        g2.draw(new Line2D.Double(OFFSETX-20, GRAPHY-((original*original)/SCALEY)+OFFSETY, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //y
-	                        
-	                        for(int i=0,k=(int)(original/SCALEX)+OFFSETX;i<10;i++,k=k+10){
-	                        	g2.drawString(""+bit1[i],k,GRAPHY+OFFSETY+40);
-	                        }
-	                        g2.drawString(""+original*original,OFFSETX, (int) (GRAPHY-((original*original)/SCALEY)+OFFSETY));
 	                        g2.setColor(Color.yellow);
 	                        for(int i=0,k=(int)(current/SCALEX)+OFFSETX;i<10;i++,k=k+10){
-	                        	g2.drawString(""+bit[i],k, GRAPHY+OFFSETY+60);
+	                        	g2.drawString(""+bit1[i],k, GRAPHY+OFFSETY-10);
 	                        }
 	                        if(xLine>GRAPHY-((current*current)/SCALEY)+OFFSETY){
 	                        	for(int i= GRAPHY+OFFSETY+20;i>xLine;i=i-20){
@@ -761,7 +813,15 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		g.drawRect(250, 100, 150, 60);
 		g.setColor(Color.BLACK);
 		g.setColor(Color.yellow);
-		g.drawOval(650,100,150,60);	
+		g.drawLine(650, 130, 725, 80);
+		g.drawLine(800, 130, 725, 80);
+		g.drawLine(650, 130, 725, 180);
+		g.drawLine(800, 130, 725, 180);
+		g.setColor(Color.DARK_GRAY);
+		g.fill3DRect(0, 180, 1024, 20, true);
+		g.draw3DRect(30, 240, 90, 90, true);
+		g.draw3DRect(30, 350, 90, 90, true);
+		g.draw3DRect(30, 460, 90, 90, true);
 		Font F2=new Font("Font2",Font.BOLD+Font.ITALIC,20);
 		Font F = g.getFont();
 		g.setFont(F2);
@@ -769,13 +829,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Heuristic Selection:", 250, 70);
 		g.drawString("simple random",250,90);
-		g.drawString("Acceptance Check ", 650, 70);
-        g.setColor(Color.yellow);
-        g.drawLine(GRAPHX+OFFSETX+40, GRAPHY+OFFSETY-60, GRAPHX+OFFSETX+100,GRAPHY+OFFSETY-60);
-        g.drawString("Current Value",GRAPHX+OFFSETX+120, GRAPHY+OFFSETY-50);
-        g.setColor(Color.black);
-        g.drawLine(GRAPHX+OFFSETX+40, GRAPHY+OFFSETY-80, GRAPHX+OFFSETX+100,GRAPHY+OFFSETY-80);
-        g.drawString("Original Value",GRAPHX+OFFSETX+120, GRAPHY+OFFSETY-70);
+		g.drawString("Acceptance Method:", 650, 55);
+		g.drawString("Improving & Equal", 650,70);
+		g.drawString("Low Level Heuristic", 30, 220);
+		g.drawString("Method1", 35, 280);
+		g.drawString("Method2", 35, 390);
+		g.drawString("Method3", 35, 500);
 		if(x12<255){
 			x222 = x12;
 			for(int i=0;i<10;i++){
@@ -786,6 +845,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		}else{
 			if(y11<400){
 				g.drawString("Method2", 260, 130);
+				g.setColor(Color.red);
+				g.drawLine(125, 395,175,395);
+				g.drawLine(125, 395, 135, 410);
+				g.drawLine(125, 395, 135, 380);
+				g.draw3DRect(25, 345, 100, 100, true);
+				g.setColor(Color.black);
 				for(int i=0;i<10;i++){
 					g.drawString(""+bit[i],x,y11);
 					x=x+10;
@@ -794,7 +859,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 			}else{
 				if(postion1!=postion2){
 					if(y1<451&&!finishMethod2Part2){
-						g.drawString("Low Level Heuristic: Method2",100, 300);
+						g.setColor(Color.red);
+						g.drawLine(125, 395,175,395);
+						g.drawLine(125, 395, 135, 410);
+						g.drawLine(125, 395, 135, 380);
+						g.draw3DRect(25, 345, 100, 100, true);
+						g.setColor(Color.black);
 						for(int i=0;i<10;i++){					
 							if(i==postion1){
 								g.drawString(""+bit[i],x,y1);
@@ -813,7 +883,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 						y1=y1+1;
 					}else{
 						if(x1!=x4&&x2!=x3){
-							g.drawString("Low Level Heuristic: Method2",100, 300);
+							g.setColor(Color.red);
+							g.drawLine(125, 395,175,395);
+							g.drawLine(125, 395, 135, 410);
+							g.drawLine(125, 395, 135, 380);
+							g.draw3DRect(25, 345, 100, 100, true);
+							g.setColor(Color.black);
 							for(int i=0;i<10;i++){
 								
 								if(i==postion1){
@@ -838,7 +913,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 							}
 						}else{
 							if(y1>400){
-								g.drawString("Low Level Heuristic: Method2",100, 300);
+								g.setColor(Color.red);
+								g.drawLine(125, 395,175,395);
+								g.drawLine(125, 395, 135, 410);
+								g.drawLine(125, 395, 135, 380);
+								g.draw3DRect(25, 345, 100, 100, true);
+								g.setColor(Color.black);
 								for(int i=0;i<10;i++){
 									
 									if(i==postion1){
@@ -862,6 +942,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 					
 				}
 				if((y1<400&&finishMethod2Part2)||postion1==postion2){
+					g.setColor(Color.red);
+					g.drawLine(125, 395,175,395);
+					g.drawLine(125, 395, 135, 410);
+					g.drawLine(125, 395, 135, 380);
+					g.draw3DRect(25, 345, 100, 100, true);
+					g.setColor(Color.black);
 					g.setColor(Color.yellow);
 					x=250;
 					if(y12>125){
@@ -880,33 +966,9 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 							x11=x222+1;
 						}else{					
 			                Graphics2D g2 = (Graphics2D) g;
-			                g2.setColor(Color.black);							
-			                g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
-			                g2.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
-			                
-	                        int gridxoffset = 0;
-	                        int gridyoffset = 0;
-	                        while (gridxoffset <= GRAPHX){
-	                                g2.draw(new Line2D.Double(gridxoffset+OFFSETX, GRAPHY+OFFSETY, gridxoffset+OFFSETX, GRAPHY+10+OFFSETY));
-	                                gridxoffset = gridxoffset + 8;
-	                        }
-	                        while (gridyoffset <= GRAPHY){
-	                                g2.draw(new Line2D.Double(OFFSETX-10, gridyoffset+OFFSETY, OFFSETX, gridyoffset+OFFSETY));
-	                                gridyoffset = gridyoffset + 8;
-	                        }
-	                        for (int t=0; t <= 1024; t++ ){
-	                            g2.draw(new Line2D.Double((t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY, (t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY));
-	                        }	
-	                        g2.draw(new Line2D.Double((original/SCALEX)+OFFSETX, GRAPHY+OFFSETY+20, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //x
-	                        g2.draw(new Line2D.Double(OFFSETX-20, GRAPHY-((original*original)/SCALEY)+OFFSETY, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //y
-	                        
-	                        for(int i=0,k=(int)(original/SCALEX)+OFFSETX;i<10;i++,k=k+10){
-	                        	g2.drawString(""+bit2[i],k,GRAPHY+OFFSETY+40);
-	                        }
-	                        g2.drawString(""+original*original,OFFSETX, (int) (GRAPHY-((original*original)/SCALEY)+OFFSETY));
 	                        g2.setColor(Color.yellow);
 	                        for(int i=0,k=(int)(current/SCALEX)+OFFSETX;i<10;i++,k=k+10){
-	                        	g2.drawString(""+bit[i],k, GRAPHY+OFFSETY+60);
+	                        	g2.drawString(""+bit2[i],k, GRAPHY+OFFSETY-10);
 	                        }
 	                        if(xLine>GRAPHY-((current*current)/SCALEY)+OFFSETY){
 	                        	for(int i= GRAPHY+OFFSETY+20;i>xLine;i=i-20){
@@ -1022,7 +1084,15 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		g.drawRect(250, 100, 150, 60);
 		g.setColor(Color.BLACK);
 		g.setColor(Color.yellow);
-		g.drawOval(650,100,150,60);	
+		g.drawLine(650, 130, 725, 80);
+		g.drawLine(800, 130, 725, 80);
+		g.drawLine(650, 130, 725, 180);
+		g.drawLine(800, 130, 725, 180);
+		g.setColor(Color.DARK_GRAY);		
+		g.fill3DRect(0, 180, 1024, 20, true);
+		g.draw3DRect(30, 240, 90, 90, true);
+		g.draw3DRect(30, 350, 90, 90, true);
+		g.draw3DRect(30, 460, 90, 90, true);
 		Font F2=new Font("Font2",Font.BOLD+Font.ITALIC,20);
 		Font F = g.getFont();
 		g.setFont(F2);
@@ -1030,13 +1100,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Heuristic Selection:", 250, 70);
 		g.drawString("simple random",250,90);
-		g.drawString("Acceptance Check ", 650, 70);		
-        g.setColor(Color.yellow);
-        g.drawLine(GRAPHX+OFFSETX+40, GRAPHY+OFFSETY-60, GRAPHX+OFFSETX+100,GRAPHY+OFFSETY-60);
-        g.drawString("Current Value",GRAPHX+OFFSETX+120, GRAPHY+OFFSETY-50);
-        g.setColor(Color.black);
-        g.drawLine(GRAPHX+OFFSETX+40, GRAPHY+OFFSETY-80, GRAPHX+OFFSETX+100,GRAPHY+OFFSETY-80);
-        g.drawString("Original Value",GRAPHX+OFFSETX+120, GRAPHY+OFFSETY-70);
+		g.drawString("Acceptance Method:", 650, 55);
+		g.drawString("Improving & Equal", 650,70);	
+		g.drawString("Low Level Heuristic", 30, 220);
+		g.drawString("Method1", 35, 280);
+		g.drawString("Method2", 35, 390);
+		g.drawString("Method3", 35, 500);
 		if(x12<255){
 			x333 = x12;
 			for(int i=0;i<10;i++){
@@ -1047,6 +1116,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 		}else{
 			if(y11<400){
 				g.drawString("Method3", 260, 130);
+				g.setColor(Color.red);
+				g.drawLine(125, 505,175,505);
+				g.drawLine(125, 505, 135, 520);
+				g.drawLine(125, 505, 135, 490);
+				g.draw3DRect(25, 455, 100, 100, true);
+				g.setColor(Color.black);
 				for(int i=0;i<10;i++){
 					g.drawString(""+bit[i],x,y11);
 					x=x+10;
@@ -1055,7 +1130,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 			}else{
 				if(postion1!=postion2){
 					if(y3<451&&!finishMethod3Part2){
-						g.drawString("Low Level Heuristic: Method3",100, 200);
+						g.setColor(Color.red);
+						g.drawLine(125, 505,175,505);
+						g.drawLine(125, 505, 135, 520);
+						g.drawLine(125, 505, 135, 490);
+						g.draw3DRect(25, 455, 100, 100, true);
+						g.setColor(Color.black);
 						for(int i=0;i<10;i++){
 							
 							if(i==postion1){
@@ -1084,7 +1164,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 						y3=y3+1;
 					}else{
 						if(x1!=x4&&x2!=x3){
-							g.drawString("Low Level Heuristic: Method3",100, 200);
+							g.setColor(Color.red);
+							g.drawLine(125, 505,175,505);
+							g.drawLine(125, 505, 135, 520);
+							g.drawLine(125, 505, 135, 490);
+							g.draw3DRect(25, 455, 100, 100, true);
+							g.setColor(Color.black);
 							for(int i=0;i<10;i++){
 								
 								if(i==postion1){
@@ -1117,7 +1202,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 							}
 						}else{
 							if(y3>400){
-								g.drawString("Low Level Heuristic: Method3",100, 200);
+								g.setColor(Color.red);
+								g.drawLine(125, 505,175,505);
+								g.drawLine(125, 505, 135, 520);
+								g.drawLine(125, 505, 135, 490);
+								g.draw3DRect(25, 455, 100, 100, true);
+								g.setColor(Color.black);
 								for(int i=0;i<10;i++){
 									if(i==postion1){
 										g.drawString(""+bit[i],x1,y3);
@@ -1146,6 +1236,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 			
 					}
 					if(y2>299){
+						g.setColor(Color.red);
+						g.drawLine(125, 505,175,505);
+						g.drawLine(125, 505, 135, 520);
+						g.drawLine(125, 505, 135, 490);
+						g.draw3DRect(25, 455, 100, 100, true);
+						g.setColor(Color.black);
 						if(postion1<postion2){
 							for(int i=postion1+1;i<postion2;i++){
 								g.drawString(""+bit[i],x5+i*10,y2);
@@ -1169,6 +1265,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 						y2=y2-1;
 					}
 					if(y2<300&&y3>400){
+						g.setColor(Color.red);
+						g.drawLine(125, 505,175,505);
+						g.drawLine(125, 505, 135, 520);
+						g.drawLine(125, 505, 135, 490);
+						g.draw3DRect(25, 455, 100, 100, true);
+						g.setColor(Color.black);
 						if(postion1<postion2){
 							for(int i=postion1+1;i<postion2;i++){
 								if(bit[i]==0){
@@ -1189,6 +1291,12 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 				}
 			}
 			if((y2<300&&y3<400&&finishMethod3Part2)||postion1==postion2){//allfinishedMethod3){
+				g.setColor(Color.red);
+				g.drawLine(125, 505,175,505);
+				g.drawLine(125, 505, 135, 520);
+				g.drawLine(125, 505, 135, 490);
+				g.draw3DRect(25, 455, 100, 100, true);
+				g.setColor(Color.black);
 				g.setColor(Color.yellow);
 				x=250;
 				if(y12>125){
@@ -1207,34 +1315,9 @@ public class Vch extends JFrame implements Runnable,ActionListener {
 						x11=x333+1;
 					}else{
 		                Graphics2D g2 = (Graphics2D) g;
-		                g2.setColor(Color.black);							
-		                g2.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
-		                g2.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
-		                
-                        int gridxoffset = 0;
-                        int gridyoffset = 0;
-                        while (gridxoffset <= GRAPHX){
-                                g2.draw(new Line2D.Double(gridxoffset+OFFSETX, GRAPHY+OFFSETY, gridxoffset+OFFSETX, GRAPHY+10+OFFSETY));
-                                gridxoffset = gridxoffset + 8;
-                        }
-                        while (gridyoffset <= GRAPHY){
-                                g2.draw(new Line2D.Double(OFFSETX-10, gridyoffset+OFFSETY, OFFSETX, gridyoffset+OFFSETY));
-                                gridyoffset = gridyoffset + 8;
-                        }
-                        for (int t=0; t <= 1024; t++ ){
-                            g2.draw(new Line2D.Double((t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY, (t/SCALEX)+OFFSETX, (GRAPHY-(t * t/SCALEY))+OFFSETY));
-                        }	
-
-                        g2.draw(new Line2D.Double((original/SCALEX)+OFFSETX, GRAPHY+OFFSETY+20, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //x
-                        g2.draw(new Line2D.Double(OFFSETX-20, GRAPHY-((original*original)/SCALEY)+OFFSETY, (original/SCALEX)+OFFSETX, GRAPHY-((original*original)/SCALEY)+OFFSETY)); //y
-                        
-                        for(int i=0,k=(int)(original/SCALEX)+OFFSETX;i<10;i++,k=k+10){
-                        	g2.drawString(""+bit3[i],k,GRAPHY+OFFSETY+40);
-                        }
-                        g2.drawString(""+original*original,OFFSETX, (int) (GRAPHY-((original*original)/SCALEY)+OFFSETY));
                         g2.setColor(Color.yellow);
                         for(int i=0,k=(int)(current/SCALEX)+OFFSETX;i<10;i++,k=k+10){
-                        	g2.drawString(""+bit[i],k, GRAPHY+OFFSETY+60);
+                        	g2.drawString(""+bit3[i],k, GRAPHY+OFFSETY-10);
                         }
                         if(xLine>GRAPHY-((current*current)/SCALEY)+OFFSETY){
                         	for(int i= GRAPHY+OFFSETY+20;i>xLine;i=i-20){
