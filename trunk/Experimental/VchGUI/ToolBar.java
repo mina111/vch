@@ -1,7 +1,12 @@
 ////////////////////////////////////////////////////////////
 /////
-/////  UserName:		bxj08u
-/////  FullName:		Ben, Chao, Tom, Alexander, Lao
+/////  Group:			gp09-exo
+/////  FullNames:		Thomas Barton (txb18u)
+/////					Zhang Chao (cxz09u)
+/////					Ben Jenkinson (bxj08u)
+/////					Alexander Jermstad (asj08u)
+/////					Lao Jingqi (jxl29u)
+/////
 /////  CreationDate: 	2009-12-10
 /////  Module:			G52GRP, University of Nottingham
 /////
@@ -56,23 +61,13 @@ public class ToolBar extends JToolBar {
 		// Add the bonus buttons.
 		this.add( createButton( "About Vch", "aboutVch", "About the program", "icons/about.png" ) );
 		
-		
-		// this.add( createButton( "Select Folder", "openFolder", "Select a folder to browse", "icons/folder_open_image.png" ) );
-		// this.addSeparator();
-		// For the photos.
-		// this.add( createButton( "Full-Size", "setSizeFull", "Show images full-size", "icons/arrow-out.png" ) );
-		// this.add( createButton( "Scale to 50%", "setSizeScale", "Scale images to fit the window", "icons/arrow-in.png" ) );
-		// this.addSeparator();
-		// this.add( createButton( "Print", "print", "Print the current image", "icons/printer.png" ) );
-		// this.addSeparator();
-		// Just for fun..
-		// this.add( createButton( "Piano", "piano", "Show Piano", "icons/piano.png" ) );
-		
 	} // END ToolBar constructor
 	
 	// METHODS
 	
 	public JButton createButton( String text, String actionCommand, String tipText, String path ) {
+		
+		this.vch.printDebugMessage("ToolBar->createButton(" + text + ", ..)");
 		
 		// Create a button.
 		JButton button = new JButton( text );
@@ -98,7 +93,9 @@ public class ToolBar extends JToolBar {
 	
 	public void disableToolbar() {
 		
-	}
+		this.vch.printDebugMessage("ToolBar->disableToolbar()");
+		
+	} // END disableToolbar()
 	
 	
 	// LISTENERS
