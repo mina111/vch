@@ -1,0 +1,15 @@
+Following are some visualisation and demo tools of different approaches for you to examine.
+- Genetic Algorithm Example Minimum of Function:
+http://www.obitko.com/tutorials/genetic-algorithms/example-function-minimum.php
+(I like this one)
+- Genetic Algorithm Solution of the Travelling Salesman Problem:
+http://pcbunn.cithep.caltech.edu/Java/Genetic.html
+(This is fast and does not include any algorithmic insight)
+http://www.heatonresearch.com/articles/65/page1.html
+(This one as well)
+- Differential Evolution (DE) for Continuous Function Optimization
+http://www.icsi.berkeley.edu/~storn/code.html
+- Finding the shortest path:
+http://cse.yeditepe.edu.tr/~eozcan/resources/Algorithms/applets/floyd.html
+- A very simple PSO demo:
+http://cse.yeditepe.edu.tr/~eozcan/research/pso/pso_applet.html
