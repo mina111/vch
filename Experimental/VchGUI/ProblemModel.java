@@ -1,5 +1,8 @@
 ////////////////////////////////////////////////////////////
 /////
+/////	A Visualisation Tool for 
+/////	Choice Hyper-Heuristics
+/////
 /////  Group:			gp09-exo
 /////  FullNames:		Thomas Barton (txb18u)
 /////					Zhang Chao (cxz09u)
@@ -7,7 +10,7 @@
 /////					Alexander Jermstad (asj08u)
 /////					Lao Jingqi (jxl29u)
 /////
-/////  CreationDate: 	2009-12-10
+/////  CreationDate: 	2010-02-15
 /////  Module:			G52GRP, University of Nottingham
 /////
 ////////////////////////////////////////////////////////////
@@ -21,7 +24,7 @@
 
 public class ProblemModel {
 	
-	// DECLARE GLOBAL VARIABLES & STATE IDENTIFIERS
+	// GLOBAL VARIABLES
 	private Vch vch;
 	
 	// CONSTRUCTOR

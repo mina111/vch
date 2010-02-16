@@ -1,5 +1,8 @@
 ////////////////////////////////////////////////////////////
 /////
+/////	A Visualisation Tool for 
+/////	Selection Hyper-Heuristics
+/////
 /////  Group:			gp09-exo
 /////  FullNames:		Thomas Barton (txb18u)
 /////					Zhang Chao (cxz09u)
@@ -34,8 +37,8 @@ public class Vch {
 	
 	
 	
-	// DECLARE GLOBAL VARIABLES
-		
+	// GLOBAL VARIABLES
+	Problem problem;	
 	
 	
 	// CONSTRUCTOR
@@ -44,6 +47,9 @@ public class Vch {
 				
 		// Hooray, someone's using our program.
 		printDebugMessage( "Vch()" );
+		
+		// Create a new problem.
+		problem = new Problem( this );
 		
 	} // END constructor Vch()
 	
@@ -61,6 +67,10 @@ public class Vch {
 		} // END if
 		
 	} // END printDebugMessage( String message )
+	
+	
+	
+	// LISTENERS
 	
 	
 	
