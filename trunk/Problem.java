@@ -1,7 +1,9 @@
 ////////////////////////////////////////////////////////////
 /////
-/////	A Visualisation Tool for 
-/////	Selection Hyper-Heuristics
+/////  A Visualisation Tool for 
+/////  Selection Hyper-Heuristics
+/////
+/////  http://code.google.com/p/vch/
 /////
 /////  Group:			gp09-exo
 /////  FullNames:		Thomas Barton (txb18u)
@@ -26,6 +28,8 @@ public class Problem {
 	
 	// GLOBAL VARIABLES
 	private Vch vch;
+	private LowLevelHeuristicMachine lowLevelHeuristicMachine;
+	private int maximumValue;
 	
 	// CONSTRUCTOR
 	
@@ -33,8 +37,11 @@ public class Problem {
 		
 		// Save the parent frame.
 		this.vch = parent;
-		
+
 		this.vch.printDebugMessage("Problem()");
+		
+		this.maximumValue = 1024;
+		this.lowLevelHeuristicMachine = new LowLevelHeuristicMachine( vch );
 		
 	} // END ProblemModel constructor
 	
@@ -46,7 +53,16 @@ public class Problem {
 		
 		this.vch.printDebugMessage( "Problem->start()" );
 		
+		lowLevelHeuristicMachine.flipAndSwap(28);
+		
 	} // END start()
+	
+	public int getMaximumValue() {
+		
+		// Returns the maximum value that the problem function can produce.
+		return this.getMaximumValue();
+		
+	} // END getMaximumValue() method
 	
 	
 	

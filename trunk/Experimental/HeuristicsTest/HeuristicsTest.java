@@ -44,11 +44,9 @@ public class HeuristicsTest {
 		int lastChosenHeuristic = -1;
 
 		// Which heuristic are we using this time?
-
 		int currentHeuristic = -1;
 
-
-		// How many times have we used this heuristic in a row?
+		// How many times have we used this heuristic in a row?
 		int sameHeuristicCount = 0;
 
 		// Count how many times the new input has been rejected in favour of the previous input.
@@ -57,7 +55,10 @@ public class HeuristicsTest {
 		// Count how many times we've been doing this.
 		int count = 0;
 
+		// How long before we get bored?
 		int timeToGiveUp = 1000;
+		
+		
 		
 		// MAIN PROGRAM
 		

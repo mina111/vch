@@ -1,7 +1,9 @@
 ////////////////////////////////////////////////////////////
 /////
-/////	A Visualisation Tool for 
-/////	Selection Hyper-Heuristics
+/////  A Visualisation Tool for 
+/////  Selection Hyper-Heuristics
+/////
+/////  http://code.google.com/p/vch/
 /////
 /////  Group:			gp09-exo
 /////  FullNames:		Thomas Barton (txb18u)
@@ -51,6 +53,8 @@ public class Vch {
 		// Create a new problem.
 		problem = new Problem( this );
 		
+		problem.start();
+		
 	} // END constructor Vch()
 	
 	
@@ -67,6 +71,13 @@ public class Vch {
 		} // END if
 		
 	} // END printDebugMessage( String message )
+	
+	public int getMaximumValue() {
+		
+		// Returns the maximum value that the problem function can produce.
+		return this.problem.getMaximumValue();
+		
+	} // END getMaximumValue() method
 	
 	
 	
