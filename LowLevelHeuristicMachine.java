@@ -50,6 +50,8 @@ public class LowLevelHeuristicMachine {
 		this.vch = parent;
 		
 		this.vch.printDebugMessage("LowLevelHeuristicMachine()");
+		this.vch.printDebugMessage("LowLevelHeuristicMachine()->\"THIS IS DEPRECATED, STOP USING IT\"");
+		throw new UnsupportedOperationException("Stop using this, it's deprecated.");
 		
 	} // END LowLevelHeuristicMachine constructor
 	
@@ -102,15 +104,15 @@ public class LowLevelHeuristicMachine {
 		
 	} // END method swap( int input )
 
-	public int[] convertIntToBinaryArray(int input) {
+	public int[] convertIntToBinaryArray( int input ) {
 		
 		// Converts an integer to a binary string, and then inserts each digit into an array.
 		
-		// First, convert the interger into a string of binary.
+		// First, convert the integer into a string of binary.
 		String binaryString = Integer.toBinaryString(input);
 		
 		// Add a whole load of spare zeroes to make it up to the maximum value of the problem.
-		while( binaryString.length() < Integer.toBinaryString( this.vch.getMaxiumValue() ).length() ){
+		while( binaryString.length() < Integer.toBinaryString( this.vch.getMaximumValue() ).length() ){
 			
 			binaryString = "0" + binaryString;
 			
@@ -122,9 +124,9 @@ public class LowLevelHeuristicMachine {
 		
 		return intArray;
 		
-	} // END convertIntToBinaryArray
+	} // END convertIntToBinaryArray( int input )
 	
-	private int convertBinaryArrayToInt(int[] input) {
+	private int convertBinaryArrayToInt( int[] input ) {
 		
 		// Converts an array of 1s & 0s to a String of binary, and then to an Int
 		String string = Arrays.toString(input).replace(", ", "");
@@ -139,7 +141,7 @@ public class LowLevelHeuristicMachine {
 		// Returns an integer
 		return output;
 		
-	} // END convertBinaryArrayToInt
+	} // END convertBinaryArrayToInt( int[] input )
 	
 	
 	
