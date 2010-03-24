@@ -4,7 +4,7 @@ public class SquareFunction extends Function{
 	@Override
 	double evaluate(int[] bit) {
 		// TODO Auto-generated method stub
-		return 0;
+		return HyperHeuristic.bit2int(bit)*HyperHeuristic.bit2int(bit);
 	}
 
 	@Override
