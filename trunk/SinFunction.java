@@ -4,7 +4,7 @@ public class SinFunction extends Function{
 	@Override
 	double evaluate(int[] bit) {
 		// TODO Auto-generated method stub
-		return 0;
+		return Math.sin(HyperHeuristic.bit2int(bit));
 	}
 
 	@Override
