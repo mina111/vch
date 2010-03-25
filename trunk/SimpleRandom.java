@@ -14,7 +14,7 @@ public class SimpleRandom extends HeuristicsSelection {
 	@Override
 	LowLevelHeuristic selectLowLevelHeuristic(int[] candiateSolution) {
 		// TODO Auto-generated method stub
-		return null;
+		return HyperHeuristic.lowLevelHeuristics.get(random.nextInt(HyperHeuristic.lowLevelHeuristics.size()));
 		
 	}
 	
