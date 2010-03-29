@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 
@@ -10,63 +11,51 @@ import javax.swing.JButton;
 public class Action implements ActionListener{
 	VSHMainFrame frame;
 	JButton button;
-
+	//======================
+	//配置类
 	Config con ;
-	Dimension sdm ;
-
+	Dimension sdm ;//分辨率
+	//======================
+	//皮肤样式夹
 	String img_dir = "skin_black";
-
+	//======================
+	//重画类
+	//RepaintActionDo action ;
+	//======================
 	
 	
-
+	//初始化
 	Action(VSHMainFrame f,JButton btn)
 	{
 		this.frame = f;
 		this.button = btn;
+		//配置类
 		con = new Config();
-
+	//	action = new RepaintActionDo(f);
+		//皮肤文件
 		img_dir = con.getSkinDir();
+		//分辨率
 		sdm = con.getScreenSize();
 	}
-
+	//======================
+	//事件处理
 	public void actionPerformed(ActionEvent e) 
 	{
 		
 
-		if(e.getActionCommand().equals("cmd_max"))
-		{
-			fullFrame();
-		}
-
-		if(e.getActionCommand().equals("cmd_normal"))
-		{
-			normalFrame();
-		}
-
-		else if(e.getActionCommand().equals("cmd_min"))
+		//==================
+		//窗口最小化
+		 if(e.getActionCommand().equals("cmd_min"))
 		{
 			frame.setExtendedState(frame.ICONIFIED|frame.getExtendedState());
 		}
-
+		//==================
+		//窗口关闭
 		else if(e.getActionCommand().equals("cmd_close"))
 		{
 			System.exit(0);
 		}
 
-		else if(e.getActionCommand().equals("lmenu_close"))
-		{
-			frame.closeLeftMenu();
-		}
-
-		else if(e.getActionCommand().equals("lmenu_open"))
-		{
-			frame.openLeftMenu();
-		}
-
-		else if(e.getActionCommand().equals("lmenu_add"))
-		{
-			addSubMenu();
-		}
 		
 		
 		else if(e.getActionCommand().equals("Benchmark Function")){
@@ -76,12 +65,12 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.squareFunction);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.sinFunction);
-			
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.logFunction);
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = true;
 			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
-			frame.update(frame.getGraphics());
+			//frame.update(frame.getGraphics());
 			frame.validate();
 		}
 		
@@ -91,12 +80,13 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.simpleRandom);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.greedyRandom);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.reinforcementLearning);
 			
 			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = true;	
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
-			frame.update(frame.getGraphics());
+			//frame.update(frame.getGraphics());
 			frame.validate();
 		}
 		
@@ -108,12 +98,14 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.inverse);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.reverse);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.shift);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.flipOneBit);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.steepestGradient);
 			
 			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;	
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = true;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
-			frame.update(frame.getGraphics());
+			//frame.update(frame.getGraphics());
 			frame.validate();
 		}
 		
@@ -124,11 +116,13 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.onlyImproving);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.improvingEqual);
 			
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.allMovesAccepted);
+			
 			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;	
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = true;
-			frame.update(frame.getGraphics());
+			//frame.update(frame.getGraphics());
 			frame.validate();			
 		}
 		
@@ -137,91 +131,146 @@ public class Action implements ActionListener{
 			if(frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu){
 				if(frame.panel.m_panel.p_left.squareFunction.isSelected()){
 					frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.setText("f(x) = x ^ 2");
+					frame.vsh.functionNmae = "f(x)=x^2";
 				}else if(frame.panel.m_panel.p_left.sinFunction.isSelected()){
-					frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.setText("f(x) = sin x");
+					frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.setText("f(x) = sin (x*PI/10000)");
+					frame.vsh.functionNmae = "f(x)=sinx";
+				}else if(frame.panel.m_panel.p_left.logFunction.isSelected()){
+					frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.setText("f(x) = log (x+1)");
+					frame.vsh.functionNmae = "f(x)=logx";
 				}
 
 			}else if(frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu){
 				if(frame.panel.m_panel.p_left.simpleRandom.isSelected()){
-					frame.panel.m_panel.initalMenuPanel.heuristicSelectionInfo.setText("<html><p>Simple </p></p>Random</p></html>");
+					frame.panel.m_panel.initalMenuPanel.heuristicSelectionInfo.setText("Simple Random");
+					frame.vsh.heuristicSelectionName = "Simple Random";
 				}else if(frame.panel.m_panel.p_left.greedyRandom.isSelected()){
-					frame.panel.m_panel.initalMenuPanel.heuristicSelectionInfo.setText("<html><p>Greedy </p></p>Random</p></html>");
-				}				
+					frame.panel.m_panel.initalMenuPanel.heuristicSelectionInfo.setText("Greedy Random");
+					frame.vsh.heuristicSelectionName = "Greedy Random";
+				}else if(frame.panel.m_panel.p_left.reinforcementLearning.isSelected()){
+					frame.panel.m_panel.initalMenuPanel.heuristicSelectionInfo.setText("Reinforcement Learning");
+					frame.vsh.heuristicSelectionName = "Reinforcement Learning";
+				}
 			}else if(frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu){
 				String output = "";
+				Vector <String> names = new Vector <String>();
 				if(frame.panel.m_panel.p_left.inverse.isSelected()){
+					frame.panel.m_panel.p_left.countLowLevelHeuristics++;
 					output = "" + "Inverse";
+					names.add("Inverse");
 				}
 				if(frame.panel.m_panel.p_left.reverse.isSelected()){
+					names.add("Reverse");
+					frame.panel.m_panel.p_left.countLowLevelHeuristics++;
 					if(!output.equals(""))
-						output = "<html><p>"+output +",</p></p>Reverse</p></html>";
+						output = "Inverse, Reverse";
 					else
 						output = "" + "Reverse";
 				}
 				if(frame.panel.m_panel.p_left.shift.isSelected()){
+					names.add("Shift");
 					if(!output.equals(""))
-						if(output.endsWith("</html>"))
-								output = "<html><p>Inverse,</p></p>Reverse,Shift</p></html>";
-						else
-							output =  "<html><p>"+output +",</p></p>Shift</p></html>";
+							output =  output +",Shift";
 					else
 						output = "" + "Shift";
-					
+					frame.panel.m_panel.p_left.countLowLevelHeuristics++;
 					
 				}
+				if(frame.panel.m_panel.p_left.flipOneBit.isSelected()){
+					names.add("Flip One Bit");
+					if(!output.equals("")){
+						if(frame.panel.m_panel.p_left.countLowLevelHeuristics==2){
+							output = output +",Flip One Bit";
+						}else if(frame.panel.m_panel.p_left.countLowLevelHeuristics==3){
+							output = "<html><p>Inverse,Reverse,Flip One Bit</p></p>Shift</p></html>";
+						}else if(frame.panel.m_panel.p_left.countLowLevelHeuristics==1){
+							output = output +",Flip One Bit";
+						}
+					}else
+						output = "" + "Flip One Bit";
+							
+					frame.panel.m_panel.p_left.countLowLevelHeuristics++;		
+				}
+				if(frame.panel.m_panel.p_left.steepestGradient.isSelected()){
+					names.add("Steepest Gradien");
+					if(!output.equals("")){
+						if(frame.panel.m_panel.p_left.countLowLevelHeuristics==2){
+							output = "<html><p>"+output +",</p></p>Steepest Gradient</p></html>";
+						}else if(frame.panel.m_panel.p_left.countLowLevelHeuristics==3){
+							output = "<html><p>Inverse,Reverse</p></p>Shift,Steepest Gradient</p></html>";
+						}else if(frame.panel.m_panel.p_left.countLowLevelHeuristics==1){
+							if(frame.panel.m_panel.p_left.flipOneBit.isSelected())
+								output = "<html><p>"+output +",</p></p>Steepest Gradient</p></html>";
+							else
+								output = output+",Steepest Gradien";
+						}else if(frame.panel.m_panel.p_left.countLowLevelHeuristics==4){
+							output = "<html><p>Inverse,Reverse,Flip One Bit</p></p>Shift,Steepest Gradient</p></html>";
+						}
+					}else
+						output = "" + "Steepest Gradient";
+				}
+				String[] lowLevelHeuristicNames = new String[names.size()];
+				for(int i=0;i<names.size();i++){
+					lowLevelHeuristicNames[i] = names.get(i);
+				}
+				frame.vsh.lowLevelHeuristicNames = lowLevelHeuristicNames;
+				frame.panel.m_panel.p_left.countLowLevelHeuristics = 0;
 				frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsInfo.setText(output);
 			}else if(frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu){
 				if(frame.panel.m_panel.p_left.onlyImproving.isSelected()){
-					frame.panel.m_panel.initalMenuPanel.acceptanceMethodInfo.setText("<html><p>Only </p></p>Improving</p></html>");
+					frame.vsh.acceptanceMethodName = "Only Improving";
+					frame.panel.m_panel.initalMenuPanel.acceptanceMethodInfo.setText("Only Improving");
 				}else if(frame.panel.m_panel.p_left.improvingEqual.isSelected()){
-					frame.panel.m_panel.initalMenuPanel.acceptanceMethodInfo.setText("<html><p>Improving </p></p>and Equal</p></html>");
-				}					
+					frame.vsh.acceptanceMethodName = "Improving or Equal";
+					frame.panel.m_panel.initalMenuPanel.acceptanceMethodInfo.setText("Improving and Equal");
+				}else if(frame.panel.m_panel.p_left.allMovesAccepted.isSelected()){
+					frame.vsh.acceptanceMethodName = "All Moves Accepted";
+					frame.panel.m_panel.initalMenuPanel.acceptanceMethodInfo.setText("All Moves Accepted");
+				}
 			}
 			
 			
+		}else if(e.getActionCommand().equals("play")){
+			frame.panel.m_panel.initalMenuPanel.benchmarkFunction.setEnabled(false);
+			frame.panel.m_panel.initalMenuPanel.heuristicSelection.setEnabled(false);
+			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristics.setEnabled(false);
+			frame.panel.m_panel.initalMenuPanel.acceptanceMethod.setEnabled(false);
+			frame.panel.m_panel.p_left.confirm.setEnabled(false);
+			if(!frame.start){
+				frame.vsh.buildHyperHeuristic();
+			}
+			if(!frame.panel.m_panel.animationPanel.drawBackgroundPic )
+				frame.panel.m_panel.animationPanel.removeAll();
+			frame.panel.m_panel.animationPanel.drawBackgroundPic = true;	
+			frame.validate();
+			frame.stop = false;
+			frame.play();
+			frame.pause = false;
+			frame.start = true;
+			
+		}else if(e.getActionCommand().equals("pause")){
+			frame.pause = true;
+		}else if(e.getActionCommand().equals("stop")){
+			frame.panel.m_panel.initalMenuPanel.benchmarkFunction.setEnabled(true);
+			frame.panel.m_panel.initalMenuPanel.heuristicSelection.setEnabled(true);
+			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristics.setEnabled(true);
+			frame.panel.m_panel.initalMenuPanel.acceptanceMethod.setEnabled(true);
+			frame.panel.m_panel.p_left.confirm.setEnabled(true);
+			frame.start = false;
+			frame.stop = true;
+			frame.vsh.sleepTime = 10;
+			if(frame.pause)
+			frame.play();
+		}else if(e.getActionCommand().equals("speed up")){
+			if(frame.start){
+				if(frame.vsh.sleepTime!=0)
+				frame.vsh.sleepTime--;
+			}
+		}else if(e.getActionCommand().equals("slow down")){
+			if(frame.start)
+				frame.vsh.sleepTime++;			
 		}
 	}
 
-	private void fullFrame()
-	{
 
-		con.resetFrameSize(frame,sdm.width,sdm.height);
-		con.fullAllWaysTop(frame);
-		frame.isFullScreen = true;
-		button.setIcon(con.getImgUrl(("maxed.png")));
-		button.setRolloverIcon(con.getImgUrl(("maxed_on.png")));
-		frame.validate();
-		frame.setLocation((sdm.width-frame.getWidth())/2, (sdm.height-frame.getHeight())/2);
-		button.setActionCommand("cmd_normal");
-		button.setToolTipText("正常模式");
-
-		frame.validate();
-	}
-
-	private void normalFrame()
-	{
-		Dimension fdm = con.getFrameSmallSize(false);
-		con.resetFrameSize(frame,fdm.width,fdm.height);
-		con.normalAllWaysTop(frame);
-		frame.isFullScreen = false;
-		
-		button.setIcon(con.getImgUrl(("max.png")));
-		button.setRolloverIcon(con.getImgUrl(("max_on.png")));
-	
-		frame.validate();
-		frame.setLocation((sdm.width-frame.getWidth())/2, (sdm.height-frame.getHeight())/2);
-		button.setActionCommand("cmd_max");
-		button.setToolTipText("全屏模式");
-
-		frame.validate();
-
-	private void addSubMenu()
-	{
-
-		if(!frame.lmenu_isopen)
-		{
-			frame.openLeftMenu();
-		}
-		frame.validate();
-	}
 }
