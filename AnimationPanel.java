@@ -562,7 +562,165 @@ public class AnimationPanel extends JPanel {
 	
 	
 	void drawReverse(Graphics2D g2D){
-		
+		 int startPostion = ((Reverse)f.vsh.lowLevelHeuristic).startPostion ;
+		 int endPostion = ((Reverse)f.vsh.lowLevelHeuristic).endPostion ;
+// System.out.println("startPostion"+((Reverse)f.vsh.lowLevelHeuristic).startPostion+"endPostion"+((Reverse)f.vsh.lowLevelHeuristic).endPostion );
+		 if(startPostion < endPostion){
+			 if(y3<300){
+				 for(int i=0;i<f.vsh.candidateSolution.length;i++){
+					 if(i>=startPostion&&i<=endPostion)
+						 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y3);
+					 else
+						 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y2);
+			    	 //System.out.print(f.vsh.candidateSolution[i]);
+			    	 x2=x2+bitSpace2;
+			     }
+				 x2 = 185;
+				 y3++;
+			 }else{
+				 if(remainTime>0){
+					 for(int i=0;i<f.vsh.candidateSolution.length;i++){
+						 if(i>=startPostion&&i<=endPostion)
+							 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y3);
+						 else
+							 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y2);
+				    	 //System.out.print(f.vsh.candidateSolution[i]);
+				    	 x2=x2+bitSpace2;
+				     }
+					 x2 = 185;
+					 g2D.drawLine(x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3, x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3+30);
+					 g2D.drawLine(x2+bitSpace2*(startPostion+(endPostion-startPostion)/2)-5, y3+20, x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3+30);
+					 g2D.drawLine(x2+bitSpace2*(startPostion+(endPostion-startPostion)/2)+5, y3+20, x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3+30);
+					 g2D.drawString("Reverse",x2+bitSpace2*(startPostion+(endPostion-startPostion)/2)+20, y3+15);
+					 g2D.setColor(Color.YELLOW);
+					 for(int i=startPostion;i<=endPostion;i++){
+						 g2D.drawString(""+f.vsh.newSolution[i],x2+bitSpace2*startPostion, y3+45);
+						 x2=x2+bitSpace2;
+					 }
+					 x2 = 185;
+					 remainTime--;
+				 }else{
+
+					 if(y5>265){
+    					 for(int i=0;i<f.vsh.candidateSolution.length;i++){
+    						 if(i>=startPostion&&i<=endPostion);
+    						 else
+    							 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y2);
+					    	 //System.out.print(f.vsh.candidateSolution[i]);
+					    	 x2=x2+bitSpace2;
+					     }	
+    					 x2 = 185;
+    					 g2D.setColor(Color.YELLOW);
+						 for(int i=startPostion;i<=endPostion;i++){
+							 g2D.drawString(""+f.vsh.newSolution[i],x2+bitSpace2*startPostion, y5);
+							 x2=x2+bitSpace2;
+						 }
+						 x2 = 185; 
+    					 y5--;
+					 }else{
+						 g2D.setColor(Color.YELLOW);
+						 for(int i=0;i<f.vsh.newSolution.length;i++){
+							 newSolutionString = newSolutionString+f.vsh.newSolution[i];
+						 }
+						 f.panel.m_panel.p_left.newSolutionContent.setForeground(Color.YELLOW);
+						 f.panel.m_panel.p_left.newSolutionContent.setText(newSolutionString);
+						 if(y5>150){
+							 for(int i=0;i<f.vsh.newSolution.length;i++){
+								 g2D.drawString(""+f.vsh.newSolution[i],x2, y5);
+								 x2=x2+bitSpace2;
+							 }
+							 x2 = 185; 
+	    					 y5--; 
+						 }else{
+							 drawFinalPart(g2D);
+						 }
+					 }
+				 }
+			 }
+		 }else{
+			 if(y3<300){
+				 for(int i=0;i<f.vsh.candidateSolution.length;i++){
+					 if((i>=startPostion&&i<=f.vsh.candidateSolution.length-1)||(i>=0&&i<=endPostion))
+						 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y3);
+					 else
+						 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y2);
+			    	 //System.out.print(f.vsh.candidateSolution[i]);
+			    	 x2=x2+bitSpace2;
+			     }
+				 x2 = 185;
+				 y3++;
+			 }else{
+				 if(remainTime>0){
+					 for(int i=0;i<f.vsh.candidateSolution.length;i++){
+						 if((i>=startPostion&&i<=f.vsh.candidateSolution.length-1)||(i>=0&&i<=endPostion))
+							 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y3);
+						 else
+							 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y2);
+				    	 //System.out.print(f.vsh.candidateSolution[i]);
+				    	 x2=x2+bitSpace2;
+				     }
+					 x2 = 185;
+					 g2D.drawLine(x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3, x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3+30);
+					 g2D.drawLine(x2+bitSpace2*(startPostion+(endPostion-startPostion)/2)-5, y3+20, x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3+30);
+					 g2D.drawLine(x2+bitSpace2*(startPostion+(endPostion-startPostion)/2)+5, y3+20, x2+bitSpace2*(startPostion+(endPostion-startPostion)/2), y3+30);
+					 g2D.setColor(Color.YELLOW);
+					 g2D.drawString("Reverse",x2+bitSpace2*(f.vsh.candidateSolution.length/2), y3+15);
+					 for(int i=startPostion;i<f.vsh.candidateSolution.length;i++){
+						 g2D.drawString(""+f.vsh.newSolution[i],x2+bitSpace2*startPostion, y3+45);
+						 x2=x2+bitSpace2;
+					 }
+					 x2 = 185;
+					
+					 for(int i=0;i<=endPostion;i++){
+						 g2D.drawString(""+f.vsh.newSolution[i],x2, y3+45);
+						 x2=x2+bitSpace2;
+					 }
+					 x2 = 185;
+					 remainTime--;
+				 }else{
+					 if(y5>265){
+    					 for(int i=0;i<f.vsh.candidateSolution.length;i++){
+    						 if((i>=startPostion&&i<=f.vsh.candidateSolution.length-1)||(i>=0&&i<=endPostion));
+    						 else
+    							 g2D.drawString(""+f.vsh.candidateSolution[i],x2, y2);
+					    	 //System.out.print(f.vsh.candidateSolution[i]);
+					    	 x2=x2+bitSpace2;
+					     }	
+    					 x2 = 185;
+    					 g2D.setColor(Color.YELLOW);
+						 for(int i=startPostion;i<f.vsh.candidateSolution.length;i++){
+							 g2D.drawString(""+f.vsh.newSolution[i],x2+bitSpace2*startPostion, y5);
+							 x2=x2+bitSpace2;
+						 }
+						 x2 = 185; 
+						 for(int i=0;i<=endPostion;i++){
+							 g2D.drawString(""+f.vsh.newSolution[i],x2, y5);
+							 x2=x2+bitSpace2;
+						 }
+						 x2 = 185;
+						 
+    					 y5--;
+					 }else{
+						 g2D.setColor(Color.YELLOW);
+						 for(int i=0;i<f.vsh.newSolution.length;i++){
+							 newSolutionString = newSolutionString+f.vsh.newSolution[i];
+						 }
+						 f.panel.m_panel.p_left.newSolutionContent.setForeground(Color.YELLOW);
+						 f.panel.m_panel.p_left.newSolutionContent.setText(newSolutionString);
+						 if(y5>150){
+							 for(int i=0;i<f.vsh.newSolution.length;i++){
+								 g2D.drawString(""+f.vsh.newSolution[i],x2, y5);
+								 x2=x2+bitSpace2;
+							 }
+							 x2 = 185; 
+	    					 y5--; 
+						 }else{
+							 drawFinalPart(g2D);
+						 }
+					 }
+				 }
+			 }
+		 }
 	}
 	
 	void drawShift(Graphics2D g2D){
