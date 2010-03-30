@@ -33,7 +33,7 @@ public class Config
 		splitbarwidth = 6 ; 
 		splitbarHeight = 6;
 		openfull = false ; 
-		softtitle = "A Visualisation Tool for a Choice Hyper-Heuristic---CODE.GOOGLE.COM/P/VCH";
+		softtitle = "Visualisation Tool for a Selection Hyper-Heuristic (code.google.com/p/vch)";
 		lmenucanclose = true; 
 	}
 

@@ -41,7 +41,7 @@ class MainPanel extends JPanel
 
 	JPanel toppanel;
 	JLabel toptitle;
-	ImageIcon btn_min_img,btn_close_img;//
+	ImageIcon btn_min_img,btn_close_img;
 	JButton btn_min,btn_close;
 	
 

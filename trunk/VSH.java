@@ -1,3 +1,22 @@
+////////////////////////////////////////////////////////////
+/////
+/////  A Visualisation Tool for 
+/////  Selection Hyper-Heuristics
+/////
+/////  http://code.google.com/p/vch/
+/////
+/////  Group:			gp09-exo
+/////  FullNames:		Thomas Barton (txb18u)
+/////					Zhang Chao (cxz09u)
+/////					Ben Jenkinson (bxj08u)
+/////					Alexander Jermstad (asj08u)
+/////					Lao Jingqi (jxl29u)
+/////
+/////  Module:			G52GRP, University of Nottingham
+/////
+////////////////////////////////////////////////////////////
+
+
 import java.util.Random;
 
 
