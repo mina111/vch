@@ -9,7 +9,7 @@ public class SquareFunction extends Function{
 
 	@Override
 	String getName() {
-		
+
 		return "f(x)=x^2";
 	}
 
@@ -19,5 +19,5 @@ public class SquareFunction extends Function{
 		return x*x;
 	}
 
-	
+
 }

@@ -7,27 +7,27 @@ import javax.swing.JPanel;
 
 
 public class CustomizePanel extends JPanel{
-  
+
 	int width,height;
-	
+
 	JPanel upPanel , barPanel , downPanel;
 	JPanel blankPanel,menuPanelInUpPanel, confirmationPanelInUpPanel;
 	Config con ;
-	
+
 	ImageIcon split_img ;
-	
+
 	VSHMainFrame frame;
-	
+
 
 	ButtonGroup   benchmarkFunctionGroupButton, heuristicSelectionGroupButton, acceptanceMethodGroupButton;
 	MyRadioButton squareFunction,sinFunction,logFunction;
 	MyRadioButton simpleRandom,greedyRandom,reinforcementLearning;
 	MyCheckBox inverse, reverse,shift,flipOneBit,steepestGradient;
 
-	MyRadioButton onlyImproving, improvingEqual,allMovesAccepted; 
-	
+	MyRadioButton onlyImproving, improvingEqual,allMovesAccepted;
+
 	MyButton confirm;
-	
+
 	MyLabel candidateSolution,newSolution,lowLevelHeuristic,accepted,count;
 	MyLabel candidateSolutionContent,newSolutionContent,lowLevelHeuristicContent,acceptedContent,countContent;
 	MyLabel blank;
@@ -46,7 +46,7 @@ public class CustomizePanel extends JPanel{
 		// TODO Auto-generated method stub
 		con = new Config();
 		split_img = con.getImgUrl("b_bg.png");//因为在JButton前就要用,所以在前面先实例化
-		this.setLayout(con.getFlowLayout(1,0,0)); 
+		this.setLayout(con.getFlowLayout(1,0,0));
 		this.setPreferredSize(new Dimension(width,height));
 		addPanel(width,height);
 	}
@@ -60,7 +60,7 @@ public class CustomizePanel extends JPanel{
 			upPanel.setLayout(new BorderLayout());
 			blankPanel = new JPanel();
 			blankPanel.setBackground(con.getLeftBgColor());
-			upPanel.add(blankPanel,BorderLayout.NORTH); 
+			upPanel.add(blankPanel,BorderLayout.NORTH);
 			menuPanelInUpPanel = new JPanel();
 			menuPanelInUpPanel.setBackground(con.getLeftBgColor());
 			menuPanelInUpPanel.setLayout(con.getFlowLayout(1,0,20));
@@ -120,7 +120,7 @@ public class CustomizePanel extends JPanel{
 			benchmarkFunctionGroupButton.add(squareFunction);
 			benchmarkFunctionGroupButton.add(sinFunction);
 			benchmarkFunctionGroupButton.add(logFunction);
-			
+
 			heuristicSelectionGroupButton = new ButtonGroup();
 			simpleRandom = new MyRadioButton(con,"simple_random_on.png","simple_random_pressing.png","simple_random_pressed.png","Simple Random");
 			simpleRandom.setSelected(true);
@@ -129,27 +129,27 @@ public class CustomizePanel extends JPanel{
 			heuristicSelectionGroupButton.add(simpleRandom);
 			heuristicSelectionGroupButton.add(greedyRandom);
 			heuristicSelectionGroupButton.add(reinforcementLearning);
-			
+
 			inverse = new MyCheckBox(con,"inverse_on.png","inverse_pressing.png","inverse_pressed.png","Inverse");
 			inverse.setSelected(true);
 			reverse = new MyCheckBox(con,"reverse_on.png","reverse_pressing.png","reverse_pressed.png","Reverse");
 			shift = new MyCheckBox(con,"shift_on.png","shift_pressing.png","shift_pressed.png","Shift");
 			flipOneBit = new MyCheckBox(con,"flip_one_bit_on.png","flip_one_bit_pressing.png","flip_one_bit_pressed.png","Flip One Bit");
 			steepestGradient = new MyCheckBox(con,"steepest_gradient_on.png","steepest_gradient_pressing.png","steepest_gradient_pressed.png","Steepest Gradient");
-			
-			
+
+
 			acceptanceMethodGroupButton = new ButtonGroup();
 			onlyImproving = new MyRadioButton(con,"only_improving_on.png","only_improving_pressing.png","only_improving_pressed.png","Only Improving");
 			onlyImproving.setSelected(true);
-			improvingEqual= new MyRadioButton(con,"improving_euqal_on.png","improving_equal_pressing.png","improving_equal_pressed.png","Improving or Equal"); 
-			allMovesAccepted = new MyRadioButton(con,"all_moves_accepted_on.png","all_moves_accepted_pressing.png","all_moves_accepted_pressed.png","All Moves Accepted"); 
+			improvingEqual= new MyRadioButton(con,"improving_euqal_on.png","improving_equal_pressing.png","improving_equal_pressed.png","Improving or Equal");
+			allMovesAccepted = new MyRadioButton(con,"all_moves_accepted_on.png","all_moves_accepted_pressing.png","all_moves_accepted_pressed.png","All Moves Accepted");
 			acceptanceMethodGroupButton.add(onlyImproving);
 			acceptanceMethodGroupButton.add(improvingEqual);
 			acceptanceMethodGroupButton.add(allMovesAccepted);
-			
-		}	
+
+		}
 	}
 
-	
-	
-	
+
+
+

@@ -18,7 +18,7 @@ public class SinFunction extends Function{
 		// TODO Auto-generated method stub
 		return Math.sin((Math.PI*x)/10000.0);
 	}
-	
-	
+
+
 
 }

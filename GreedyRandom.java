@@ -30,8 +30,8 @@ public class GreedyRandom extends HeuristicsSelection {
 				optimumSolution = newSolution;
 				optimumSolutionIndex = i;
 			}
-				
-				
+
+
 		}
 		return lowLevelHeuristic;
 	}

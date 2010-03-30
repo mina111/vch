@@ -15,13 +15,13 @@ import javax.swing.ScrollPaneConstants;
 
 public class CustomizeExhibitionPanel extends JPanel{
 	//宽高
-	
+
 	int width,height;
 	//左,中分线,右边三个Panel
 	CustomizePanel p_left;
 	JPanel  p_bar , p_right;
 	//右边用到的滚动
-	//JScrollPane scrollPane ; 
+	//JScrollPane scrollPane ;
 	//=====================
 	//配置参数类
 	Config con ;
@@ -32,12 +32,12 @@ public class CustomizeExhibitionPanel extends JPanel{
 	//=====================
 	//窗体参数
 	VSHMainFrame frame;
-	
-	
+
+
 
 	InitalMenuPanel initalMenuPanel;
 	MyLabel flowchart;
-	
+
 	AnimationPanel animationPanel;
 	//=====================
 	//初始化
@@ -99,7 +99,7 @@ public class CustomizeExhibitionPanel extends JPanel{
 		this.add(scrollPane);
 		*/
 
-		
+
 		//=================
 		//右边滚动面板里的面板,以后主要面板都添加到这个面板
 		p_right = new JPanel();
@@ -114,11 +114,11 @@ public class CustomizeExhibitionPanel extends JPanel{
 		animationPanel.add(flowchart);
 		p_right.add(animationPanel,BorderLayout.CENTER);
 		this.add(p_right);
-		
+
 	//	scrollPane.setViewportView(p_right);
-		
-		
-		
+
+
+
 	}
 
 

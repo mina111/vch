@@ -16,7 +16,7 @@ public class ReinforcementLearning extends HeuristicsSelection {
 			keys[i] = 0;
 		}
 	}
-	
+
 	String getName() {
 		// TODO Auto-generated method stub
 		return "Reinforcement Learning";
@@ -34,7 +34,7 @@ public class ReinforcementLearning extends HeuristicsSelection {
 		for(int i=0;i<keys.length;i++){
 			if(keys[maxNumKey]==keys[i])
 				maxNumKeys.add(i);
-				
+
 		}
 		if(maxNumKeys.size()==1)
 			currentLowLevelHeuristicNO = maxNumKey;
@@ -46,12 +46,12 @@ public class ReinforcementLearning extends HeuristicsSelection {
 	void incrementScore (){
 		// TODO Auto-generated method stub
 			keys[currentLowLevelHeuristicNO]++;
-			     
+
 	}
-	
+
 	void decrementScore(){
 			keys[currentLowLevelHeuristicNO]--;
-		
+
 	}
 
 }

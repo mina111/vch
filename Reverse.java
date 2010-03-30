@@ -2,7 +2,7 @@
 public class Reverse extends LowLevelHeuristic{
 	int modifiedDigitNum ;
 	int startPostion ;
-	int endPostion;	
+	int endPostion;
 	@Override
 	int[] generateNewSolution(int[] candidateSolution) {
 		modifiedDigitNum = getModifiedDigitNum();
@@ -15,7 +15,7 @@ public class Reverse extends LowLevelHeuristic{
 		int newSolution[] = new int[candidateSolution.length];
 		for(int i =0;i<candidateSolution.length;i++)
 			newSolution[i]=candidateSolution[i];
-		
+
 		if(startPostion<endPostion){
 			while(startPostion<endPostion){
 				int temp = newSolution[startPostion];
@@ -58,13 +58,13 @@ public class Reverse extends LowLevelHeuristic{
 						startPostion++;
 					}
 					endPostion--;
-				}				
+				}
 			}
 			startPostion = tempStartPostion;
 			endPostion = tempEndPostion;
 			return newSolution;
 		}
-		
+
 	}
 
 	@Override

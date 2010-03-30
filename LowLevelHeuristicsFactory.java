@@ -12,7 +12,7 @@ public class LowLevelHeuristicsFactory {
 			return new FlipOneBit();
 		else if(name.equals("Steepest Gradient"))
 			return new SteepestGradient(hyperHeuristic);
-		else 
+		else
 			return null;
 
 	}

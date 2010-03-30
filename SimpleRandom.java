@@ -20,8 +20,8 @@ public class SimpleRandom extends HeuristicsSelection {
 	LowLevelHeuristic selectLowLevelHeuristic(int[] candiateSolution) {
 		// TODO Auto-generated method stub
 		return hyperHeuristic.lowLevelHeuristics.get(random.nextInt(hyperHeuristic.lowLevelHeuristics.size()));
-		
+
 	}
-	
-	
+
+
 }

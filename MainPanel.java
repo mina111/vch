@@ -148,18 +148,18 @@ class MainPanel extends JPanel
 					// Check that we are allowed to browse.
 					if( desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
 
-			            try {
+						try {
 
 							// Construct a new URI using the string.
-			                java.net.URI link = new java.net.URI( uri );
-			                // Then call the desktop's default browser to open the URI.
-			                desktop.browse( link );
+							java.net.URI link = new java.net.URI( uri );
+							// Then call the desktop's default browser to open the URI.
+							desktop.browse( link );
 
-			            } catch ( Exception be ) {
+						} catch ( Exception be ) {
 
-			                System.err.println( be.getMessage() );
+							System.err.println( be.getMessage() );
 
-			            } // END try/catch
+						} // END try/catch
 
 					} // END if
 

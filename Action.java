@@ -22,8 +22,8 @@ public class Action implements ActionListener{
 	//重画类
 	//RepaintActionDo action ;
 	//======================
-	
-	
+
+
 	//初始化
 	Action(VSHMainFrame f,JButton btn)
 	{
@@ -39,9 +39,9 @@ public class Action implements ActionListener{
 	}
 	//======================
 	//事件处理
-	public void actionPerformed(ActionEvent e) 
+	public void actionPerformed(ActionEvent e)
 	{
-		
+
 
 		//==================
 		//窗口最小化
@@ -56,11 +56,11 @@ public class Action implements ActionListener{
 			System.exit(0);
 		}
 
-		
-		
+
+
 		else if(e.getActionCommand().equals("Benchmark Function")){
 			if(frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu)
-				return;	
+				return;
 
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
 
@@ -74,60 +74,60 @@ public class Action implements ActionListener{
 			frame.update(frame.getGraphics());
 			frame.validate();
 		}
-		
+
 		else if(e.getActionCommand().equals("Heuristic Selection")){
 			if(frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu)
-				return;	
+				return;
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.simpleRandom);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.greedyRandom);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.reinforcementLearning);
-			
-			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = true;	
+
+			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = true;
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
 			frame.update(frame.getGraphics());
 			frame.validate();
 		}
-		
-		
+
+
 		else if(e.getActionCommand().equals("Low Level Heuristics")){
 			if(frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu)
-				return;	
+				return;
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.inverse);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.reverse);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.shift);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.flipOneBit);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.steepestGradient);
-			
-			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;	
+
+			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = true;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
 			frame.update(frame.getGraphics());
 			frame.validate();
 		}
-		
+
 		else if(e.getActionCommand().equals("Acceptance Method")){
 			if(frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu)
-				return;	
+				return;
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.onlyImproving);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.improvingEqual);
-			
+
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.allMovesAccepted);
-			
-			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;	
+
+			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = true;
 			frame.update(frame.getGraphics());
-			frame.validate();			
+			frame.validate();
 		}
-		
-		
+
+
 		else if(e.getActionCommand().equals("confirm")){
 			if(frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu){
 				if(frame.panel.m_panel.p_left.squareFunction.isSelected()){
@@ -175,7 +175,7 @@ public class Action implements ActionListener{
 					else
 						output = "" + "Shift";
 					frame.panel.m_panel.p_left.countLowLevelHeuristics++;
-					
+
 				}
 				if(frame.panel.m_panel.p_left.flipOneBit.isSelected()){
 					names.add("Flip One Bit");
@@ -189,8 +189,8 @@ public class Action implements ActionListener{
 						}
 					}else
 						output = "" + "Flip One Bit";
-							
-					frame.panel.m_panel.p_left.countLowLevelHeuristics++;		
+
+					frame.panel.m_panel.p_left.countLowLevelHeuristics++;
 				}
 				if(frame.panel.m_panel.p_left.steepestGradient.isSelected()){
 					names.add("Steepest Gradient");
@@ -229,8 +229,8 @@ public class Action implements ActionListener{
 					frame.panel.m_panel.initalMenuPanel.acceptanceMethodInfo.setText("All Moves Accepted");
 				}
 			}
-			
-			
+
+
 		}else if(e.getActionCommand().equals("play")){
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunction.setEnabled(false);
 			frame.panel.m_panel.initalMenuPanel.heuristicSelection.setEnabled(false);
@@ -242,13 +242,13 @@ public class Action implements ActionListener{
 			}
 			if(!frame.panel.m_panel.animationPanel.drawBackgroundPic )
 				frame.panel.m_panel.animationPanel.removeAll();
-			frame.panel.m_panel.animationPanel.drawBackgroundPic = true;	
+			frame.panel.m_panel.animationPanel.drawBackgroundPic = true;
 			frame.validate();
 			frame.stop = false;
 			frame.play();
 			frame.pause = false;
 			frame.start = true;
-			
+
 		}else if(e.getActionCommand().equals("pause")){
 			frame.pause = true;
 		}else if(e.getActionCommand().equals("stop")){
@@ -262,46 +262,46 @@ public class Action implements ActionListener{
 			frame.vsh.sleepTime = 10;
 			if(frame.pause)
 			frame.play();
-			
+
 		} else if(e.getActionCommand().equals("speed up")){
-			
+
 			// Speed-up button pressed.
-			
+
 			if(frame.start){
-				
+
 				// As long as it's not already zero.
 				if(frame.vsh.sleepTime!=0) {
-				
-					// Decrease the time between frames.	
+
+					// Decrease the time between frames.
 					frame.vsh.sleepTime--;
-					
+
 				} // END if
-				
+
 			} // END if
-			
+
 		} else if(e.getActionCommand().equals("slow down")){
-			
+
 			// Slow-down button pressed.
-			
+
 			if(frame.start) {
-				
+
 				// Increase the time between frames.
 				frame.vsh.sleepTime++;
-				
+
 			} // END if
-			
+
 		} else if( e.getActionCommand().equals("info") ) {
-			
+
 			// Someone pressed the "Information" button on the main menu.
 			System.out.println("Action->info");
-			
+
 		} else if( e.getActionCommand().equals("help") ) {
-			
+
 			// Someone pressed the "Help" button on the main menu.
 			System.out.println("Action->help");
-			
+
 		}
-		
+
 	}
 
 }
