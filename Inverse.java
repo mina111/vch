@@ -1,15 +1,18 @@
 
 public class Inverse extends LowLevelHeuristic{
-
+	int modifiedDigitNum ;
+	int startPostion;
+	int endPostion ;
 	@Override
 	int[] generateNewSoluation(int[] candidateSoluation) {
 		// TODO Auto-generated method stub
+		modifiedDigitNum = getModifiedDigitNum();
+		startPostion = getStartPostion();
+		endPostion = getEndPostion(startPostion,modifiedDigitNum);
 		int newSoluatuon[] = new int[candidateSoluation.length];
 		for(int i =0;i<candidateSoluation.length;i++)
 			newSoluatuon[i]=candidateSoluation[i];
-		int modifiedDigitNum = getModifiedDigitNum();
-		int startPostion = getStartPostion();
-		int endPostion = getEndPostion(startPostion,modifiedDigitNum);
+
 		if(startPostion<endPostion){
 			for(int i= startPostion;i<=endPostion;i++){
 				if(newSoluatuon[i] == 0){
@@ -50,3 +53,4 @@ public class Inverse extends LowLevelHeuristic{
 
 	
 }
+

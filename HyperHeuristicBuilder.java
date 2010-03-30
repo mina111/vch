@@ -19,6 +19,7 @@ public class HyperHeuristicBuilder {
 
 	public void LowLevelHeuristics(String[] names) {
 		// TODO Auto-generated method stub
+		HyperHeuristic.lowLevelHeuristics.removeAllElements();
 		for(int i=0;i<names.length;i++){
 			HyperHeuristic.lowLevelHeuristics.add(LowLevelHeuristic(names[i]));
 		}
@@ -35,3 +36,4 @@ public class HyperHeuristicBuilder {
 	}
 
 }
+

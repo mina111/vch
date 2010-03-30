@@ -1,6 +1,6 @@
 
 public class FlipOneBit extends LowLevelHeuristic{
-
+	int postion;
 	@Override
 	int[] generateNewSoluation(int[] candidateSoluation) {
 		
@@ -8,7 +8,7 @@ public class FlipOneBit extends LowLevelHeuristic{
 		for(int i =0;i<candidateSoluation.length;i++)
 			newSoluatuon[i]=candidateSoluation[i];
 		// TODO Auto-generated method stub
-		int postion = getStartPostion();
+		postion = getStartPostion();
 		if(newSoluatuon[postion]==1){
 			newSoluatuon[postion] = 0;
 		}else{
