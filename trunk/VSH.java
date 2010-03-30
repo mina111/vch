@@ -44,10 +44,8 @@ public class VSH {
 		frame =new VSHMainFrame("VSH",this);
 		for(;;){
 			if(!frame.start){
-				//System.out.println("AAA");
 				frame.stop();
 			}
-			//System.out.println("bbb");
 			count++;
 			calculate();
 
@@ -68,16 +66,18 @@ public class VSH {
 				}
 			}
 			acceptanceCheck();
-			//System.out.println("ccc");
 		}
 	}
 
 
 	void buildHyperHeuristic(){
-		System.out.println("buildHyperHeuristic");
+		
+		// Print out all the low-level heuristics.
+		System.out.println("Available LowLevelHeuristics:");
 		for(int i=0;i<lowLevelHeuristicNames.length;i++){
-			System.out.println("lowLevelHeuristicNames"+lowLevelHeuristicNames[i]);
+			System.out.println( "  " + lowLevelHeuristicNames[i] );
 		}
+		
 		HHBuilder= new HyperHeuristicBuilder();
 		HHDirector = new HyperHeuristicDirector(HHBuilder);
 		HHDirector.construct(functionNmae, acceptanceMethodName, lowLevelHeuristicNames, heuristicSelectionName);
@@ -91,8 +91,11 @@ public class VSH {
 	}
 
 	void calculate(){
+		
 		lowLevelHeuristic = hyperHeuristic.heuristicsSelection.selectLowLevelHeuristic(candidateSolution);
-System.out.println(lowLevelHeuristic.getName());
+		
+		System.out.println( "calculate->" + lowLevelHeuristic.getName() );
+		
 		if(hyperHeuristic.heuristicsSelection.getName().equals("Greedy Random")){
 			newSolution = ((GreedyRandom)hyperHeuristic.heuristicsSelection).optimumSolution;
 		}else{
