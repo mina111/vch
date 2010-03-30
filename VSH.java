@@ -21,6 +21,7 @@ import java.util.Random;
 
 
 public class VSH {
+	HyperHeuristic hyperHeuristic;
 	VSHMainFrame frame;
 	HyperHeuristicBuilder HHBuilder;
 	HyperHeuristicDirector HHDirector;
@@ -30,9 +31,9 @@ public class VSH {
 	LowLevelHeuristic lowLevelHeuristic;
 	int count = 0;
 	int [][] history = new int[1000][15];
-	int sleepTime = 10;
+	int sleepTime = 1;
 	String functionNmae = "f(x)=x^2", acceptanceMethodName = "Improving or Equal", heuristicSelectionName = "Simple Random";
-	String [] lowLevelHeuristicNames = {"Reverse","Inverse","Shift","Flip One Bit","Steepest Gradient"};;
+	String [] lowLevelHeuristicNames = {"Reverse","Inverse","Shift","Flip One Bit","Steepest Gradient"};
 	public static void main(String[] args){
 
 		new VSH().start();
@@ -73,10 +74,14 @@ public class VSH {
 	
 	
 	void buildHyperHeuristic(){
-		
+		System.out.println("buildHyperHeuristic");
+		for(int i=0;i<lowLevelHeuristicNames.length;i++){
+			System.out.println("lowLevelHeuristicNames"+lowLevelHeuristicNames[i]);
+		}
 		HHBuilder= new HyperHeuristicBuilder();
-		HHDirector = new HyperHeuristicDirector(); 
-		HHDirector.construct(HHBuilder, functionNmae, acceptanceMethodName, lowLevelHeuristicNames, heuristicSelectionName);
+		HHDirector = new HyperHeuristicDirector(HHBuilder); 
+		HHDirector.construct(functionNmae, acceptanceMethodName, lowLevelHeuristicNames, heuristicSelectionName);
+		hyperHeuristic = HHBuilder.GetHyperHeuristic();
 		for(int i =0; i<candidateSolution.length;i++){
 			candidateSolution[i] = random.nextInt(2);
 			history[0][i]=candidateSolution[i];
@@ -86,9 +91,10 @@ public class VSH {
 	}
 	
 	void calculate(){
-		lowLevelHeuristic = HyperHeuristic.heuristicsSelection.selectLowLevelHeuristic(candidateSolution);
-		if(HyperHeuristic.heuristicsSelection.getName().equals("Greedy Random")){
-			newSolution = ((GreedyRandom)HyperHeuristic.heuristicsSelection).optimumSoluation;
+		lowLevelHeuristic = hyperHeuristic.heuristicsSelection.selectLowLevelHeuristic(candidateSolution);
+System.out.println(lowLevelHeuristic.getName());
+		if(hyperHeuristic.heuristicsSelection.getName().equals("Greedy Random")){
+			newSolution = ((GreedyRandom)hyperHeuristic.heuristicsSelection).optimumSoluation;
 		}else{
 			newSolution= lowLevelHeuristic.generateNewSoluation(candidateSolution);
 			
@@ -104,13 +110,13 @@ public class VSH {
 		frame.panel.m_panel.animationPanel.repaint();
 	}
 	void acceptanceCheck(){
-		if(HyperHeuristic.acceptanceMethod.checkIfAcceptance(candidateSolution, newSolution)){
+		if(hyperHeuristic.acceptanceMethod.checkIfAcceptance(candidateSolution, newSolution)){
 			candidateSolution = newSolution;
-			if(HyperHeuristic.heuristicsSelection.getName().equals("Reinforcement Learning"))
-				((ReinforcementLearning)HyperHeuristic.heuristicsSelection).incrementScore();
+			if(hyperHeuristic.heuristicsSelection.getName().equals("Reinforcement Learning"))
+				((ReinforcementLearning)hyperHeuristic.heuristicsSelection).incrementScore();
 		}else{
-			if(HyperHeuristic.heuristicsSelection.getName().equals("Reinforcement Learning"))
-				((ReinforcementLearning)HyperHeuristic.heuristicsSelection).decrementScore();
+			if(hyperHeuristic.heuristicsSelection.getName().equals("Reinforcement Learning"))
+				((ReinforcementLearning)hyperHeuristic.heuristicsSelection).decrementScore();
 		}
 	}
 }
