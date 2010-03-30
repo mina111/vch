@@ -67,16 +67,6 @@ public class CustomizeExhibitionPanel extends JPanel{
 		p_bar.setLayout(con.getFlowLayout(1, 0, (height - btn_split_img.getIconHeight())/2-30));
 		this.add(p_bar);
 
-		btn_split = new JButton(btn_split_img);
-		btn_split.setPreferredSize(new Dimension(splitbarwidth,btn_split_img.getIconHeight()));
-		btn_split.setToolTipText("¹Ø±Õ");
-		btn_split.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btn_split.setBorder(null);
-		btn_split.setFocusCycleRoot(false);
-		btn_split.setActionCommand("lmenu_close");
-		btn_split.addActionListener(new Action(frame,btn_split));
-		btn_split.setOpaque(true);
-		p_bar.add(btn_split);
 
 		p_right = new JPanel();
 		p_right.setPreferredSize(new Dimension(rightwidth,height));

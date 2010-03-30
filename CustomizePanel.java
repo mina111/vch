@@ -18,18 +18,20 @@ public class CustomizePanel extends JPanel{
 	
 	VSHMainFrame frame;
 	
-	
-	ButtonGroup   benchmarkFunctionGroupButton, heuristicSelectionGroupButton, acceptanceMethodGroupButton;
-	MyRadioButton squareFunction,sinFunction;
-	MyRadioButton simpleRandom,greedyRandom;
-	MyCheckBox inverse, reverse,shift;
 
-	MyRadioButton onlyImproving, improvingEqual; 
+	ButtonGroup   benchmarkFunctionGroupButton, heuristicSelectionGroupButton, acceptanceMethodGroupButton;
+	MyRadioButton squareFunction,sinFunction,logFunction;
+	MyRadioButton simpleRandom,greedyRandom,reinforcementLearning;
+	MyCheckBox inverse, reverse,shift,flipOneBit,steepestGradient;
+
+	MyRadioButton onlyImproving, improvingEqual,allMovesAccepted; 
 	
 	MyButton confirm;
 	
-	MyLabel candidateSolution,newSolution,lowLevelHeuristic,count;
-	
+	MyLabel candidateSolution,newSolution,lowLevelHeuristic,accepted,count;
+	MyLabel candidateSolutionContent,newSolutionContent,lowLevelHeuristicContent,acceptedContent,countContent;
+	MyLabel blank;
+	int countLowLevelHeuristics = 0;
 	CustomizePanel(VSHMainFrame frame,int width,int height)
 	{
 		//=============================
@@ -51,7 +53,7 @@ public class CustomizePanel extends JPanel{
 		void addPanel(int width,int height){
 			int splitbarheight = con.getSplitBarHeight() ;;
 			int upHeight = con.getUpMenuHeight(height) ;
-			int downHeight = height - splitbarheight - upHeight;
+			int downHeight = height - splitbarheight - upHeight; 
 
 			upPanel = new JPanel();
 			upPanel.setPreferredSize(new Dimension(width,upHeight));
@@ -65,11 +67,12 @@ public class CustomizePanel extends JPanel{
 			createButtonGroups();
 			menuPanelInUpPanel.add(squareFunction);
 			menuPanelInUpPanel.add(sinFunction);
+			menuPanelInUpPanel.add(logFunction);
 			upPanel.add(menuPanelInUpPanel,BorderLayout.CENTER);
 			confirmationPanelInUpPanel = new JPanel();
 			confirmationPanelInUpPanel.setBackground(con.getLeftBgColor());
 			//confirmationPanelInUpPanel.setLayout(con.getFlowLayout(1,0,10));
-			confirm = new MyButton (con,"confirm_on.png","confirm_pressed.png","Confirm");
+			confirm = new MyButton (con,"confirm_on.png","confirm_pressed.png","confirm_disable.png","Confirm");
 			confirm.setActionCommand("confirm");
 			confirm.addActionListener(new Action(frame,confirm));
 			confirmationPanelInUpPanel.add(confirm);
@@ -83,14 +86,28 @@ public class CustomizePanel extends JPanel{
 			downPanel.setPreferredSize(new Dimension(width,downHeight));
 			downPanel.setBackground(con.getLeftBgColor());
 			downPanel.setLayout(con.getFlowLayout(1,0,10));
+			blank = new MyLabel(con,"");
 			candidateSolution = new MyLabel(con,"Candidate Solution");
+			candidateSolutionContent = new MyLabel(con,"");
 			newSolution = new MyLabel(con,"New Solution");
+			newSolutionContent = new MyLabel(con,"");
 			lowLevelHeuristic = new MyLabel(con,"Low Level Heuristic");
+			lowLevelHeuristicContent =  new MyLabel(con,"");
+			accepted = new MyLabel(con,"Accepted");
+			acceptedContent =  new MyLabel(con,"");
 			count = new MyLabel(con,"Count");
-			downPanel.add(candidateSolution);
-			downPanel.add(newSolution);
-			downPanel.add(lowLevelHeuristic);
+			countContent = new MyLabel(con,"");
+
 			downPanel.add(count);
+			downPanel.add(countContent);
+			downPanel.add(candidateSolution);
+			downPanel.add(candidateSolutionContent);
+			downPanel.add(newSolution);
+			downPanel.add(newSolutionContent);
+			downPanel.add(lowLevelHeuristic);
+			downPanel.add(lowLevelHeuristicContent);
+			downPanel.add(accepted);
+			downPanel.add(acceptedContent);
 			this.add(downPanel);
 		}
 		private void createButtonGroups() {
@@ -99,29 +116,36 @@ public class CustomizePanel extends JPanel{
 			squareFunction = new MyRadioButton(con,"square_function_on.png","square_function_pressing.png","square_function_pressed.png","Square Function");
 			squareFunction.setSelected(true);
 			sinFunction = new MyRadioButton(con,"sin_function_on.png","sin_function_pressing.png","sin_function_pressed.png","Sin Function");
+			logFunction = new MyRadioButton(con,"log_function_on.png","log_function_pressing.png","log_function_pressed.png","Log Function");
 			benchmarkFunctionGroupButton.add(squareFunction);
 			benchmarkFunctionGroupButton.add(sinFunction);
+			benchmarkFunctionGroupButton.add(logFunction);
 			
 			heuristicSelectionGroupButton = new ButtonGroup();
 			simpleRandom = new MyRadioButton(con,"simple_random_on.png","simple_random_pressing.png","simple_random_pressed.png","Simple Random");
 			simpleRandom.setSelected(true);
 			greedyRandom = new MyRadioButton(con,"greedy_random_on.png","greedy_random_pressing.png","greedy_random_pressed.png","Greedy Random");
+			reinforcementLearning = new MyRadioButton(con,"reinforcement_learning_on.png","reinforcement_learning_pressing.png","reinforcement_learning_pressed.png","Reinforcement Learning");
 			heuristicSelectionGroupButton.add(simpleRandom);
 			heuristicSelectionGroupButton.add(greedyRandom);
-			
+			heuristicSelectionGroupButton.add(reinforcementLearning);
 			
 			inverse = new MyCheckBox(con,"inverse_on.png","inverse_pressing.png","inverse_pressed.png","Inverse");
 			inverse.setSelected(true);
 			reverse = new MyCheckBox(con,"reverse_on.png","reverse_pressing.png","reverse_pressed.png","Reverse");
 			shift = new MyCheckBox(con,"shift_on.png","shift_pressing.png","shift_pressed.png","Shift");
-
+			flipOneBit = new MyCheckBox(con,"flip_one_bit_on.png","flip_one_bit_pressing.png","flip_one_bit_pressed.png","Flip One Bit");
+			steepestGradient = new MyCheckBox(con,"steepest_gradient_on.png","steepest_gradient_pressing.png","steepest_gradient_pressed.png","Steepest Gradient");
+			
 			
 			acceptanceMethodGroupButton = new ButtonGroup();
 			onlyImproving = new MyRadioButton(con,"only_improving_on.png","only_improving_pressing.png","only_improving_pressed.png","Only Improving");
 			onlyImproving.setSelected(true);
 			improvingEqual= new MyRadioButton(con,"improving_euqal_on.png","improving_equal_pressing.png","improving_equal_pressed.png","Improving or Equal"); 
+			allMovesAccepted = new MyRadioButton(con,"all_moves_accepted_on.png","all_moves_accepted_pressing.png","all_moves_accepted_pressed.png","All Moves Accepted"); 
 			acceptanceMethodGroupButton.add(onlyImproving);
 			acceptanceMethodGroupButton.add(improvingEqual);
+			acceptanceMethodGroupButton.add(allMovesAccepted);
 			
 		}	
 	}
