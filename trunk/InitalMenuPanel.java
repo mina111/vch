@@ -20,16 +20,16 @@ public class InitalMenuPanel extends JPanel{
 		center = new JPanel();
 		center.setLayout(con.getFlowLayout(1,0,0));
 		center.setBackground(con.getLeftBgColor());
-		benchmarkFunction = new MyButton(con,"benchmark_function_on.png","benchmark_function_pressed.png","Benchmark Function");
+		benchmarkFunction = new MyButton(con,"benchmark_function_on.png","benchmark_function_pressed.png","benchmark_function_disable.png","Benchmark Function");
 		benchmarkFunction.setActionCommand("Benchmark Function");
 		benchmarkFunction.addActionListener(new Action(frame,benchmarkFunction));
-		heuristicSelection = new MyButton(con,"heuristic_selection_on.png","heuristic_selection_pressed.png","Heuristic Selection");
+		heuristicSelection = new MyButton(con,"heuristic_selection_on.png","heuristic_selection_pressed.png","heuristic_selection_disable.png","Heuristic Selection");
 		heuristicSelection.setActionCommand("Heuristic Selection");
 		heuristicSelection.addActionListener(new Action(frame,heuristicSelection));
-		lowLevelHeuristics = new MyButton(con,"low_level_on.png","low_level_pressed.png","Low Level Heuristics");
+		lowLevelHeuristics = new MyButton(con,"low_level_on.png","low_level_pressed.png","low_level_disable.png","Low Level Heuristics");
 		lowLevelHeuristics.setActionCommand("Low Level Heuristics");
 		lowLevelHeuristics.addActionListener(new Action(frame,lowLevelHeuristics));
-		acceptanceMethod = new MyButton(con,"acceptance_method_on.png","acceptance_method_pressed.png","Acceptance Method");
+		acceptanceMethod = new MyButton(con,"acceptance_method_on.png","acceptance_method_pressed.png","acceptance_method_disable.png","Acceptance Method");
 		acceptanceMethod.setActionCommand("Acceptance Method");
 		acceptanceMethod.addActionListener(new Action(frame,acceptanceMethod));
 		benchmarkFunctionInfo  = new MyLabel("Benchmark Function",con);
@@ -52,3 +52,4 @@ public class InitalMenuPanel extends JPanel{
 	}
 	
 }
+

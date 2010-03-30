@@ -6,7 +6,7 @@ public class AcceptanceMethodFactory {
 			return new AllMovesAccepted();
 		else if(name.equals("Only Improving"))
 			return new OnlyImproving();
-		else if(name.equals("Improving Equal"))
+		else if(name.equals("Improving or Equal"))
 			return new ImprovingEqual();
 		else 
 			return null;
