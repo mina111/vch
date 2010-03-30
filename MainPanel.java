@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import java.net.URI;
+import java.awt.Desktop;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -130,17 +133,39 @@ class MainPanel extends JPanel
 		toptitle.setForeground(Color.white);
 		toptitle.setFont(new Font("Arial",0,12));
 		toptitle.setText(con.softtitle);
-		final String  uri = "code.google.com/p/vch";  
-		toptitle.addMouseListener(new MouseAdapter() {   
-			public void mouseClicked(MouseEvent e) {  
-				try{  
-					  Runtime.getRuntime().exec("C:\\Program   Files\\Internet   Explorer\\IEXPLORE.EXE   "+uri);  
-					  }  
-					  catch(Exception   ee)  
-					  {  
-					  ee.printStackTrace();  
-					  }   
-			}  
+		final String  uri = "http://code.google.com/p/vch";  
+		toptitle.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) {
+				
+				// When someone clicks on the top-bar link:
+				
+				// Check that we have access to the desktop.
+				if( java.awt.Desktop.isDesktopSupported() ) {
+				
+					java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+					
+					// Check that we are allowed to browse.
+					if( desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
+						
+			            try {
+			
+							// Construct a new URI using the string, and then call the desktop's default browser.
+			                java.net.URI link = new java.net.URI( uri );
+			                desktop.browse( link );
+			                
+			            } catch ( Exception be ) {
+			            				
+			                System.err.println( be.getMessage() );
+			                
+			            } // END try/catch
+						
+					} // END if
+					
+				} // END if
+				
+			} // END mouseclicked
+			
 		});
 		toptitle.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
 		toppanel.add(toptitle);
