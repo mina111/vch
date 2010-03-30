@@ -1,9 +1,9 @@
 
 public class GreedyRandom extends HeuristicsSelection {
 	HyperHeuristic hyperHeuristic;
-	int[] optimumSoluation;
+	int[] optimumSolution;
 	int[][] histories = new int[hyperHeuristic.lowLevelHeuristics.size()][HyperHeuristic.DIGIT_NUM];
-	int optimumSoluationIndex;
+	int optimumSolutionIndex;
 	public GreedyRandom(HyperHeuristic hyperHeuristic) {
 		// TODO Auto-generated constructor stub
 		this.hyperHeuristic = hyperHeuristic;
@@ -19,16 +19,16 @@ public class GreedyRandom extends HeuristicsSelection {
 	LowLevelHeuristic selectLowLevelHeuristic(int[] candiateSolution) {
 		// TODO Auto-generated method stub
 		LowLevelHeuristic lowLevelHeuristic = hyperHeuristic.lowLevelHeuristics.get(0);
-		optimumSoluationIndex = 0;
-		optimumSoluation = lowLevelHeuristic.generateNewSoluation(candiateSolution);
-		histories[0] = optimumSoluation;
+		optimumSolutionIndex = 0;
+		optimumSolution = lowLevelHeuristic.generateNewSolution(candiateSolution);
+		histories[0] = optimumSolution;
 		for(int i=1; i<hyperHeuristic.lowLevelHeuristics.size();i++){
-			int[] newSoluation = hyperHeuristic.lowLevelHeuristics.get(i).generateNewSoluation(candiateSolution);
-			histories[i] = newSoluation;
-			if( hyperHeuristic.function.evaluate(newSoluation) <= hyperHeuristic.function.evaluate(optimumSoluation)    ){
+			int[] newSolution = hyperHeuristic.lowLevelHeuristics.get(i).generateNewSolution(candiateSolution);
+			histories[i] = newSolution;
+			if( hyperHeuristic.function.evaluate(newSolution) <= hyperHeuristic.function.evaluate(optimumSolution)    ){
 				lowLevelHeuristic = hyperHeuristic.lowLevelHeuristics.get(i);
-				optimumSoluation = newSoluation;
-				optimumSoluationIndex = i;
+				optimumSolution = newSolution;
+				optimumSolutionIndex = i;
 			}
 				
 				

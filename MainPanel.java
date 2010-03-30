@@ -16,41 +16,41 @@ import javax.swing.JPanel;
 
 
 
-class MainPanel extends JPanel 
+class MainPanel extends JPanel
 {
 	//======================
 	// 上边框图片及宽度:左边框|左半背景|中间过度|右边背景| 右边边框
 	ImageIcon img_t_l , img_t_bg , img_t_mid , img_t_rbg ,img_t_r;
 	int img_t_l_w , img_t_bg_w , img_t_mid_w , img_t_rbg_w , img_t_r_w;
-	
+
 	// =====================
 	// 左右边线
 	ImageIcon img_m;
 	int img_m_w;
-	
+
 	// =====================
 	// 画尾部:左边角|背景|右边角
 	ImageIcon img_b_l , img_b_bg , img_b_r ;
 	int img_b_l_w , img_b_bg_w , img_b_r_w;
-	
+
 	//======================
 	//菜单及信息区背景图片:菜单背景图片|菜单下面信息区背景
 	ImageIcon img_menu , img_info;
-	
+
 	// =====================
 	//宽高
 	int width,height;
-	
+
 	//======================
 	//用到的类
 	//======================
 	Config con = new Config();
-	
+
 	//======================
 	//中间主要面板
 	//======================
 	CustomizeExhibitionPanel m_panel;
-	
+
 	//======================
 	//主要面板
 	//======================
@@ -59,13 +59,13 @@ class MainPanel extends JPanel
 	//要用到的按钮图片:最小化图片|最大化图片|关闭图片,下面是对应的按钮
 	ImageIcon btn_min_img,btn_close_img;//
 	JButton btn_min,btn_close;//要用到的按钮
-	
+
 	//======================
 	//菜单面板
 	//======================
 	JPanel menupanel;
 
-	MyButton play, pause, stop, speedUp, slowDown,info,help;
+	MyButton play, pause, stop, speedUp, slowDown, info, help;
 	//======================
 	//信息面板
 	//======================
@@ -76,16 +76,16 @@ class MainPanel extends JPanel
 	//======================
 	//底部面板
 	//======================
-	JPanel bottompanel ; 
+	JPanel bottompanel ;
 	ImageIcon bottom_resize_img;
 	//JButton bottom_resize;
-	
+
 	//======================
 	//  属于的窗体
 	VSHMainFrame frame;
 	//======================
 	//初始化,参数:宽高
-	MainPanel(VSHMainFrame frame,int w,int h) 
+	MainPanel(VSHMainFrame frame,int w,int h)
 	{
 		//初始化宽高
 		this.width = w;
@@ -108,7 +108,7 @@ class MainPanel extends JPanel
 		//=============================
 		//添加底部面板
 		setBottomPanel();
-		
+
 	}
 	//===================================
 	//   为软件添加大小关闭及扩展按钮
@@ -133,41 +133,42 @@ class MainPanel extends JPanel
 		toptitle.setForeground(Color.white);
 		toptitle.setFont(new Font("Arial",0,12));
 		toptitle.setText(con.softtitle);
-		final String  uri = "http://code.google.com/p/vch";  
+		final String  uri = "http://code.google.com/p/vch";
 		toptitle.addMouseListener(new MouseAdapter() {
-			
+
 			public void mouseClicked(MouseEvent e) {
-				
+
 				// When someone clicks on the top-bar link:
-				
+
 				// Check that we have access to the desktop.
 				if( java.awt.Desktop.isDesktopSupported() ) {
-				
+
 					java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-					
+
 					// Check that we are allowed to browse.
 					if( desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
-						
+
 			            try {
-			
-							// Construct a new URI using the string, and then call the desktop's default browser.
+
+							// Construct a new URI using the string.
 			                java.net.URI link = new java.net.URI( uri );
+			                // Then call the desktop's default browser to open the URI.
 			                desktop.browse( link );
-			                
+
 			            } catch ( Exception be ) {
-			            				
+
 			                System.err.println( be.getMessage() );
-			                
+
 			            } // END try/catch
-						
+
 					} // END if
-					
+
 				} // END if
-				
+
 			} // END mouseclicked
-			
+
 		});
-		toptitle.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+		toptitle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		toppanel.add(toptitle);
 		//=================================
 		//最小化按钮;
@@ -220,11 +221,11 @@ class MainPanel extends JPanel
 		speedUp.setActionCommand("speed up");
 		speedUp.addActionListener(new Action(frame,speedUp));
 		slowDown.setActionCommand("slow down");
-		slowDown.addActionListener(new Action(frame,slowDown));		
+		slowDown.addActionListener(new Action(frame,slowDown));
 		info.setActionCommand("info");
 		info.addActionListener(new Action(frame,info));
 		help.setActionCommand("help");
-		help.addActionListener(new Action(frame,help));	
+		help.addActionListener(new Action(frame,help));
 		menupanel.add(play);
 		menupanel.add(pause);
 		menupanel.add(stop);
@@ -235,7 +236,7 @@ class MainPanel extends JPanel
 		this.add(menupanel);
 	}
 	//===================================
-	//添加菜单 
+	//添加菜单
 	//===================================
 	/*public void addMenu(JButton button)
 	{
@@ -250,17 +251,18 @@ class MainPanel extends JPanel
 		infopanel.setPreferredSize(new Dimension(width,img_info.getIconHeight()));
 		infopanel.setOpaque(false);
 		infopanel.setLayout(con.getFlowLayout(0,0,0)); //左对齐
-		//first = new MyLabel(con,"first_bg.png");
+
+	//	first = new MyLabel(con,"first_bg.png");
 	//	benchmarkFunction = new MyButton(con,"benchmark_function_on.png","benchmark_function_pressed.png","Benchmark Function");
 	//	benchmarkFunctionInfo = new MyLabel("Benchmark Function: ",con);
-		
+
 	//	infopanel.add(first);
 	//	infopanel.add(benchmarkFunction);
 	//	infopanel.add(benchmarkFunctionInfo);
-		//launchDemonstration;
-		
+	//	launchDemonstration;
+
 		this.add(infopanel);
-		
+
 		//=====================
 		//下面可以添加相关组件
 	}
@@ -311,14 +313,14 @@ class MainPanel extends JPanel
 		//按钮类
 		btn_min_img= con.getImgUrl("min.png");
 		btn_close_img= con.getImgUrl("close.png");
-		
-		
+
+
 		//========================================
 		//菜单栏
 		//========================================
 		img_menu = con.getImgUrl("menu_bg.png");//菜单背景
 		img_info = con.getImgUrl("info_bg.png");//信息背景
-		
+
 		//========================================
 		// 左右边线
 		//========================================
@@ -338,12 +340,12 @@ class MainPanel extends JPanel
 	// ==================================
 	// 画软件皮肤函数
 	// ==================================
-	public void paintComponent(Graphics g) 
+	public void paintComponent(Graphics g)
 	{
 		//===========================================
 		//开始画皮肤
 		//===========================================
-		
+
 		//==========================
 		// 画左边头
 		g.drawImage(img_t_l.getImage(), 0, 0, this);
@@ -364,13 +366,13 @@ class MainPanel extends JPanel
 		g.drawImage(img_t_rbg.getImage(), spot, 0, epot, img_t_rbg.getIconHeight(), this);
 		// 画右边,使用上面那图象的终点
 		g.drawImage(img_t_r.getImage(), epot, 0, this);
-		
+
 		//=============================
 		//画菜单背景
 		g.drawImage(img_menu.getImage(),0,img_t_l.getIconHeight(),this.getWidth(),img_menu.getIconHeight(),this);
 		//画信息区
 		g.drawImage(img_info.getImage(),0,img_t_l.getIconHeight()+img_menu.getIconHeight(),this.getWidth(),img_info.getIconHeight(),this);
-		
+
 		// ============================
 		// 画左右边线
 		g.drawImage(img_m.getImage(), 0, img_t_l.getIconHeight()+img_menu.getIconHeight()+img_info.getIconHeight(), img_m_w, this.getHeight()- img_t_l.getIconHeight(), this);
@@ -380,6 +382,6 @@ class MainPanel extends JPanel
 		// 尾部
 		g.drawImage(img_b_l.getImage(), 0, this.getHeight()- img_b_l.getIconHeight(), this);
 		g.drawImage(img_b_bg.getImage(), img_b_l_w, this.getHeight()- img_b_bg.getIconHeight(), this.getWidth()- img_b_r.getIconWidth(), img_b_r.getIconHeight(), this);
-		g.drawImage(img_b_r.getImage(), this.getWidth()- img_b_r.getIconWidth(), this.getHeight()- img_b_r.getIconHeight(), this);		
+		g.drawImage(img_b_r.getImage(), this.getWidth()- img_b_r.getIconWidth(), this.getHeight()- img_b_r.getIconHeight(), this);
 	}
 }

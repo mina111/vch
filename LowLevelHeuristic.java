@@ -40,6 +40,6 @@ public abstract  class LowLevelHeuristic {
 		}		
 	}
 	abstract String getName();
-	abstract int[] generateNewSoluation(int[] candidateSoluation);
+	abstract int[] generateNewSolution(int[] candidateSolution);
 	
 }

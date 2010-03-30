@@ -4,7 +4,7 @@ public class Reverse extends LowLevelHeuristic{
 	int startPostion ;
 	int endPostion;	
 	@Override
-	int[] generateNewSoluation(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		modifiedDigitNum = getModifiedDigitNum();
 		startPostion = getStartPostion();
 		endPostion = getEndPostion(startPostion,modifiedDigitNum);
@@ -12,9 +12,9 @@ public class Reverse extends LowLevelHeuristic{
 		int tempEndPostion = endPostion;
 		 System.out.println("+modifiedDigitNum"+modifiedDigitNum+"startPostion"+startPostion+"endPostion"+endPostion);
 		// TODO Auto-generated method stub
-		int newSoluatuon[] = new int[candidateSoluation.length];
-		for(int i =0;i<candidateSoluation.length;i++)
-			newSoluatuon[i]=candidateSoluation[i];
+		int newSoluatuon[] = new int[candidateSolution.length];
+		for(int i =0;i<candidateSolution.length;i++)
+			newSoluatuon[i]=candidateSolution[i];
 		
 		if(startPostion<endPostion){
 			while(startPostion<endPostion){
@@ -27,7 +27,7 @@ public class Reverse extends LowLevelHeuristic{
 			startPostion = tempStartPostion;
 			endPostion = tempEndPostion;
 			for(int i=0;i<newSoluatuon.length;i++)
-				System.out.print(candidateSoluation[i]);
+				System.out.print(candidateSolution[i]);
 			System.out.println("New");
 			for(int i=0;i<newSoluatuon.length;i++)
 				System.out.print(newSoluatuon[i]);

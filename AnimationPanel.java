@@ -120,7 +120,7 @@ public class AnimationPanel extends JPanel {
 			 g2D.setColor(Color.YELLOW);
 			 g2D.drawString("New Solution", 560, 590);
 			 g2D.drawLine(640, 585, 680,585);
-			 g2D.setColor(Color.GREEN);
+			 g2D.setColor(Color.BLUE);
 			 g2D.drawString("Previous Solutions", 690, 590);
 			 g2D.drawLine(800, 585, 840,585);			 
 		     g.setColor(new Color(214,214,214));
@@ -158,7 +158,7 @@ public class AnimationPanel extends JPanel {
 	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
 	             }	
 		     }
-		     g.setColor(Color.GREEN);
+		     g.setColor(Color.BLUE);
 		     for(int i=0;i<f.vsh.count;i++){
 		    	 double value = f.vsh.hyperHeuristic.function.evaluate(f.vsh.history[i]);
 		    	 g2D.draw(new Rectangle2D .Double((HyperHeuristic.bit2int(f.vsh.history[i])/SCALEX)+OFFSETX-2, (GRAPHY-(value/SCALEY))+OFFSETY-2, 3, 3));
@@ -371,7 +371,7 @@ public class AnimationPanel extends JPanel {
 					    					 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[i][j],temp-8, 255+80*i);
 					    					 temp = temp + bitSpace1;
 					    				 }
-					    				 if(((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSoluationIndex==i){
+					    				 if(((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSolutionIndex==i){
 					    					 g2D.drawRect(lowLevelHeuristicBoxX-15, 255+80*i-12,120, 15);
 					    				 }
 					    			 }
@@ -382,16 +382,16 @@ public class AnimationPanel extends JPanel {
 			    						g.setColor(Color.YELLOW);
 			    						g.setFont(F4);
 			    						for(int j=0;j<HyperHeuristic.DIGIT_NUM;j++){
-					    					 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSoluationIndex][j],temp-8+x6, 255+80*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSoluationIndex);
+					    					 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSolutionIndex][j],temp-8+x6, 255+80*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSolutionIndex);
 					    					 temp = temp + bitSpace2;
 					    				 }
 			    						x6++;
 			    					}else{
-			    						if((255+80*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSoluationIndex-y14)>170){
+			    						if((255+80*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSolutionIndex-y14)>170){
 			    							g.setColor(Color.YELLOW);
 				    						g.setFont(F4);
 			    							 for(int i=0;i<f.vsh.newSolution.length;i++){
-			    						    	 g2D.drawString(""+f.vsh.newSolution[i],x2, (255+80*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSoluationIndex-y14));
+			    						    	 g2D.drawString(""+f.vsh.newSolution[i],x2, (255+80*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).optimumSolutionIndex-y14));
 			    						    	 //System.out.print(f.vsh.candidateSolution[i]);
 			    						    	 x2=x2+bitSpace2;
 			    						     }
@@ -1355,8 +1355,8 @@ System.out.println(f.vsh.hyperHeuristic.lowLevelHeuristics.get(0).getName());
 				    							 x2=x2+bitSpace2;
 				    						 }
 			    							 x2 = 185;
-			    	//System.out.println(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex+"SSS");
-			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex==i){
+			    	//System.out.println(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex+"SSS");
+			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex==i){
 			    								 g2D.setColor(Color.YELLOW);
 			    								 g2D.drawRect(x2-5, y7+25*i-20, bitSpace2*f.vsh.candidateSolution.length+10, 20);
 			    							 }
@@ -1369,9 +1369,9 @@ System.out.println(f.vsh.hyperHeuristic.lowLevelHeuristics.get(0).getName());
 		    							 f.panel.m_panel.p_left.newSolutionContent.setForeground(Color.YELLOW);
 		    							 f.panel.m_panel.p_left.newSolutionContent.setText(newSolutionString);
 		    							 g2D.setColor(Color.YELLOW);
-		    							 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex)-x6)>165){
+		    							 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6)>165){
 		    								 for(int i=0;i<f.vsh.newSolution.length;i++ ){
-				    							 g2D.drawString(""+f.vsh.newSolution[i],x2, y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex-x6); 
+				    							 g2D.drawString(""+f.vsh.newSolution[i],x2, y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex-x6); 
 				    							 x2=x2+bitSpace2;
 				    						 }
 				    						 x2 = 185;
@@ -2062,8 +2062,8 @@ System.out.println(f.vsh.hyperHeuristic.lowLevelHeuristics.get(0).getName());
 				    							 x2=x2+bitSpace2;
 				    						 }
 			    							 x2 = 185;
-			    	//System.out.println(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex+"SSS");
-			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex==i){
+			    	//System.out.println(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex+"SSS");
+			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex==i){
 			    								 g2D.setColor(Color.YELLOW);
 			    								 g2D.drawRect(x2-5, y7+25*i-20, bitSpace2*f.vsh.candidateSolution.length+10, 20);
 			    							 }
@@ -2072,17 +2072,17 @@ System.out.println(f.vsh.hyperHeuristic.lowLevelHeuristics.get(0).getName());
 		    						 }else{
 		    					
 		    								 g2D.setColor(Color.YELLOW);
-		    								 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex)-x6)!=steepest_gradient_y+68){
-		    									 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex)-x6)>steepest_gradient_y+68){
+		    								 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6)!=steepest_gradient_y+68){
+		    									 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6)>steepest_gradient_y+68){
 		    										 for(int i=0;i<f.vsh.newSolution.length;i++){
-		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex)-x6));
+		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6));
 		    											 x2=x2+bitSpace2;
 		    										 }
 		    										 x2 = 185; 
 		    										 x6++; 
 		    									 }else {
 		    										 for(int i=0;i<f.vsh.newSolution.length;i++){
-		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex)-x6));
+		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6));
 		    											 x2=x2+bitSpace2;
 		    										 }
 		    										 x2 = 185; 
@@ -2095,7 +2095,7 @@ System.out.println(f.vsh.hyperHeuristic.lowLevelHeuristics.get(0).getName());
 		    									 if(x12>lowLevelHeuristicBoxX-20){
 		    										 int temp = x12;
 		    										 for(int i=0;i<f.vsh.newSolution.length;i++){
-		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],temp, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSoluationIndex)-x6));
+		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],temp, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6));
 		    											 temp=temp+bitSpace2;
 		    										 }
 		    										 x12--;

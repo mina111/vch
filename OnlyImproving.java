@@ -8,9 +8,9 @@ public class OnlyImproving extends AcceptanceMethod {
 	}
 
 	@Override
-	boolean checkIfAcceptance(int[] candidate_Soluation, int[] new_Soluation) {
+	boolean checkIfAcceptance(int[] candidate_Solution, int[] new_Solution) {
 		// TODO Auto-generated method stub
-		if(hyperHeuristic.function.evaluate(candidate_Soluation)<=hyperHeuristic.function.evaluate(new_Soluation))
+		if(hyperHeuristic.function.evaluate(candidate_Solution)<=hyperHeuristic.function.evaluate(new_Solution))
 			return false;
 		return true;
 	}

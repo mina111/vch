@@ -2,7 +2,7 @@
 public class AllMovesAccepted extends AcceptanceMethod {
 
 	@Override
-	boolean checkIfAcceptance(int[] candidate_Soluation, int[] new_Soluation) {
+	boolean checkIfAcceptance(int[] candidate_Solution, int[] new_Solution) {
 		// TODO Auto-generated method stub
 		return true;
 	}
