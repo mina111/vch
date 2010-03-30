@@ -22,6 +22,8 @@ public class AnimationPanel extends JPanel {
 	final int ORIGINAL_WIDTH = 860;
 	final int ORIGINAL_HEIGHT = 608;
 	final int ALIASVALUE = 30;
+	final int NOTCHSIZE = 6;
+	final int NOTCHDISTANCE = 20;
 	int lowLevelHeuristicBoxX = 41,lowLevelHeuristicBoxY = 185;
 	int reverse_y,inverse_y,shift_y,flip_one_bit_y,steepest_gradient_y;
 	int bitSpace1 = 7;
@@ -88,12 +90,15 @@ public class AnimationPanel extends JPanel {
 	    
 		Graphics2D g2D = (Graphics2D)g;
 		g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		FontMetrics fm = g2D.getFontMetrics();
+		
 		
 		super.paintComponent(g2D);
 		if(drawBackgroundPic){
 			 
 			
 			Font F3 = new Font ("Comic Sans MS", Font.PLAIN,12);
+			Font AF1 = new Font("Courier", Font.PLAIN,  18);
 			 String candidateSolutionString = "";
 			 newSolutionString = "";
 			 f.panel.m_panel.p_left.newSolutionContent.setText(newSolutionString);
@@ -126,14 +131,29 @@ public class AnimationPanel extends JPanel {
 		     g.setColor(new Color(214,214,214));
 		     if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx")||f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx^2")){
 		    	 GRAPHY = 200;
+				 int fontHeight = fm.getHeight();
 		    	 g2D.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY+GRAPHY));
 			     g2D.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
+				 for(int k = 0;k <= GRAPHY*2;k+=NOTCHDISTANCE){
+					if(k == 0 || k == GRAPHY || k == GRAPHY*2) {
+						g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-NOTCHSIZE*2, OFFSETY+k);
+					} else {
+						g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-NOTCHSIZE, OFFSETY+k);
+					}
+					g2D.setFont(AF1);
+					g2D.drawString("1",OFFSETX-fm.stringWidth("1")-(NOTCHSIZE*2),(int)(OFFSETY+(fontHeight/2)-2));
+					g2D.drawString("0",OFFSETX-fm.stringWidth("1")-(NOTCHSIZE*2),(int)(OFFSETY+GRAPHY+(fontHeight/2)-2));
+					g2D.drawString("-1",OFFSETX-fm.stringWidth("-1")-(NOTCHSIZE*2),(int)(OFFSETY+GRAPHY*2+(fontHeight/2)-2));
+				 }
 		     }
-			 //Draw Axis lines
 		     g2D.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
 		     g2D.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
-			 for(int k = 0;k < GRAPHY;k+=5){
-			 	g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-5, OFFSETY+k);
+			 for(int k = 0;k <= GRAPHY;k+=NOTCHDISTANCE){
+				if(k == 0 || k == GRAPHY || k == GRAPHY*2) {
+					g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-NOTCHSIZE*2, OFFSETY+k);
+				} else {
+			 		g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-NOTCHSIZE, OFFSETY+k);					
+				}
 			 }
 		     if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=x^2")){
 		    	 SCALEY = (32768 * 32768) / GRAPHY; 
