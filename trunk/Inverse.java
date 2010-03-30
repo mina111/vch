@@ -53,4 +53,3 @@ public class Inverse extends LowLevelHeuristic{
 
 	
 }
-

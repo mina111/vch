@@ -129,8 +129,12 @@ public class AnimationPanel extends JPanel {
 		    	 g2D.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY+GRAPHY));
 			     g2D.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
 		     }
+			 //Draw Axis lines
 		     g2D.draw(new Line2D.Double(0+OFFSETX, 0+OFFSETY, 0+OFFSETX, GRAPHY+OFFSETY));
 		     g2D.draw(new Line2D.Double(0+OFFSETX, GRAPHY+OFFSETY, GRAPHX+OFFSETX,GRAPHY+OFFSETY));
+			 for(int k = 0;k < GRAPHY;k+=5){
+			 	g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-5, OFFSETY+k);
+			 }
 		     if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=x^2")){
 		    	 SCALEY = (32768 * 32768) / GRAPHY; 
 	             for (int x=0; x <= boundaryMaxX; x=x+10){        	 
@@ -141,7 +145,6 @@ public class AnimationPanel extends JPanel {
 	             }	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx")||f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx^2")){
 		    	 SCALEY = 1/GRAPHY; 
-				g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 	             for (int x=0; x <= boundaryMaxX; x=x+10){        	 
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
 					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);

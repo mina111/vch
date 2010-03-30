@@ -3,10 +3,10 @@ import java.util.Vector;
 
 public class HyperHeuristic {
 	 static final int DIGIT_NUM = 15;
-	 static Function function;
-	 static AcceptanceMethod acceptanceMethod;
-	 static Vector<LowLevelHeuristic> lowLevelHeuristics = new Vector<LowLevelHeuristic>();
-	 static HeuristicsSelection heuristicsSelection;
+	 Function function;
+	 AcceptanceMethod acceptanceMethod;
+	 Vector<LowLevelHeuristic> lowLevelHeuristics = new Vector<LowLevelHeuristic>();
+	 HeuristicsSelection heuristicsSelection;
 	
 	 public static int bit2int(int[] bit){
 			double intNum = 0;

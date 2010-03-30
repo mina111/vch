@@ -5,15 +5,14 @@ import java.util.Vector;
 
 public class ReinforcementLearning extends HeuristicsSelection {
 
-
+	HyperHeuristic hyperHeuristic;
 	int[] keys;
 	Random random = new Random();
-	
 	int currentLowLevelHeuristicNO;
-	ImprovingEqual ie = new ImprovingEqual();
-	public ReinforcementLearning() {
-		keys = new int[HyperHeuristic.lowLevelHeuristics.size()];
-		for(int i=0;i<HyperHeuristic.lowLevelHeuristics.size();i++){
+	public ReinforcementLearning(HyperHeuristic hyperHeuristic) {
+		this.hyperHeuristic = hyperHeuristic;
+		keys = new int[hyperHeuristic.lowLevelHeuristics.size()];
+		for(int i=0;i<hyperHeuristic.lowLevelHeuristics.size();i++){
 			keys[i] = 0;
 		}
 	}
@@ -41,7 +40,7 @@ public class ReinforcementLearning extends HeuristicsSelection {
 			currentLowLevelHeuristicNO = maxNumKey;
 		else
 			currentLowLevelHeuristicNO = maxNumKeys.get(random.nextInt(maxNumKeys.size()));
-		return HyperHeuristic.lowLevelHeuristics.get(currentLowLevelHeuristicNO);
+		return hyperHeuristic.lowLevelHeuristics.get(currentLowLevelHeuristicNO);
 	}
 
 	void incrementScore (){

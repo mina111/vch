@@ -124,10 +124,10 @@ public class Graph extends JPanel {
 		plotGraph = true;
 		double scaleX = (double)xMaxValue / (double)xLength;
 		double scaleY = (double)yMaxValue / (double)yLength;
-		System.out.println("scaleY : " + scaleY + "\tyLength : " + yLength + "\tyMaxValue : " + yMaxValue);
+		//System.out.println("scaleY : " + scaleY + "\tyLength : " + yLength + "\tyMaxValue : " + yMaxValue);
 		for(int k = 0; k < xLength; k++){
 			plotSinP[k] = (Math.sin(Math.toRadians(k*scaleX)))/scaleY;
-			System.out.println((Math.sin(Math.toRadians(k*scaleX))));
+			System.out.println((Math.sin(Math.toRadians(k*scaleX)))/scaleY);
 		}
 		for(int k = 0; k < xLength; k++){
 			plotSinN[k] = (Math.sin(Math.toRadians(-k*scaleX)))/scaleY;

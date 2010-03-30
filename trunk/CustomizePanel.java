@@ -45,7 +45,7 @@ public class CustomizePanel extends JPanel{
 	private void initPanel() {
 		// TODO Auto-generated method stub
 		con = new Config();
-		split_img = con.getImgUrl("b_bg.png");
+		split_img = con.getImgUrl("b_bg.png");//因为在JButton前就要用,所以在前面先实例化
 		this.setLayout(con.getFlowLayout(1,0,0)); 
 		this.setPreferredSize(new Dimension(width,height));
 		addPanel(width,height);
@@ -53,7 +53,7 @@ public class CustomizePanel extends JPanel{
 		void addPanel(int width,int height){
 			int splitbarheight = con.getSplitBarHeight() ;;
 			int upHeight = con.getUpMenuHeight(height) ;
-			int downHeight = height - splitbarheight - upHeight; 
+			int downHeight = height - splitbarheight - upHeight; // 计算右边剩余宽度
 
 			upPanel = new JPanel();
 			upPanel.setPreferredSize(new Dimension(width,upHeight));

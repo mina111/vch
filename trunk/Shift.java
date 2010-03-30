@@ -1,3 +1,4 @@
+
 public class Shift extends LowLevelHeuristic{
 	int modifiedDigitNum ;
 	int startPostion ;
@@ -44,4 +45,3 @@ public class Shift extends LowLevelHeuristic{
 	}
 
 }
-

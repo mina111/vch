@@ -63,6 +63,7 @@ public class Action implements ActionListener{
 				return;	
 
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
+
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.squareFunction);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.sinFunction);
 			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.logFunction);
@@ -70,7 +71,7 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
-			//frame.update(frame.getGraphics());
+			frame.update(frame.getGraphics());
 			frame.validate();
 		}
 		
@@ -86,7 +87,7 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
-			//frame.update(frame.getGraphics());
+			frame.update(frame.getGraphics());
 			frame.validate();
 		}
 		
@@ -105,7 +106,7 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = true;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
-			//frame.update(frame.getGraphics());
+			frame.update(frame.getGraphics());
 			frame.validate();
 		}
 		
@@ -122,7 +123,7 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = false;
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = true;
-			//frame.update(frame.getGraphics());
+			frame.update(frame.getGraphics());
 			frame.validate();			
 		}
 		
@@ -192,7 +193,7 @@ public class Action implements ActionListener{
 					frame.panel.m_panel.p_left.countLowLevelHeuristics++;		
 				}
 				if(frame.panel.m_panel.p_left.steepestGradient.isSelected()){
-					names.add("Steepest Gradien");
+					names.add("Steepest Gradient");
 					if(!output.equals("")){
 						if(frame.panel.m_panel.p_left.countLowLevelHeuristics==2){
 							output = "<html><p>"+output +",</p></p>Steepest Gradient</p></html>";
@@ -202,7 +203,7 @@ public class Action implements ActionListener{
 							if(frame.panel.m_panel.p_left.flipOneBit.isSelected())
 								output = "<html><p>"+output +",</p></p>Steepest Gradient</p></html>";
 							else
-								output = output+",Steepest Gradien";
+								output = output+",Steepest Gradient";
 						}else if(frame.panel.m_panel.p_left.countLowLevelHeuristics==4){
 							output = "<html><p>Inverse,Reverse,Flip One Bit</p></p>Shift,Steepest Gradient</p></html>";
 						}
@@ -236,7 +237,7 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristics.setEnabled(false);
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethod.setEnabled(false);
 			frame.panel.m_panel.p_left.confirm.setEnabled(false);
-			if(!frame.start){
+			if(!frame.start&&frame.stop){
 				frame.vsh.buildHyperHeuristic();
 			}
 			if(!frame.panel.m_panel.animationPanel.drawBackgroundPic )

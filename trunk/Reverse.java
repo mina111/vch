@@ -1,3 +1,4 @@
+
 public class Reverse extends LowLevelHeuristic{
 	int modifiedDigitNum ;
 	int startPostion ;
@@ -73,3 +74,4 @@ public class Reverse extends LowLevelHeuristic{
 	}
 
 
+}
