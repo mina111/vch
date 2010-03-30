@@ -9,25 +9,24 @@ public class HyperHeuristicBuilder {
 
 	public void buildAcceptanceMethod(String name) {
 		// TODO Auto-generated method stub
-		hyperHeuristic.acceptanceMethod =AcceptanceMethodFactory.createAcceptanceMethod(name);
+		hyperHeuristic.acceptanceMethod =AcceptanceMethodFactory.createAcceptanceMethod(name,hyperHeuristic);
 	}
 
 	public  LowLevelHeuristic LowLevelHeuristic(String name) {
 		// TODO Auto-generated method stub
-		return LowLevelHeuristicsFactory.createLowLevelHeuristic(name);
+		return LowLevelHeuristicsFactory.createLowLevelHeuristic(name,hyperHeuristic);
 	}
 
 	public void LowLevelHeuristics(String[] names) {
 		// TODO Auto-generated method stub
-		HyperHeuristic.lowLevelHeuristics.removeAllElements();
 		for(int i=0;i<names.length;i++){
-			HyperHeuristic.lowLevelHeuristics.add(LowLevelHeuristic(names[i]));
+			hyperHeuristic.lowLevelHeuristics.add(LowLevelHeuristic(names[i]));
 		}
 		
 	}
 	public void HeuristicsSelection(String name) {
 		// TODO Auto-generated method stub
-		HyperHeuristic.heuristicsSelection = HeuristicsSelectionFactory.createHeuristicsSelection(name);
+		hyperHeuristic.heuristicsSelection = HeuristicsSelectionFactory.createHeuristicsSelection(name,hyperHeuristic);
 		
 	}
 	
@@ -36,4 +35,3 @@ public class HyperHeuristicBuilder {
 	}
 
 }
-

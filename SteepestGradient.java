@@ -1,8 +1,13 @@
 
 public class SteepestGradient extends LowLevelHeuristic{
-
-	ImprovingEqual ie = new ImprovingEqual();
+	HyperHeuristic hyperHeuristic;
+	ImprovingEqual ie;
 	int optimumSoluationIndex = 0;
+	public SteepestGradient(HyperHeuristic hyperHeuristic) {
+		// TODO Auto-generated constructor stub
+		this.hyperHeuristic = hyperHeuristic;
+		ie = new ImprovingEqual(hyperHeuristic);
+	}
 	int[] generateNewSoluation(int[] candidateSoluation) {
 		// TODO Auto-generated method stub
 		int[] optimumSoluation = new int[candidateSoluation.length ];
