@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 
 public class MyLabel extends JLabel{
 	private String value;
-	public final int LABELWIDTH = 79;
+	public final int LABELWIDTH = 120;
 	public final int LABELHEIGHT = 27;
 	
 	ImageIcon label_img;
@@ -22,13 +22,16 @@ public class MyLabel extends JLabel{
 		if(name.equals("Benchmark Function"))
 			value = "f(x) = x ^ 2";
 		else if(name.equals("Heuristic Selection"))
-			value = "<html><p>Simple </p></p>Random</p></html>";
+			value = "Simple Random";
 		else if(name.equals("Low Level Heuristics"))
-			value = "<html><p>Inverse, </p></p>Reverse, Shift</p></html>";
+			value = "<html><p>Inverse,Reverse,Flip One Bit</p></p>Shift,Steepest Gradient</p></html>";
 		else if(name.equals("Acceptance Method"))
-			value = "<html><p>Improving </p></p>and Equal</p></html>";
+			value = "Improving or Equal";
 		this.setOpaque(true);
-		this.setPreferredSize(new Dimension(LABELWIDTH,LABELHEIGHT));
+		if(name.equals("Low Level Heuristics"))
+			this.setPreferredSize(new Dimension(LABELWIDTH+30,LABELHEIGHT));
+		else
+			this.setPreferredSize(new Dimension(LABELWIDTH,LABELHEIGHT));
 		this.setBackground(con.getLeftBgColor());	
 		this.setForeground(Color.WHITE);
 		Font font = new Font("Comic Sans MS",Font.BOLD ,10);
@@ -41,12 +44,12 @@ public class MyLabel extends JLabel{
 	}
 	
 	public MyLabel (Config con,String name){
-		this.setPreferredSize(new Dimension(con.getLeftMenuWidth(),25));
+		this.setPreferredSize(new Dimension(con.getLeftMenuWidth(),12));
 		this.setBorder(null);
 		this.setOpaque(true);
 		this.setBackground(con.getLeftBgColor());	
 		this.setForeground(Color.WHITE);
-		Font font = new Font("Arial",Font.BOLD ,14);
+		Font font = new Font("Arial",Font.BOLD ,11);
 		this.setFont(font);
 		this.setHorizontalAlignment(SwingConstants.CENTER); 
 		this.setText(name);
@@ -65,4 +68,3 @@ public class MyLabel extends JLabel{
 	}
 		
 }
-

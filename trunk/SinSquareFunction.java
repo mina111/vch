@@ -13,4 +13,10 @@ public class SinSquareFunction extends Function{
 		return "f(x)=sin(x^2)";
 	}
 
+	@Override
+	double evaluateInteger(int x) {
+		// TODO Auto-generated method stub
+		return Math.sin(x*x);
+	}
+
 }

@@ -13,5 +13,11 @@ public class SquareFunction extends Function{
 		return "f(x)=x^2";
 	}
 
+	@Override
+	double evaluateInteger(int x) {
+		// TODO Auto-generated method stub
+		return x*x;
+	}
+
 	
 }
