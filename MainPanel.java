@@ -22,7 +22,6 @@ class MainPanel extends JPanel
 
 	ImageIcon img_m;
 	int img_m_w;
-	
 
 	ImageIcon img_b_l , img_b_bg , img_b_r ;
 	int img_b_l_w , img_b_bg_w , img_b_r_w;
@@ -32,22 +31,23 @@ class MainPanel extends JPanel
 	
 
 	int width,height;
+	
 
 	Config con = new Config();
 	
-	
+
 	CustomizeExhibitionPanel m_panel;
 	
 
 	JPanel toppanel;
 	JLabel toptitle;
+	ImageIcon btn_min_img,btn_close_img;//
+	JButton btn_min,btn_close;
 	
-	ImageIcon btn_min_img,btn_max_img,btn_close_img;//
-	JButton btn_min,btn_max,btn_close;
 
 	JPanel menupanel;
 
-	MyButton play, pause, stop, forward, info,help;
+	MyButton play, pause, stop, speedUp, slowDown,info,help;
 
 	JPanel infopanel;
 	MyLabel first;
@@ -56,9 +56,7 @@ class MainPanel extends JPanel
 
 	JPanel bottompanel ; 
 	ImageIcon bottom_resize_img;
-	JButton bottom_resize;
-	
-	
+
 	VSHMainFrame frame;
 
 	MainPanel(VSHMainFrame frame,int w,int h) 
@@ -69,17 +67,17 @@ class MainPanel extends JPanel
 		this.frame = frame;
 		this.setOpaque(true);
 		initSkinImg(); 
-		this.setLayout(con.getFlowLayout(1,0,0));
-		
-		setTop();
-	
-		setMenu();
+		this.setLayout(con.getFlowLayout(1,0,0)); 
 
+		setTop();
+
+		setMenu();
 		setInfoPanel();
 
 		setMiddlePanel();
 
 		setBottomPanel();
+		
 	}
 
 	public void setTop()
@@ -94,7 +92,7 @@ class MainPanel extends JPanel
 
 		toptitle = new JLabel();
 
-		int w = width-btn_close_img.getIconWidth()-btn_max_img.getIconWidth()-btn_min_img.getIconWidth()-img_t_l_w-img_t_bg_w-img_t_mid_w;
+		int w = width-btn_close_img.getIconWidth()-btn_min_img.getIconWidth()-img_t_l_w-img_t_bg_w-img_t_mid_w;
 		toptitle.setPreferredSize(new Dimension(w,img_t_l.getIconHeight()));
 		toptitle.setForeground(Color.white);
 		toptitle.setFont(new Font("Arial",0,12));
@@ -123,15 +121,6 @@ class MainPanel extends JPanel
 		btn_min.setToolTipText("最小化模式");
 		toppanel.add(btn_min);
 	
-		btn_max = new JButton(btn_max_img);
-		btn_max.setPreferredSize(new Dimension(btn_max_img.getIconWidth(),btn_max_img.getIconHeight()));
-		btn_max.setBorder(null);
-		btn_max.setFocusCycleRoot(false);
-		btn_max.setRolloverIcon(con.getImgUrl("max_on.png"));
-		btn_max.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btn_max.setToolTipText("全屏模式");
-		toppanel.add(btn_max);
-
 		btn_close = new JButton(btn_close_img);
 		btn_close.setPreferredSize(new Dimension(btn_close_img.getIconWidth(),btn_close_img.getIconHeight()));
 		btn_close.setBorder(null);
@@ -152,13 +141,29 @@ class MainPanel extends JPanel
 		play = new MyButton(con,"Play_on.png","Play_Pressed.png","Play");
 		pause = new MyButton(con,"Pause_on.png","Pause_pressed.png","Pause");
 		stop = new MyButton(con,"Stop_on.png","Stop_pressed.png","Stop");
-		forward = new MyButton(con,"Forward_on.png","Forward_pressed.png","Forward");
+		speedUp = new MyButton(con,"speed_up_on.png","speed_up_pressed.png","Speed Up");
+		slowDown = new MyButton(con,"slow_down_on.png","slow_down_pressed.png","Slow Down");
 		info = new MyButton(con,"Info_on.png","Info_pressed.png","About");
 		help = new MyButton(con,"Help_on.png","Help_pressed.png","Help");
+		play.setActionCommand("play");
+		play.addActionListener(new Action(frame,play));
+		pause.setActionCommand("pause");
+		pause.addActionListener(new Action(frame,pause));
+		stop.setActionCommand("stop");
+		stop.addActionListener(new Action(frame,stop));
+		speedUp.setActionCommand("speed up");
+		speedUp.addActionListener(new Action(frame,speedUp));
+		slowDown.setActionCommand("slow down");
+		slowDown.addActionListener(new Action(frame,slowDown));		
+		info.setActionCommand("info");
+		info.addActionListener(new Action(frame,info));
+		help.setActionCommand("help");
+		help.addActionListener(new Action(frame,help));	
 		menupanel.add(play);
 		menupanel.add(pause);
 		menupanel.add(stop);
-		menupanel.add(forward);
+		menupanel.add(speedUp);
+		menupanel.add(slowDown);
 		menupanel.add(info);
 		menupanel.add(help);
 		this.add(menupanel);
@@ -170,10 +175,12 @@ class MainPanel extends JPanel
 		infopanel.setPreferredSize(new Dimension(width,img_info.getIconHeight()));
 		infopanel.setOpaque(false);
 		infopanel.setLayout(con.getFlowLayout(0,0,0)); 
+		//first = new MyLabel(con,"first_bg.png");
+
 		
 		this.add(infopanel);
 		
-
+	
 	}
 
 	public void setMiddlePanel()
@@ -189,17 +196,11 @@ class MainPanel extends JPanel
 	{
 		bottompanel = new JPanel();
 		bottompanel.setPreferredSize(new Dimension(width,this.img_b_l.getIconHeight()));
-		bottompanel.setLayout(con.getFlowLayout(2,0,0));
+		bottompanel.setLayout(con.getFlowLayout(2,0,0));//右对齐
 		bottompanel.setOpaque(false);
+		bottompanel.setCursor(new Cursor(Cursor.MOVE_CURSOR));
 		this.add(bottompanel);
 
-		bottom_resize_img = con.getImgUrl("bottom_resize.png"); 
-		bottom_resize = new JButton(bottom_resize_img);
-		bottom_resize.setPreferredSize(new Dimension(bottom_resize_img.getIconWidth(),bottom_resize_img.getIconHeight()));
-		bottom_resize.setBorder(null);
-		bottom_resize.setFocusCycleRoot(false);
-		bottom_resize.setCursor(new Cursor(Cursor.SE_RESIZE_CURSOR));
-		bottompanel.add(bottom_resize);
 	}
 
 	private void initSkinImg()
@@ -217,17 +218,17 @@ class MainPanel extends JPanel
 		img_t_r_w = img_t_r.getIconWidth();
 
 		btn_min_img= con.getImgUrl("min.png");
-		btn_max_img= con.getImgUrl("max.png");
 		btn_close_img= con.getImgUrl("close.png");
 		
 		
-	
+
 		img_menu = con.getImgUrl("menu_bg.png");
 		img_info = con.getImgUrl("info_bg.png");
 		
-	
+
 		img_m = con.getImgUrl("exam_b_line.png");
 		img_m_w = img_m.getIconWidth();
+
 
 		img_b_l = con.getImgUrl("exam_b_l.png");
 		img_b_l_w = img_b_l.getIconWidth();
@@ -239,38 +240,32 @@ class MainPanel extends JPanel
 
 	public void paintComponent(Graphics g) 
 	{
-	
+
 		g.drawImage(img_t_l.getImage(), 0, 0, this);
 
 		g.drawImage(img_t_bg.getImage(), 0, 0, img_t_bg_w, img_t_bg.getIconHeight(), this);
-		
-		g.drawImage(con.getImgUrl("icon.png").getImage(), 5, 3, 16,16, this);
-		
+		g.drawImage(con.getImgUrl("icon1.png").getImage(), 20, 3, 34,16, this);
 		g.setColor(Color.white);
-		g.drawString("VSH", 30, 15);
+		//g.drawString("VSH", 40, 15);
 		g.setFont(new Font("Verdana", 0, 12));
-		
 		g.drawImage(img_t_mid.getImage(), img_t_bg_w, 0, img_t_mid_w, img_t_bg.getIconHeight(), this);
-	
+
 		int spot = img_t_bg_w + img_t_mid_w;
 		int epot = this.getWidth() - img_t_r_w;
 		g.drawImage(img_t_rbg.getImage(), spot, 0, epot, img_t_rbg.getIconHeight(), this);
-		
 		g.drawImage(img_t_r.getImage(), epot, 0, this);
 		
-		
+
 		g.drawImage(img_menu.getImage(),0,img_t_l.getIconHeight(),this.getWidth(),img_menu.getIconHeight(),this);
-		
 		g.drawImage(img_info.getImage(),0,img_t_l.getIconHeight()+img_menu.getIconHeight(),this.getWidth(),img_info.getIconHeight(),this);
 		
-		
+	
 		g.drawImage(img_m.getImage(), 0, img_t_l.getIconHeight()+img_menu.getIconHeight()+img_info.getIconHeight(), img_m_w, this.getHeight()- img_t_l.getIconHeight(), this);
 		g.drawImage(img_m.getImage(), this.getWidth() - img_m.getIconWidth(),img_t_l.getIconHeight()+img_menu.getIconHeight()+img_info.getIconHeight(), img_m_w, this.getHeight()- img_t_l.getIconHeight(), this);
 
-	
+
 		g.drawImage(img_b_l.getImage(), 0, this.getHeight()- img_b_l.getIconHeight(), this);
 		g.drawImage(img_b_bg.getImage(), img_b_l_w, this.getHeight()- img_b_bg.getIconHeight(), this.getWidth()- img_b_r.getIconWidth(), img_b_r.getIconHeight(), this);
 		g.drawImage(img_b_r.getImage(), this.getWidth()- img_b_r.getIconWidth(), this.getHeight()- img_b_r.getIconHeight(), this);		
 	}
 }
-
