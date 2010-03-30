@@ -12,10 +12,10 @@ public class SteepestGradient extends LowLevelHeuristic{
 		// TODO Auto-generated method stub
 		int[] optimumSolution = new int[candidateSolution.length ];
 		for(int i=0;i<candidateSolution.length ;i++){
-			
+
 			optimumSolution[i] = candidateSolution[i];
 		}
-		
+
 		if(optimumSolution[0]==0)
 			optimumSolution[0]=1;
 		else
@@ -25,22 +25,22 @@ public class SteepestGradient extends LowLevelHeuristic{
 				candidateSolution[i]=0;
 			else
 				candidateSolution[i]=1;
-	
+
 			if(ie.checkIfAcceptance(optimumSolution,candidateSolution)){
-				optimumSolutionIndex = i;	
+				optimumSolutionIndex = i;
 				for(int j=0;j<candidateSolution.length;j++){
-					
+
 					optimumSolution[j] = candidateSolution[j];
-				}	
+				}
 			}
 			if(candidateSolution[i]==1)
 				candidateSolution[i]=0;
 			else
-				candidateSolution[i]=1;			
-			
-				
+				candidateSolution[i]=1;
+
+
 		}
-		
+
 		return optimumSolution;
 	}
 	@Override

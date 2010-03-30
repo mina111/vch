@@ -16,6 +16,6 @@ public class MyRadioButton extends JRadioButton{
 		this.setSelectedIcon(con.getImgUrl(rsimg));
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setToolTipText(text);
-		
+
 	}
 }

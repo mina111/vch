@@ -36,14 +36,14 @@ public class VSHMainFrame extends JFrame{
 	//初始化
 	VSHMainFrame(String title,VSH vsh)
 	{
-		
+
 		super(title);
 		this.vsh = vsh;
 		//初始化窗体
 		setWindow(this);
 		//更新窗口
 		updateWindow(this);
-		
+
 	}
 	//===============================
 	//窗体初始化
@@ -66,7 +66,7 @@ public class VSHMainFrame extends JFrame{
 		f.setLocation((sdm.width-f.getWidth())/2, (sdm.height-f.getHeight())/2);//位置
 		f.setIconImage(Toolkit.getDefaultToolkit().getImage(VSH.class.getResource(img_dir + "/icon1.png")));//图标
 		f.setBackground(Color.WHITE);//设置背景色
-		
+
 	}
 	//===============================
 	//更新窗口
@@ -117,7 +117,7 @@ public class VSHMainFrame extends JFrame{
 				}
 			}
 		});
-		
+
 		//顶部Panel拖动事件
 		panel.bottompanel.addMouseMotionListener(new MouseMotionAdapter()
 		{

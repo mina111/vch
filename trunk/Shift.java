@@ -29,13 +29,13 @@ public class Shift extends LowLevelHeuristic{
 					newSolution[i]= newSolution[i+1];
 				}
 			}
-			for(int i = 0;i<endPostion;i++){				
+			for(int i = 0;i<endPostion;i++){
 				newSolution[i]= newSolution[i+1];
 			}
 			newSolution[endPostion] = temp;
 			return newSolution;
 		}
-		
+
 	}
 
 	@Override

@@ -3,7 +3,7 @@ public class FlipOneBit extends LowLevelHeuristic{
 	int postion;
 	@Override
 	int[] generateNewSolution(int[] candidateSolution) {
-		
+
 		int newSolution[] = new int[candidateSolution.length];
 		for(int i =0;i<candidateSolution.length;i++)
 			newSolution[i]=candidateSolution[i];

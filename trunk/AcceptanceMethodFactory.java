@@ -8,7 +8,7 @@ public class AcceptanceMethodFactory {
 			return new OnlyImproving(hyperHeuristic);
 		else if(name.equals("Improving or Equal"))
 			return new ImprovingEqual(hyperHeuristic);
-		else 
+		else
 			return null;
 
 	}

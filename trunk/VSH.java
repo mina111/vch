@@ -71,13 +71,13 @@ public class VSH {
 
 
 	void buildHyperHeuristic(){
-		
+
 		// Print out all the low-level heuristics.
 		System.out.println("Available LowLevelHeuristics:");
 		for(int i=0;i<lowLevelHeuristicNames.length;i++){
 			System.out.println( "  " + lowLevelHeuristicNames[i] );
 		}
-		
+
 		HHBuilder= new HyperHeuristicBuilder();
 		HHDirector = new HyperHeuristicDirector(HHBuilder);
 		HHDirector.construct(functionNmae, acceptanceMethodName, lowLevelHeuristicNames, heuristicSelectionName);
@@ -91,11 +91,11 @@ public class VSH {
 	}
 
 	void calculate(){
-		
+
 		lowLevelHeuristic = hyperHeuristic.heuristicsSelection.selectLowLevelHeuristic(candidateSolution);
-		
+
 		System.out.println( "calculate->" + lowLevelHeuristic.getName() );
-		
+
 		if(hyperHeuristic.heuristicsSelection.getName().equals("Greedy Random")){
 			newSolution = ((GreedyRandom)hyperHeuristic.heuristicsSelection).optimumSolution;
 		}else{

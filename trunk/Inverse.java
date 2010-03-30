@@ -18,29 +18,29 @@ public class Inverse extends LowLevelHeuristic{
 				if(newSolution[i] == 0){
 					newSolution[i] = 1;
 				}else{
-					newSolution[i] = 0;					
+					newSolution[i] = 0;
 				}
 			}
-			
+
 			return newSolution;
 		}else{
 			for(int i= startPostion;i<newSolution.length;i++){
 				if(newSolution[i] == 0){
 					newSolution[i] = 1;
 				}else{
-					newSolution[i] = 0;					
+					newSolution[i] = 0;
 				}
 			}
 			for(int i=0; i<=endPostion;i++ ){
 				if(newSolution[i] == 0){
 					newSolution[i] = 1;
 				}else{
-					newSolution[i] = 0;					
+					newSolution[i] = 0;
 				}
 			}
 			return newSolution;
 		}
-		
+
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class Inverse extends LowLevelHeuristic{
 		// TODO Auto-generated method stub
 		return "Inverse";
 	}
-	
-	
 
-	
+
+
+
 }

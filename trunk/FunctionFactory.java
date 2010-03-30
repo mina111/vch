@@ -10,7 +10,7 @@ public class FunctionFactory {
 			return new SinSquareFunction();
 		else if(name.equals("f(x)=logx"))
 			return new LogarithmFunction();
-		else 
+		else
 			return null;
 
 	}

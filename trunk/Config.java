@@ -18,11 +18,11 @@ public class Config
 	//一些初始化参数
 	//===========================
 	String skin_dir , softtitle ;//软件皮肤 | 上面的标题文字
-	int width,height;//初始窗体宽高 
+	int width,height;//初始窗体宽高
 	int leftmenuwidth , splitbarwidth ; //主要区域,左二级菜单宽度|左右分格面板的宽度
 	boolean iffulltop , ifnormaltop , openfull , lmenucanclose; //窗体最大时总前端显示|正常模式总前端显示|启动时左边菜单是否显示|左边是否可以关闭
 	private int splitbarHeight;
-	
+
 	//===========================
 	//初始化
 	Config()
@@ -52,7 +52,7 @@ public class Config
 	// ==================================
 	// 返回包中指定图片函数
 	// ==================================
-	public ImageIcon getImgUrl(String img) 
+	public ImageIcon getImgUrl(String img)
 	{
 		return new ImageIcon(VSHMainFrame.class.getResource(getSkinDir() + "/" + img));
 	}
@@ -147,26 +147,26 @@ public class Config
 		Font font = new Font("宋体", Font.PLAIN, 12);
 		UIManager.put("Label.font", font);
 		UIManager.put("Button.font", font);
-		
+
 		Color gray = new Color(240,240,240);
 		Color black = new Color(0,0,0);
-		
+
        /* UIManager.put("ScrollBar.track", black);
         UIManager.put("ScrollBar.trackHighlight",black);
-		
+
         UIManager.put("ScrollBar.background", gray);
         UIManager.put("ScrollBar.shadow", gray);
         UIManager.put("ScrollBar.darkShadow", gray);
-        
+
         UIManager.put("ScrollBar.thumb", gray);
         UIManager.put("ScrollBar.thumbShadow",gray);
         UIManager.put("ScrollBar.thumbDarkShadow",gray);
         UIManager.put("ScrollBar.thumbHighlight", new Color(250,250,250));
-        //UIManager.put("ScrollBar.thumbLightShadow", new Color(250,60,250));   
+        //UIManager.put("ScrollBar.thumbLightShadow", new Color(250,60,250));
         UIManager.put("ScrollBar.width", 17);
-        
+
         */
-        
+
         /*
         ScrollBar.background
 		ScrollBar.darkShadow
@@ -185,7 +185,7 @@ public class Config
 		ScrollBar.trackHighlight
 		ScrollBar.width
          */
-        
+
 
 	}
 	public int getSplitBarHeight() {

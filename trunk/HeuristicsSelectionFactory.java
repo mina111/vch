@@ -7,7 +7,7 @@ public class HeuristicsSelectionFactory {
 			return new GreedyRandom(hyperHeuristic);
 		else if(name.equals("Reinforcement Learning"))
 			return new ReinforcementLearning(hyperHeuristic);
-		else 
+		else
 			return null;
 
 	}

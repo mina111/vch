@@ -45,10 +45,10 @@ public class InitalMenuPanel extends JPanel{
 		center.add(acceptanceMethod);
 		center.add(acceptanceMethodInfo);
 		this.add(center,BorderLayout.CENTER);
-		
+
 		right = new JPanel();
 		right.setBackground(con.getLeftBgColor());
 		this.add(right,BorderLayout.EAST);
 	}
-	
+
 }
