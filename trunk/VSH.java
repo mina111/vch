@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////
 /////
-/////  A Visualisation Tool for 
+/////  A Visualisation Tool for
 /////  Selection Hyper-Heuristics
 /////
 /////  http://code.google.com/p/vch/
@@ -38,22 +38,22 @@ public class VSH {
 
 		new VSH().start();
 	}
-	
-	
+
+
 	void start(){
 		frame =new VSHMainFrame("VSH",this);
 		for(;;){
 			if(!frame.start){
 				//System.out.println("AAA");
-				frame.stop();				
+				frame.stop();
 			}
 			//System.out.println("bbb");
 			count++;
 			calculate();
-			
+
 			while(!frame.panel.m_panel.animationPanel.animationFinished){
 				if(frame.pause){
-					frame.stop();	
+					frame.stop();
 				}
 				if(frame.stop){
 					frame.panel.m_panel.animationPanel.reset();
@@ -71,41 +71,41 @@ public class VSH {
 			//System.out.println("ccc");
 		}
 	}
-	
-	
+
+
 	void buildHyperHeuristic(){
 		System.out.println("buildHyperHeuristic");
 		for(int i=0;i<lowLevelHeuristicNames.length;i++){
 			System.out.println("lowLevelHeuristicNames"+lowLevelHeuristicNames[i]);
 		}
 		HHBuilder= new HyperHeuristicBuilder();
-		HHDirector = new HyperHeuristicDirector(HHBuilder); 
+		HHDirector = new HyperHeuristicDirector(HHBuilder);
 		HHDirector.construct(functionNmae, acceptanceMethodName, lowLevelHeuristicNames, heuristicSelectionName);
 		hyperHeuristic = HHBuilder.GetHyperHeuristic();
 		for(int i =0; i<candidateSolution.length;i++){
 			candidateSolution[i] = random.nextInt(2);
 			history[0][i]=candidateSolution[i];
 		}
-		
-		
+
+
 	}
-	
+
 	void calculate(){
 		lowLevelHeuristic = hyperHeuristic.heuristicsSelection.selectLowLevelHeuristic(candidateSolution);
 System.out.println(lowLevelHeuristic.getName());
 		if(hyperHeuristic.heuristicsSelection.getName().equals("Greedy Random")){
-			newSolution = ((GreedyRandom)hyperHeuristic.heuristicsSelection).optimumSoluation;
+			newSolution = ((GreedyRandom)hyperHeuristic.heuristicsSelection).optimumSolution;
 		}else{
-			newSolution= lowLevelHeuristic.generateNewSoluation(candidateSolution);
-			
+			newSolution= lowLevelHeuristic.generateNewSolution(candidateSolution);
+
 		}
 		for(int i=0;i<newSolution.length;i++){
 			history[count][i] = newSolution[i];
 		}
 		frame.panel.m_panel.animationPanel.animationFinished = false;
-		
+
 	}
-	
+
 	void exhibition(){
 		frame.panel.m_panel.animationPanel.repaint();
 	}
@@ -120,5 +120,3 @@ System.out.println(lowLevelHeuristic.getName());
 		}
 	}
 }
-
-

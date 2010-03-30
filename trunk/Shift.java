@@ -4,14 +4,14 @@ public class Shift extends LowLevelHeuristic{
 	int startPostion ;
 	int endPostion ;
 	@Override
-	int[] generateNewSoluation(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		modifiedDigitNum = getModifiedDigitNum();
 		startPostion = getStartPostion();
 		endPostion = getEndPostion(startPostion,modifiedDigitNum);
 		// TODO Auto-generated method stub
-		int newSoluatuon[] = new int[candidateSoluation.length];
-		for(int i =0;i<candidateSoluation.length;i++)
-			newSoluatuon[i]=candidateSoluation[i];
+		int newSoluatuon[] = new int[candidateSolution.length];
+		for(int i =0;i<candidateSolution.length;i++)
+			newSoluatuon[i]=candidateSolution[i];
 
 		if(startPostion<endPostion){
 			int temp = newSoluatuon[startPostion];

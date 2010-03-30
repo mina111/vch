@@ -262,16 +262,46 @@ public class Action implements ActionListener{
 			frame.vsh.sleepTime = 10;
 			if(frame.pause)
 			frame.play();
-		}else if(e.getActionCommand().equals("speed up")){
+			
+		} else if(e.getActionCommand().equals("speed up")){
+			
+			// Speed-up button pressed.
+			
 			if(frame.start){
-				if(frame.vsh.sleepTime!=0)
-				frame.vsh.sleepTime--;
-			}
-		}else if(e.getActionCommand().equals("slow down")){
-			if(frame.start)
-				frame.vsh.sleepTime++;			
+				
+				// As long as it's not already zero.
+				if(frame.vsh.sleepTime!=0) {
+				
+					// Decrease the time between frames.	
+					frame.vsh.sleepTime--;
+					
+				} // END if
+				
+			} // END if
+			
+		} else if(e.getActionCommand().equals("slow down")){
+			
+			// Slow-down button pressed.
+			
+			if(frame.start) {
+				
+				// Increase the time between frames.
+				frame.vsh.sleepTime++;
+				
+			} // END if
+			
+		} else if( e.getActionCommand().equals("info") ) {
+			
+			// Someone pressed the "Information" button on the main menu.
+			System.out.println("Action->info");
+			
+		} else if( e.getActionCommand().equals("help") ) {
+			
+			// Someone pressed the "Help" button on the main menu.
+			System.out.println("Action->help");
+			
 		}
+		
 	}
-
 
 }
