@@ -21,6 +21,7 @@ public class AnimationPanel extends JPanel {
 	
 	final int ORIGINAL_WIDTH = 860;
 	final int ORIGINAL_HEIGHT = 608;
+	final int ALIASVALUE = 30;
 	int lowLevelHeuristicBoxX = 41,lowLevelHeuristicBoxY = 185;
 	int reverse_y,inverse_y,shift_y,flip_one_bit_y,steepest_gradient_y;
 	int bitSpace1 = 7;
@@ -134,8 +135,8 @@ public class AnimationPanel extends JPanel {
 		    	 SCALEY = (32768 * 32768) / GRAPHY; 
 	             for (int x=0; x <= boundaryMaxX; x=x+10){        	 
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
-					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+40);
-	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+40)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
+					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
+	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
 					 
 	             }	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx")||f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx^2")){
@@ -143,15 +144,15 @@ public class AnimationPanel extends JPanel {
 				g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 	             for (int x=0; x <= boundaryMaxX; x=x+10){        	 
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
-					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+40);
-	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+40)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
+					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
+	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
 	             }	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=logx")){
 		    	 SCALEY = Math.log(1+boundaryMaxX) / GRAPHY; 
 	             for (int x=0; x <= boundaryMaxX; x=x+10){        	 
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
-					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+40);
-	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+40)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
+					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
+	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
 	             }	
 		     }
 		     g.setColor(Color.GREEN);
