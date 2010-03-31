@@ -94,6 +94,7 @@ public class AnimationPanel extends JPanel {
 
 
 			Font F3 = new Font ("Comic Sans MS", Font.PLAIN,12);
+			
 			 String candidateSolutionString = "";
 			 newSolutionString = "";
 			 f.panel.m_panel.p_left.newSolutionContent.setText(newSolutionString);
@@ -172,13 +173,14 @@ public class AnimationPanel extends JPanel {
 		     drawLowLevelHeuristicBox(g2D);
 		     Font F1 = new Font ("Comic Sans MS", Font.PLAIN,16);
 		     if(!f.vsh.hyperHeuristic.heuristicsSelection.getName().equals("Reinforcement Learning"))
-		     g.setFont(F1);
-		     g.setColor(new Color(255,0,255));
-		     g2D.drawString(""+f.vsh.hyperHeuristic.heuristicsSelection.getName(),214, 100);
 
-
-		     g.setFont(F3);
-		     g2D.drawString(""+f.vsh.hyperHeuristic.acceptanceMethod.getName(),614, 90);
+			g.setFont(F3);
+			// A nice shade of blue.
+			g.setColor(new Color(63,166,219));
+			// Draw the name of the heuristic selection method.
+			g2D.drawString(""+f.vsh.hyperHeuristic.heuristicsSelection.getName(),224, 96);
+			// Draw the name of the acceptance method.
+			g2D.drawString(""+f.vsh.hyperHeuristic.acceptanceMethod.getName(),590, 96);
 
 		     g.setColor(Color.RED);
 		     g.setFont(F2);
@@ -701,8 +703,13 @@ public class AnimationPanel extends JPanel {
 		if(f.vsh.hyperHeuristic.acceptanceMethod.checkIfAcceptance(f.vsh.candidateSolution, f.vsh.newSolution)){
 			f.panel.m_panel.p_left.acceptedContent.setForeground(new Color(255,102,255));
 			f.panel.m_panel.p_left.acceptedContent.setText("Yes");
-			g.setColor(new Color(255,0,255));
-			g.drawString("Accepted", 625, 20);
+			
+			// Draw the "ACCEPTED" result.
+			g.setFont( new Font ("Arial", Font.BOLD,14) );
+			g.setColor(new Color(121,206,99));
+			g.drawString("ACCEPTED", 635, 30);
+			
+			
 			g.setFont(F2);
 			if(y11>30){
 				g.setColor(Color.YELLOW);
@@ -766,8 +773,12 @@ public class AnimationPanel extends JPanel {
 		}else{
 			f.panel.m_panel.p_left.acceptedContent.setForeground(new Color(255,102,255));
 			f.panel.m_panel.p_left.acceptedContent.setText("No");
-			g.setColor(new Color(255,0,255));
-			g.drawString("Rejected", 770, 40);
+			
+			// Draw the "REJECTED" result.
+			g.setFont( new Font ("Arial", Font.BOLD,14) );
+			g.setColor(new Color(255,0,0));
+			g.drawString("REJECTED", 635, 30);
+			
 			g.setFont(F2);
 			if(x11<900){
 				g.setColor(Color.YELLOW);
