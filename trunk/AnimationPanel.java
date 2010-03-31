@@ -76,11 +76,11 @@ public class AnimationPanel extends JPanel {
 		this.con = con;
 		animation_bg_img = con.getImgUrl("animation_bg1.png");
 		selected_mark_img = con.getImgUrl("selected_mark.png");
-		reverse_animation_img = con.getImgUrl("reverse_animation.png");
-		inverse_animation_img = con.getImgUrl("inverse_animation.png");
-		shift_animation_img = con.getImgUrl("shift_animation.png");
-		flip_one_bit_img = con.getImgUrl("flip_one_bit_animation.png");
-		steepest_gradient_img = con.getImgUrl("steepest_gradient_animation.png");
+		reverse_animation_img = con.getImgUrl("heuristic-reverse.png");
+		inverse_animation_img = con.getImgUrl("heuristic-inverse.png");
+		shift_animation_img = con.getImgUrl("heuristic-shift.png");
+		flip_one_bit_img = con.getImgUrl("heuristic-fliponebit.png");
+		steepest_gradient_img = con.getImgUrl("heuristic-steepestgradient.png");
 
 	}
 
