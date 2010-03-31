@@ -1,0 +1,7 @@
+Make the left-hand side options go away when you click Play.
+
+Only make the Save Changes button light up when you've actually changed something on a panel. (Makes it more obvious you have to click it)
+
+Make the selected heuristic change to the -selected.png image when it's being used. (Instead of the red square)
+
+Program throws horrible errors when "Greedy Random" is used.
