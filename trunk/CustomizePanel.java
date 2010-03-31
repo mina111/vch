@@ -113,10 +113,10 @@ public class CustomizePanel extends JPanel{
 		private void createButtonGroups() {
 			// TODO Auto-generated method stub
 			benchmarkFunctionGroupButton = new  ButtonGroup();//
-			squareFunction = new MyRadioButton(con,"square_function_on.png","square_function_pressing.png","square_function_pressed.png","Square Function");
+			squareFunction = new MyRadioButton(con,"radio-function-square.png","radio-function-square-hover.png","radio-function-square-selected.png","Square Function");
 			squareFunction.setSelected(true);
-			sinFunction = new MyRadioButton(con,"sin_function_on.png","sin_function_pressing.png","sin_function_pressed.png","Sin Function");
-			logFunction = new MyRadioButton(con,"log_function_on.png","log_function_pressing.png","log_function_pressed.png","Log Function");
+			sinFunction = new MyRadioButton(con,"radio-function-sin.png","radio-function-sin-hover.png","radio-function-sin-selected.png","Sin Function");
+			logFunction = new MyRadioButton(con,"radio-function-log.png","radio-function-log-hover.png","radio-function-log-selected.png","Log Function");
 			benchmarkFunctionGroupButton.add(squareFunction);
 			benchmarkFunctionGroupButton.add(sinFunction);
 			benchmarkFunctionGroupButton.add(logFunction);
@@ -130,19 +130,23 @@ public class CustomizePanel extends JPanel{
 			heuristicSelectionGroupButton.add(greedyRandom);
 			heuristicSelectionGroupButton.add(reinforcementLearning);
 
-			inverse = new MyCheckBox(con,"inverse_on.png","inverse_pressing.png","inverse_pressed.png","Inverse");
+			inverse = new MyCheckBox(con,"checkbox-inverse.png","checkbox-inverse-hover.png","checkbox-inverse-selected.png","Inverse");
 			inverse.setSelected(true);
-			reverse = new MyCheckBox(con,"reverse_on.png","reverse_pressing.png","reverse_pressed.png","Reverse");
-			shift = new MyCheckBox(con,"shift_on.png","shift_pressing.png","shift_pressed.png","Shift");
-			flipOneBit = new MyCheckBox(con,"flip_one_bit_on.png","flip_one_bit_pressing.png","flip_one_bit_pressed.png","Flip One Bit");
-			steepestGradient = new MyCheckBox(con,"steepest_gradient_on.png","steepest_gradient_pressing.png","steepest_gradient_pressed.png","Steepest Gradient");
+			reverse = new MyCheckBox(con,"checkbox-reverse.png","checkbox-reverse-hover.png","checkbox-reverse-selected.png","Reverse");
+			reverse.setSelected(true);
+			shift = new MyCheckBox(con,"checkbox-shift.png","checkbox-shift-hover.png","checkbox-shift-selected.png","Shift");
+			shift.setSelected(true);
+			flipOneBit = new MyCheckBox(con,"checkbox-fliponebit.png","checkbox-fliponebit-hover.png","checkbox-fliponebit-selected.png","Flip One Bit");
+			flipOneBit.setSelected(true);
+			steepestGradient = new MyCheckBox(con,"checkbox-steepestgradient.png","checkbox-steepestgradient-hover.png","checkbox-steepestgradient-selected.png","Steepest Gradient");
+			steepestGradient.setSelected(true);
 
 
 			acceptanceMethodGroupButton = new ButtonGroup();
-			onlyImproving = new MyRadioButton(con,"only_improving_on.png","only_improving_pressing.png","only_improving_pressed.png","Only Improving");
+			onlyImproving = new MyRadioButton(con,"radio-onlyimproving.png","radio-onlyimproving-hover.png","radio-onlyimproving-selected.png","Only Improving");
 			onlyImproving.setSelected(true);
-			improvingEqual= new MyRadioButton(con,"improving_euqal_on.png","improving_equal_pressing.png","improving_equal_pressed.png","Improving or Equal");
-			allMovesAccepted = new MyRadioButton(con,"all_moves_accepted_on.png","all_moves_accepted_pressing.png","all_moves_accepted_pressed.png","All Moves Accepted");
+			improvingEqual= new MyRadioButton(con,"radio-improvingequal.png","radio-improvingequal-hover.png","radio-improvingequal-selected.png","Improving or Equal");
+			allMovesAccepted = new MyRadioButton(con,"radio-allmoves.png","radio-allmoves-hover.png","radio-allmoves-selected.png","All Moves Accepted");
 			acceptanceMethodGroupButton.add(onlyImproving);
 			acceptanceMethodGroupButton.add(improvingEqual);
 			acceptanceMethodGroupButton.add(allMovesAccepted);
