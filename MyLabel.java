@@ -34,7 +34,7 @@ public class MyLabel extends JLabel{
 			this.setPreferredSize(new Dimension(LABELWIDTH,LABELHEIGHT));
 		this.setBackground(con.getLeftBgColor());
 		this.setForeground(Color.WHITE);
-		Font font = new Font("Comic Sans MS",Font.BOLD ,10);
+		Font font = new Font("Arial",Font.BOLD ,10);
 		this.setFont(font);
 		this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setText(value);
