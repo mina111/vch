@@ -72,7 +72,7 @@ public class CustomizePanel extends JPanel{
 			confirmationPanelInUpPanel = new JPanel();
 			confirmationPanelInUpPanel.setBackground(con.getLeftBgColor());
 			//confirmationPanelInUpPanel.setLayout(con.getFlowLayout(1,0,10));
-			confirm = new MyButton (con,"confirm_on.png","confirm_pressed.png","confirm_disable.png","Confirm");
+			confirm = new MyButton (con,"button-confirm.png","button-confirm-hover.png","button-confirm-disabled.png","Confirm");
 			confirm.setActionCommand("confirm");
 			confirm.addActionListener(new Action(frame,confirm));
 			confirmationPanelInUpPanel.add(confirm);
@@ -122,10 +122,10 @@ public class CustomizePanel extends JPanel{
 			benchmarkFunctionGroupButton.add(logFunction);
 
 			heuristicSelectionGroupButton = new ButtonGroup();
-			simpleRandom = new MyRadioButton(con,"simple_random_on.png","simple_random_pressing.png","simple_random_pressed.png","Simple Random");
+			simpleRandom = new MyRadioButton(con,"radio-simplerandom.png","radio-simplerandom-hover.png","radio-simplerandom-selected.png","Simple Random");
 			simpleRandom.setSelected(true);
-			greedyRandom = new MyRadioButton(con,"greedy_random_on.png","greedy_random_pressing.png","greedy_random_pressed.png","Greedy Random");
-			reinforcementLearning = new MyRadioButton(con,"reinforcement_learning_on.png","reinforcement_learning_pressing.png","reinforcement_learning_pressed.png","Reinforcement Learning");
+			greedyRandom = new MyRadioButton(con,"radio-greedyrandom.png","radio-greedyrandom-hover.png","radio-greedyrandom-selected.png","Greedy Random");
+			reinforcementLearning = new MyRadioButton(con,"radio-reinforcementlearning.png","radio-reinforcementlearning-hover.png","radio-reinforcementlearning-selected.png","Reinforcement Learning");
 			heuristicSelectionGroupButton.add(simpleRandom);
 			heuristicSelectionGroupButton.add(greedyRandom);
 			heuristicSelectionGroupButton.add(reinforcementLearning);
