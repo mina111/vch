@@ -205,13 +205,13 @@ class MainPanel extends JPanel
 		menupanel.setPreferredSize(new Dimension(width,img_menu.getIconHeight()));
 		menupanel.setOpaque(false);
 		menupanel.setLayout(con.getFlowLayout(0,0,0)); // ×ó¶ÔÆë
-		play = new MyButton(con,"Play_on.png","Play_Pressed.png","Play");
-		pause = new MyButton(con,"Pause_on.png","Pause_pressed.png","Pause");
-		slowDown = new MyButton(con,"slow_down_on.png","slow_down_pressed.png","Slow Down");
-		speedUp = new MyButton(con,"speed_up_on.png","speed_up_pressed.png","Speed Up");
-		stop = new MyButton(con,"Stop_on.png","Stop_pressed.png","Stop");
-		info = new MyButton(con,"Info_on.png","Info_pressed.png","About");
-		help = new MyButton(con,"Help_on.png","Help_pressed.png","Help");
+		play = new MyButton(con,"menu-button-play.png","menu-button-play-hover.png","Play");
+		pause = new MyButton(con,"menu-button-pause.png","menu-button-pause-hover.png","Pause");
+		slowDown = new MyButton(con,"menu-button-slowdown.png","menu-button-slowdown-hover.png","Slow Down");
+		speedUp = new MyButton(con,"menu-button-speedup.png","menu-button-speedup-hover.png","Speed Up");
+		stop = new MyButton(con,"menu-button-stop.png","menu-button-stop-hover.png","Stop");
+		info = new MyButton(con,"menu-button-info.png","menu-button-info-hover.png","About");
+		help = new MyButton(con,"menu-button-help.png","menu-button-help-hover.png","Help");
 		play.setActionCommand("play");
 		play.addActionListener(new Action(frame,play));
 		pause.setActionCommand("pause");
