@@ -7,7 +7,7 @@ public class HyperHeuristic {
 	 AcceptanceMethod acceptanceMethod;
 	 Vector<LowLevelHeuristic> lowLevelHeuristics = new Vector<LowLevelHeuristic>();
 	 HeuristicsSelection heuristicsSelection;
-	
+
 	 public static int bit2int(int[] bit){
 			double intNum = 0;
 			for(int i=0; i<bit.length; i++){
@@ -15,5 +15,5 @@ public class HyperHeuristic {
 			}
 			return (int)intNum;
 	 }
-	
+
 }
