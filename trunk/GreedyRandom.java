@@ -2,11 +2,12 @@
 public class GreedyRandom extends HeuristicsSelection {
 	HyperHeuristic hyperHeuristic;
 	int[] optimumSolution;
-	int[][] histories = new int[hyperHeuristic.lowLevelHeuristics.size()][HyperHeuristic.DIGIT_NUM];
+	int[][] histories;
 	int optimumSolutionIndex;
 	public GreedyRandom(HyperHeuristic hyperHeuristic) {
 		// TODO Auto-generated constructor stub
 		this.hyperHeuristic = hyperHeuristic;
+		histories = new int[hyperHeuristic.lowLevelHeuristics.size()][HyperHeuristic.DIGIT_NUM];
 	}
 
 	@Override
