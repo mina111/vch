@@ -293,12 +293,12 @@ public class Action implements ActionListener{
 		} else if( e.getActionCommand().equals("info") ) {
 
 			// Someone pressed the "Information" button on the main menu.
-			System.out.println("Action->info");
+			//System.Out.println("Action->info");
 
 		} else if( e.getActionCommand().equals("help") ) {
 
 			// Someone pressed the "Help" button on the main menu.
-			System.out.println("Action->help");
+			//System.Out.println("Action->help");
 
 		}
 
