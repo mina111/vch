@@ -14,6 +14,8 @@ import javax.swing.ScrollPaneConstants;
 
 
 public class CustomizeExhibitionPanel extends JPanel{
+	
+	
 	//¿í¸ß
 
 	int width,height;
