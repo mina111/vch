@@ -178,7 +178,7 @@ class MainPanel extends JPanel
 		btn_min.setFocusCycleRoot(false);
 		btn_min.setRolloverIcon(con.getImgUrl("min_on.png"));
 		btn_min.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btn_min.setToolTipText("最小化模式");
+		btn_min.setToolTipText("Minimise");
 		toppanel.add(btn_min);
 		//=================================
 		//最大化按钮
@@ -190,7 +190,7 @@ class MainPanel extends JPanel
 		btn_close.setFocusCycleRoot(false);
 		btn_close.setRolloverIcon(con.getImgUrl("close_on.png"));
 		btn_close.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btn_close.setToolTipText("关闭窗口");
+		btn_close.setToolTipText("Close");
 		toppanel.add(btn_close);
 	}
 	//===================================
