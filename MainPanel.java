@@ -209,7 +209,7 @@ class MainPanel extends JPanel
 		pause = new MyButton(con,"menu-button-pause.png","menu-button-pause-hover.png","Pause");
 		slowDown = new MyButton(con,"menu-button-slowdown.png","menu-button-slowdown-hover.png","Slow Down");
 		speedUp = new MyButton(con,"menu-button-speedup.png","menu-button-speedup-hover.png","Speed Up");
-		stop = new MyButton(con,"menu-button-stop.png","menu-button-stop-hover.png","Stop");
+		stop = new MyButton(con,"menu-button-stop.png","menu-button-stop-hover.png","Stop & Settings");
 		info = new MyButton(con,"menu-button-info.png","menu-button-info-hover.png","About");
 		help = new MyButton(con,"menu-button-help.png","menu-button-help-hover.png","Help");
 		play.setActionCommand("play");
