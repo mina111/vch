@@ -11,99 +11,122 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+/**
+ *  A Visualisation Tool for 
+ *  Selection Hyper-Heuristics                                    <br>   
+ *  															  <br>
+ *  http://code.google.com/p/vch/   							  <br>
+ *  															  <br>
+ *  Module:                  G52GRP, University of Nottingham     <br>
+ *  															  <br>
+ *  Group:        gp09-exo    						  			  <br>
+ * @author 	   	Lao Jingqi (jxl29u)
+ * @author	   	Zhang Chao (cxz09u)
+ * @author		Thomas Barton (txb18u)
+ * @author		Ben Jenkinson (bxj08u)
+ * @author	   	Alexander Jermstad (asj08u) 
+ * 			
+ */
+
+/**
+ *  This panel is middle part in the interface. The sub-menu panel and animation are built on this.  
+ */
 
 
 public class CustomizeExhibitionPanel extends JPanel{
 	
-	
-	//宽高
-
-	int width,height;
-	//左,中分线,右边三个Panel
+	/**
+	 *  the width of this panel
+	 */
+	int width;
+	/**
+	 *  the height of this panel 
+	 */
+	int height;
+	/**
+	 *  the sub-menu panel 
+	 */
 	CustomizePanel p_left;
-	JPanel  p_bar , p_right;
-	//右边用到的滚动
-	//JScrollPane scrollPane ;
-	//=====================
-	//配置参数类
+	/**
+	 *  the bar 
+	 */
+	JPanel  p_bar ;
+	/**
+	 *  the right panel of the customize exhibition panel
+	 */
+	JPanel p_right;
+	/**
+	 *  the config instance
+	 */
 	Config con ;
-	//=====================
-	//分格条按钮
+	/**
+	 *  the split bar image
+	 */
 	ImageIcon btn_split_img ;
-	//JButton btn_split ;
-	//=====================
-	//窗体参数
+	/**
+	 *  the main frame
+	 */
 	VSHMainFrame frame;
-
-
+	
+	/**
+	 *  the menu panel
+	 */
 
 	InitalMenuPanel initalMenuPanel;
+	
+	/**
+	 *  the background about the flow chart of hyper-heuristics 
+	 */
 	MyLabel flowchart;
-
+	/**
+	 *  the animation panel
+	 */
 	AnimationPanel animationPanel;
-	//=====================
-	//初始化
-	//=====================
+
+	/**
+	 * initial the CustomizeExhibitionPanel instance
+	 * @param frame  main frame
+	 * @param width	
+	 * @param height
+	 */
 	CustomizeExhibitionPanel(VSHMainFrame frame,int width,int height)
 	{
-		//=============================
+		
 
 		this.width = width;
 		this.height = height;
 		this.frame = frame;
 		initPanel();
 	}
-	//=====================
-	//初始化相关参数
-	//=====================
+	/**
+	 *  initial the parameter about this panel
+	 */
 	private void initPanel()
 	{
-		//================
-		//配置类
 		con = new Config();
-		btn_split_img = con.getImgUrl("btn_split_l.png");//因为在JButton前就要用,所以在前面先实例化
-		int splitbarwidth = con.getSplitBarWidth() ; //配置文件中读取分格条的宽度//int leftwidth = (width-splitbarwidth)*20/100 ; //分配左边为总宽的20%
+		btn_split_img = con.getImgUrl("btn_split_l.png");
+		int splitbarwidth = con.getSplitBarWidth() ; 
 		int leftwidth = con.getLeftMenuWidth() ;
-		int rightwidth = width - splitbarwidth - leftwidth ; // 计算右边剩余宽度
-		//================
-		//面板样式
+		int rightwidth = width - splitbarwidth - leftwidth ;
 		this.setPreferredSize(new Dimension(width,height));
 		this.setOpaque(false);
-		this.setLayout(con.getFlowLayout(0,0,0));//0左,1 中,2右
-		//================
-		//左边面板
+		this.setLayout(con.getFlowLayout(0,0,0));
 		p_left = new CustomizePanel(frame, leftwidth, height);
-		//p_left.setPreferredSize(new Dimension(leftwidth,height));
-
-		//p_left.setBackground(con.getLeftBgColor());
-		p_left.setLayout(con.getFlowLayout(1,0,0)); //居中对齐;//左对齐,垂直间距为20,水平间距为0;
+		p_left.setLayout(con.getFlowLayout(1,0,0)); 
 		this.add(p_left);
-		//================
-		//中间分格线
+		
+		//=============================
+		//  the split bar
+		//=============================
 		p_bar = new JPanel();
 		p_bar.setPreferredSize(new Dimension(splitbarwidth,height));
 		p_bar.setBackground(con.getSplitBgColor());
 		p_bar.setLayout(con.getFlowLayout(1, 0, (height - btn_split_img.getIconHeight())/2-30));
 		this.add(p_bar);
 
-		//================
-		//右边面板
-		/*
-		scrollPane = new JScrollPane();
-		scrollPane.setPreferredSize(new Dimension(rightwidth,height));
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		scrollPane.getVerticalScrollBar().setBlockIncrement(100);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.getHorizontalScrollBar().setUnitIncrement(20);
-		scrollPane.getHorizontalScrollBar().setBlockIncrement(100);
-		scrollPane.setBorder(BorderFactory.createEmptyBorder());
-		this.add(scrollPane);
-		*/
-
-
-		//=================
-		//右边滚动面板里的面板,以后主要面板都添加到这个面板
+		//=============================
+		//  the right panel
+		//=============================
 		p_right = new JPanel();
 		p_right.setPreferredSize(new Dimension(rightwidth,height));
 		//p_right.setBackground(con.getMainColor());
@@ -112,15 +135,13 @@ public class CustomizeExhibitionPanel extends JPanel{
 		p_right.add(initalMenuPanel,BorderLayout.NORTH);
 		animationPanel = new AnimationPanel(frame, con);
 		animationPanel.setBackground(new Color(153,153,153));
-		flowchart = new MyLabel(con,"instructions.png",rightwidth,height-initalMenuPanel.getHeight());
+		flowchart = new MyLabel(con,"flowchart.png",rightwidth,height-initalMenuPanel.getHeight());
 		animationPanel.add(flowchart);
 		p_right.add(animationPanel,BorderLayout.CENTER);
 		this.add(p_right);
-
-	//	scrollPane.setViewportView(p_right);
-
-
-
+		
+		
+		
 	}
 
 
