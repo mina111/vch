@@ -1632,7 +1632,7 @@ public class AnimationPanel extends JPanel {
 									 temp=temp+bitSpace2;
 								 }
 								 x12--;
-								 System.out.println(y5+"v"+(reverse_y+26));
+								//System.Out.println(y5+"v"+(reverse_y+26));
 							 }else{
 							 	lowLevelHeuristicsCount++;
 								x2 = 185;
@@ -1761,7 +1761,7 @@ public class AnimationPanel extends JPanel {
 										 temp=temp+bitSpace2;
 									 }
 									 x12--;
-									 System.out.println(y5+"v"+(reverse_y+26));
+									//System.Out.println(y5+"v"+(reverse_y+26));
 								 }else{
 								 	lowLevelHeuristicsCount++;
 									x2 = 185;
@@ -1923,7 +1923,7 @@ public class AnimationPanel extends JPanel {
 													 temp=temp+bitSpace2;
 												 }
 												 x12--;
-												 System.out.println(y5+"v"+(reverse_y+26));
+												//System.Out.println(y5+"v"+(reverse_y+26));
 											 }else{
 											 	lowLevelHeuristicsCount++;
 												x2 = 185;
