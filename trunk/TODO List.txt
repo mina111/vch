@@ -6,4 +6,6 @@ Make the selected heuristic change to the -selected.png image when it's being us
 
 Program throws horrible errors when "Greedy Random" is used.
 
+
+
 Exponential and log graph doesn't set back to correct size after using a sin graph.
