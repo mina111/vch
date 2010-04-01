@@ -11,91 +11,135 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 
+/**
+ *  A Visualisation Tool for 
+ *  Selection Hyper-Heuristics                                    <br>   
+ *  															  <br>
+ *  http://code.google.com/p/vch/   							  <br>
+ *  															  <br>
+ *  Module:                  G52GRP, University of Nottingham     <br>
+ *  															  <br>
+ *  Group:        gp09-exo    						  			  <br>
+ * @author 	   	Lao Jingqi (jxl29u)
+ * @author	   	Zhang Chao (cxz09u)
+ * @author		Thomas Barton (txb18u)
+ * @author		Ben Jenkinson (bxj08u)
+ * @author	   	Alexander Jermstad (asj08u) 
+ * 			
+ */
+
+/**
+ *  This class is used to do the configuration  on the whole interface.
+ */
 
 public class Config
 {
-	//===========================
-	//一些初始化参数
-	//===========================
-	String skin_dir , softtitle ;//软件皮肤 | 上面的标题文字
-	int width,height;//初始窗体宽高
-	int leftmenuwidth , splitbarwidth ; //主要区域,左二级菜单宽度|左右分格面板的宽度
-	boolean iffulltop , ifnormaltop , openfull , lmenucanclose; //窗体最大时总前端显示|正常模式总前端显示|启动时左边菜单是否显示|左边是否可以关闭
+	/**
+	 *  the path of skin and icon
+	 */
+	String skin_dir;
+	/** 
+	 *  the title
+	 */
+	String softtitle ;
+	/**
+	 *  the width
+	 */
+	int width;
+	/**
+	 *  the height
+	 */
+	int height;
+	/**
+	 *  the width of left menu
+	 */
+	int leftmenuwidth;
+	/**
+	 *  the width of split bar
+	 */
+	int splitbarwidth ;
+	/**
+	 *  Whether the window is at top if it is full screen 
+	 */
+	boolean iffulltop;
+	/**
+	 *  Whether the window is at the top if it is normal size
+	 */
+	boolean ifnormaltop;
+	
+	/** 
+	 *  the split height
+	 */
 	private int splitbarHeight;
-
-	//===========================
-	//初始化
+	
+	/**
+	 *  initial the config instance
+	 */
 	Config()
 	{
-		skin_dir = "icon";//软件皮肤文件夹
-		width = 1024 ; //窗体宽
-		height = 728 ; //窗体高
-		iffulltop = true ; //全屏幕是否在最前端显示
-		ifnormaltop = false ; //非全屏是否在最前端显示
-		leftmenuwidth = 150 ; //左边二级菜单宽度
-		splitbarwidth = 6 ; //分格面板宽度
+		skin_dir = "/icon";
+		width = 1024 ; 
+		height = 728 ; 
+		iffulltop = true ; 
+		ifnormaltop = false ; 
+		leftmenuwidth = 150 ; 
+		splitbarwidth = 6 ; 
 		splitbarHeight = 6;
-		openfull = false ; //软件启动时就全屏
 		softtitle = "Visualisation Tool for a Selection Hyper-Heuristic (code.google.com/p/vch)";
-		lmenucanclose = true; //是否可以关闭左边菜单栏
 	}
-	//===========================
-	//返回皮肤文件夹
+
+	/**
+	 *  get the name of directory of skin and icon
+	 * @return
+	 */
 	public String getSkinDir()
 	{
-		return skin_dir;//返回皮肤文件夹
+		return skin_dir;
 	}
-	//=================================
-	//重置窗体大小
-	//=================================
 
-	// ==================================
-	// 返回包中指定图片函数
-	// ==================================
-	public ImageIcon getImgUrl(String img)
+	/**
+	 *  get the image
+	 * @param img
+	 * @return
+	 */
+	public ImageIcon getImgUrl(String img) 
 	{
 		return new ImageIcon(VSHMainFrame.class.getResource(getSkinDir() + "/" + img));
 	}
-	// ==================================
-	// 返回窗体最小尺寸
-	// ==================================
+	/**
+	 * get the minimum size of the frame
+	 * @param full
+	 * @return
+	 */
 	public Dimension getFrameSmallSize(boolean full)
 	{
-		if(!full)//不是最大化初始
+		if(!full)
 		{
 			return new Dimension(width,height);
 		}
-		else//全屏
+		else
 		{
 			Toolkit kit = Toolkit.getDefaultToolkit();
 			return new Dimension(kit.getScreenSize());
 		}
 	}
-	// ==================================
-	// 返回分辨率
-	// ==================================
+	
+	/**
+	 *  get the size of screen
+	 */
 	public Dimension getScreenSize()
 	{
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		return new Dimension(kit.getScreenSize());
 	}
-	// ==================================
-	//  最大化时是否显示在前端,如考试系统不许打开其它东西
-	// ==================================
-	public void fullAllWaysTop(VSHMainFrame frame)
-	{
-		frame.setAlwaysOnTop(iffulltop);
-	}
-	// ==================================
-	//  正常时是否显示在前端,如考试系统不许打开其它东西
-	// ==================================
-	public void normalAllWaysTop(VSHMainFrame frame)
-	{
-		frame.setAlwaysOnTop(ifnormaltop);
-	}
-	// ==================================
-	//  返回布局对象,参数:0左,1中,2右
-	// ==================================
+
+	/**
+	 *  get the instance of layout
+	 * @param flag left
+	 * @param hgap center
+	 * @param vgap right
+	 * @return
+	 */
 	public FlowLayout getFlowLayout(int flag,int hgap,int vgap)
 	{
 		FlowLayout fl = new FlowLayout();
@@ -104,94 +148,82 @@ public class Config
 		fl.setAlignment(flag);
 		return fl;
 	}
-	//===================================
-	//返回左边二级菜单面板的宽度
-	//===================================
+	
+	/**
+	 * get the left menu width
+	 * 
+	 * @return
+	 */
 	public int getLeftMenuWidth()
 	{
 		return this.leftmenuwidth;
 	}
-	//===================================
-	//返回分格面板宽度
-	//===================================
+
+	/**
+	 * get the split bar width
+	 * @return
+	 */
+
 	public int getSplitBarWidth()
 	{
 		return this.splitbarwidth;
 	}
-	//===================================
-	//返回左边菜单背景
-	//===================================
+
+	/**
+	 *  get the left background color
+	 * @return
+	 */
 	public Color getLeftBgColor()
 	{
 		return new Color(50,52,55);
 	}
-	//===================================
-	//返回分格页面背景色
-	//===================================
+
+	/**
+	 *  get the split background color
+	 * @return
+	 */
 	public Color getSplitBgColor()
 	{
 		return new Color(30,30,30);
 	}
-	//===================================
-	//返回右边区域色彩
-	//===================================
+
+	/**
+	 * get the color of right panel 
+	 * @return
+	 */
 	public Color getMainColor()
 	{
 		return new Color(55,55,55);
 	}
-	//===================================
-	//初始化UI
-	//===================================
+
+	/**
+	 * initial the UI
+	 */
 	public void setFrameUI()
 	{
-		Font font = new Font("宋体", Font.PLAIN, 12);
+		Font font = new Font("Verdana", Font.PLAIN, 12);
 		UIManager.put("Label.font", font);
 		UIManager.put("Button.font", font);
-
+		
 		Color gray = new Color(240,240,240);
 		Color black = new Color(0,0,0);
-
-       /* UIManager.put("ScrollBar.track", black);
-        UIManager.put("ScrollBar.trackHighlight",black);
-
-        UIManager.put("ScrollBar.background", gray);
-        UIManager.put("ScrollBar.shadow", gray);
-        UIManager.put("ScrollBar.darkShadow", gray);
-
-        UIManager.put("ScrollBar.thumb", gray);
-        UIManager.put("ScrollBar.thumbShadow",gray);
-        UIManager.put("ScrollBar.thumbDarkShadow",gray);
-        UIManager.put("ScrollBar.thumbHighlight", new Color(250,250,250));
-        //UIManager.put("ScrollBar.thumbLightShadow", new Color(250,60,250));
-        UIManager.put("ScrollBar.width", 17);
-
-        */
-
-        /*
-        ScrollBar.background
-		ScrollBar.darkShadow
-		ScrollBar.focusInputMap
-		ScrollBar.foreground
-		ScrollBar.highlight
-		ScrollBar.maximumThumbSize
-		ScrollBar.minimumThumbSize
-		ScrollBar.shadow
-		ScrollBar.thumb
-		ScrollBar.thumbDarkShadow
-		ScrollBar.thumbHighlight
-		ScrollBar.thumbLightShadow
-		ScrollBar.thumbShadow
-		ScrollBar.track
-		ScrollBar.trackHighlight
-		ScrollBar.width
-         */
-
-
+		
 	}
+	
+	/**
+	 *  get the split bar height
+	 * @return
+	 */
 	public int getSplitBarHeight() {
 		// TODO Auto-generated method stub
 		return this.splitbarHeight;
 	}
+	
+	/**
+	 *  get the up menu height
+	 * @param height
+	 * @return
+	 */
 	public int getUpMenuHeight(int height ) {
 		// TODO Auto-generated method stub
 		return (int) ((height-splitbarHeight)*0.65) ;

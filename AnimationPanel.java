@@ -2198,6 +2198,7 @@ public class AnimationPanel extends JPanel {
 		x11 = 610;
 		x12 = 185;
 		y13 = 265;
+		GRAPHY = 400;
 		y14=0;
 		 animationFinished = true;
 		 drawToAcceptanceMethod = false;

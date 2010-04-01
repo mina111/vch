@@ -1,18 +1,69 @@
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+/**
+ *  A Visualisation Tool for 
+ *  Selection Hyper-Heuristics                                    <br>   
+ *  															  <br>
+ *  http://code.google.com/p/vch/   							  <br>
+ *  															  <br>
+ *  Module:                  G52GRP, University of Nottingham     <br>
+ *  															  <br>
+ *  Group:        gp09-exo    						  			  <br>
+ * @author 	   	Lao Jingqi (jxl29u)
+ * @author	   	Zhang Chao (cxz09u)
+ * @author		Thomas Barton (txb18u)
+ * @author		Ben Jenkinson (bxj08u)
+ * @author	   	Alexander Jermstad (asj08u) 					  <br>
+ * 			
+ */
 
 public class InitalMenuPanel extends JPanel{
-	MyLabel benchmarkFunctionInfo,heuristicSelectionInfo, lowLevelHeuristicsInfo, acceptanceMethodInfo, launchDemonstrationInfo;
-	MyButton benchmarkFunction, heuristicSelection, lowLevelHeuristics, acceptanceMethod, launchDemonstration;
+	/**
+	 *   show the current benchmark function
+	 */
+	MyLabel benchmarkFunctionInfo;
+	/**
+	 *  show the current heuristic selection
+	 */
+	MyLabel heuristicSelectionInfo;
+	/**
+	 *  show the current low-level heuristics
+	 */
+	MyLabel lowLevelHeuristicsInfo;
+	/**
+	 *  show acceptance method
+	 */
+	MyLabel acceptanceMethodInfo;
+	/**
+	 *  get  benchmark function sub-menu
+	 */
+	MyButton benchmarkFunction;
+	/**
+	 *  get  heuristic selection sub-menu
+	 */	
+	MyButton heuristicSelection;
+	/**
+	 * get  low-level heuristics sub-menu
+	 */
+	MyButton lowLevelHeuristics;
+	/**
+	 *  get  acceptance method sub-menu
+	 */
+	MyButton acceptanceMethod;
 	JPanel left,center,right;
+	/**
+	 *  judge if the button is pressed
+	 */
 	boolean benchmarkFunctionMenu = true,heuristicSelectionMenu = false,lowLevelHeuristicsMenu = false, acceptanceMethodMenu = false;
+	
+	
 	public InitalMenuPanel(int width,Config con,VSHMainFrame frame){
 		this.setOpaque(false);
-		//this.setPreferredSize(new Dimension(width,28));
 		left = new JPanel();
 		left.setBackground(con.getLeftBgColor());
 		this.setLayout(new BorderLayout());
@@ -45,10 +96,10 @@ public class InitalMenuPanel extends JPanel{
 		center.add(acceptanceMethod);
 		center.add(acceptanceMethodInfo);
 		this.add(center,BorderLayout.CENTER);
-
+		
 		right = new JPanel();
 		right.setBackground(con.getLeftBgColor());
 		this.add(right,BorderLayout.EAST);
 	}
-
+	
 }
