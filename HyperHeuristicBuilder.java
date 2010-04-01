@@ -22,14 +22,14 @@ public class HyperHeuristicBuilder {
 		for(int i=0;i<names.length;i++){
 			hyperHeuristic.lowLevelHeuristics.add(LowLevelHeuristic(names[i]));
 		}
-
+		
 	}
 	public void HeuristicsSelection(String name) {
 		// TODO Auto-generated method stub
 		hyperHeuristic.heuristicsSelection = HeuristicsSelectionFactory.createHeuristicsSelection(name,hyperHeuristic);
-
+		
 	}
-
+	
 	public HyperHeuristic GetHyperHeuristic(){
 		return hyperHeuristic;
 	}
