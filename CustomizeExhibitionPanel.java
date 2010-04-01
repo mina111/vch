@@ -110,7 +110,7 @@ public class CustomizeExhibitionPanel extends JPanel{
 		p_right.add(initalMenuPanel,BorderLayout.NORTH);
 		animationPanel = new AnimationPanel(frame, con);
 		animationPanel.setBackground(new Color(153,153,153));
-		flowchart = new MyLabel(con,"flowchart.png",rightwidth,height-initalMenuPanel.getHeight());
+		flowchart = new MyLabel(con,"instructions.png",rightwidth,height-initalMenuPanel.getHeight());
 		animationPanel.add(flowchart);
 		p_right.add(animationPanel,BorderLayout.CENTER);
 		this.add(p_right);
