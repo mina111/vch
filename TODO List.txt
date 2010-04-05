@@ -9,3 +9,5 @@ Exponential and log graph doesn't set back to correct size after using a sin gra
 Add the 'Info' panel.
 
 Add the 'Help' panel.
+
+f(x) = sin radio button doesn't have f(x) on it.
