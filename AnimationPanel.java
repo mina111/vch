@@ -147,9 +147,7 @@ public class AnimationPanel extends JPanel {
 					} else {
 						g2D.drawLine(OFFSETX, OFFSETY+k, OFFSETX-NOTCHSIZE, OFFSETY+k);
 					}
-					g2D.drawString("1",OFFSETX-fm.stringWidth("1")-(NOTCHSIZE*2),(int)(OFFSETY+(fontHeight/2)-3));
-					g2D.drawString("0",OFFSETX-fm.stringWidth("1")-(NOTCHSIZE*2),(int)(OFFSETY+GRAPHY+(fontHeight/2)-3));
-					g2D.drawString("-1",OFFSETX-fm.stringWidth("-1")-(NOTCHSIZE*2),(int)(OFFSETY+GRAPHY*2+(fontHeight/2)-3));
+
 				 }
 		     }
 		
@@ -176,11 +174,15 @@ public class AnimationPanel extends JPanel {
 	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx")||f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx^2")){
 		    	 SCALEY = 1/GRAPHY;
-	             for (int x=0; x <= boundaryMaxX; x=x+20){
+	             for (int x=0; x <= boundaryMaxX; x=x+30){
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
 					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
 	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
+	                 
 	             }
+	             g2D.drawString("1",OFFSETX-fm.stringWidth("1")-(NOTCHSIZE*2),(int)(OFFSETY+(fontHeight/2)-3));
+                 g2D.drawString("0",OFFSETX-fm.stringWidth("1")-(NOTCHSIZE*2),(int)(OFFSETY+GRAPHY+(fontHeight/2)-3));
+                 g2D.drawString("-1",OFFSETX-fm.stringWidth("-1")-(NOTCHSIZE*2),(int)(OFFSETY+GRAPHY*2+(fontHeight/2)-3));
 	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=logx")){
 		    	 SCALEY = Math.log(1+boundaryMaxX) / GRAPHY;
