@@ -18,7 +18,7 @@ public class AnimationPanel extends JPanel {
 	ImageIcon animation_bg_img;
 	ImageIcon selected_mark_img;
 	ImageIcon reverse_animation_img, inverse_animation_img, shift_animation_img, flip_one_bit_img, steepest_gradient_img;
-
+	ImageIcon reverse_animation_selected_img, inverse_animation_selected_img,shift_animation_selected_img,flip_one_bit_selected_img,steepest_gradient_selected_img;
 	final int ORIGINAL_WIDTH = 860;
 	final int ORIGINAL_HEIGHT = 608;
 	final int ALIASVALUE = 30;
@@ -83,6 +83,11 @@ public class AnimationPanel extends JPanel {
 		shift_animation_img = con.getImgUrl("heuristic-shift.png");
 		flip_one_bit_img = con.getImgUrl("heuristic-fliponebit.png");
 		steepest_gradient_img = con.getImgUrl("heuristic-steepestgradient.png");
+		reverse_animation_selected_img = con.getImgUrl("heuristic-reverse-selected.png");
+		inverse_animation_selected_img = con.getImgUrl("heuristic-inverse-selected.png");
+		shift_animation_selected_img = con.getImgUrl("heuristic-shift-selected.png");
+		flip_one_bit_selected_img = con.getImgUrl("heuristic-fliponebit-selected.png");
+		steepest_gradient_selected_img = con.getImgUrl("heuristic-steepestgradient-selected.png");
 
 	}
 
@@ -161,7 +166,7 @@ public class AnimationPanel extends JPanel {
 			
 		     if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=x^2")){
 		    	 SCALEY = (32768 * 32768) / GRAPHY;
-	             for (int x=0; x <= boundaryMaxX; x=x+10){
+	             for (int x=0; x <= boundaryMaxX; x=x+20){
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
 					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
 	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
@@ -171,7 +176,7 @@ public class AnimationPanel extends JPanel {
 	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx")||f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx^2")){
 		    	 SCALEY = 1/GRAPHY;
-	             for (int x=0; x <= boundaryMaxX; x=x+10){
+	             for (int x=0; x <= boundaryMaxX; x=x+20){
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
 					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
 	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
@@ -179,7 +184,7 @@ public class AnimationPanel extends JPanel {
 	
 		     }else if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=logx")){
 		    	 SCALEY = Math.log(1+boundaryMaxX) / GRAPHY;
-	             for (int x=0; x <= boundaryMaxX; x=x+10){
+	             for (int x=0; x <= boundaryMaxX; x=x+20){
 	                 double value = f.vsh.hyperHeuristic.function.evaluateInteger(x);
 					 double value2 = f.vsh.hyperHeuristic.function.evaluateInteger(x+ALIASVALUE);
 	                 g2D.draw(new Line2D.Double((x/SCALEX)+OFFSETX, (GRAPHY-(value/SCALEY))+OFFSETY, ((x+ALIASVALUE)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
@@ -256,27 +261,32 @@ public class AnimationPanel extends JPanel {
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Reverse");
 			    			 g.setColor(Color.RED);
-			    			 g2D.drawRect(lowLevelHeuristicBoxX-8, reverse_y-8, 77, 74);
+			    			 g.drawImage(reverse_animation_selected_img.getImage(),lowLevelHeuristicBoxX,reverse_y, reverse_animation_selected_img.getIconWidth(), reverse_animation_selected_img.getIconHeight(), null);
+			    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, reverse_y-8, 77, 74);
 			    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Inverse")){
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Inverse");
 			    			 g.setColor(Color.RED);
-			    			 g2D.drawRect(lowLevelHeuristicBoxX-8, inverse_y-8, 77, 74);
+			    			 g.drawImage(inverse_animation_selected_img.getImage(),lowLevelHeuristicBoxX,inverse_y, inverse_animation_selected_img.getIconWidth(), inverse_animation_selected_img.getIconHeight(), null);
+			    			// g2D.drawRect(lowLevelHeuristicBoxX-8, inverse_y-8, 77, 74);
 			    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Shift")){
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Shift");
 			    			 g.setColor(Color.RED);
-			    			 g2D.drawRect(lowLevelHeuristicBoxX-8, shift_y-8, 77, 74);
+			    			 g.drawImage(shift_animation_selected_img.getImage(),lowLevelHeuristicBoxX,shift_y, shift_animation_selected_img.getIconWidth(), shift_animation_selected_img.getIconHeight(), null);
+			    			// g2D.drawRect(lowLevelHeuristicBoxX-8, shift_y-8, 77, 74);
 			    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Flip One Bit")){
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Flip One Bit");
 			    			 g.setColor(Color.RED);
-			    			 g2D.drawRect(lowLevelHeuristicBoxX-8, flip_one_bit_y-8, 77, 74);
+			    			 g.drawImage(flip_one_bit_selected_img.getImage(),lowLevelHeuristicBoxX,flip_one_bit_y, flip_one_bit_selected_img.getIconWidth(), flip_one_bit_selected_img.getIconHeight(), null);
+			    			// g2D.drawRect(lowLevelHeuristicBoxX-8, flip_one_bit_y-8, 77, 74);
 			    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Steepest Gradient")){
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 			    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Steepest Gradient");
 			    			 g.setColor(Color.RED);
-			    			 g2D.drawRect(lowLevelHeuristicBoxX-8, steepest_gradient_y-8, 77, 74);
+			    			 g.drawImage(steepest_gradient_selected_img.getImage(),lowLevelHeuristicBoxX,steepest_gradient_y, steepest_gradient_selected_img.getIconWidth(), steepest_gradient_selected_img.getIconHeight(), null);
+			    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, steepest_gradient_y-8, 77, 74);
 			    		 }
 			    		 if(y2 < 265){
 			    			 g.setFont(F4);
@@ -327,7 +337,9 @@ public class AnimationPanel extends JPanel {
 				    			 }
 					    		 if(f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount).getName().equals("Reverse")){
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, reverse_y-8, 77, 74);
+					    			 
+					    			// g2D.drawRect(lowLevelHeuristicBoxX-8, reverse_y-8, 77, 74);
+					    			 g.drawImage(reverse_animation_selected_img.getImage(),lowLevelHeuristicBoxX,reverse_y, reverse_animation_selected_img.getIconWidth(), reverse_animation_selected_img.getIconHeight(), null);
 					    			 g.setFont(F4);
 					    			 int startPostion = ((Reverse)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).startPostion ;
 					    			 int endPostion = ((Reverse)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).endPostion ;
@@ -335,27 +347,31 @@ public class AnimationPanel extends JPanel {
 
 					    		 }else if(f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount).getName().equals("Inverse")){
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, inverse_y-8, 77, 74);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, inverse_y-8, 77, 74);
+					    			 g.drawImage(inverse_animation_selected_img.getImage(),lowLevelHeuristicBoxX,inverse_y, inverse_animation_selected_img.getIconWidth(), inverse_animation_selected_img.getIconHeight(), null);
 					    			 g.setFont(F4);
 					    			 int startPostion = ((Inverse)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).startPostion ;
 					    			 int endPostion = ((Inverse)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).endPostion ;
 					    			 drawGreedyInverse(g2D, startPostion, endPostion);
 					    		 }else if(f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount).getName().equals("Shift")){
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, shift_y-8, 77, 74);
+					    			// g2D.drawRect(lowLevelHeuristicBoxX-8, shift_y-8, 77, 74);
+					    			 g.drawImage(shift_animation_selected_img.getImage(),lowLevelHeuristicBoxX,shift_y, shift_animation_selected_img.getIconWidth(), shift_animation_selected_img.getIconHeight(), null);
 					    			 g.setFont(F4);
 					    			 int startPostion = ((Shift)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).startPostion ;
 					    			 int endPostion = ((Shift)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).endPostion ;
 					    			 drawGreedyShift(g2D, startPostion, endPostion);
 					    		 }else if(f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount).getName().equals("Flip One Bit")){
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, flip_one_bit_y-8, 77, 74);
+					    			 g.drawImage(flip_one_bit_selected_img.getImage(),lowLevelHeuristicBoxX,flip_one_bit_y, flip_one_bit_selected_img.getIconWidth(), flip_one_bit_selected_img.getIconHeight(), null);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, flip_one_bit_y-8, 77, 74);
 					    			 g.setFont(F4);
 					    			 int position = ((FlipOneBit)f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount)).postion ;
 					    			 drawGreedyFlipOneBit(g2D, position);
 					    		 }else if(f.vsh.hyperHeuristic.lowLevelHeuristics.get(lowLevelHeuristicsCount).getName().equals("Steepest Gradient")){
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, steepest_gradient_y-8, 77, 74);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, steepest_gradient_y-8, 77, 74);
+					    			 g.drawImage(steepest_gradient_selected_img.getImage(),lowLevelHeuristicBoxX,steepest_gradient_y, steepest_gradient_selected_img.getIconWidth(), steepest_gradient_selected_img.getIconHeight(), null);
 					    			 g.setFont(F4);
 					    			 drawGreedySteepestGradient(g2D);
 					    		 }
@@ -372,27 +388,32 @@ public class AnimationPanel extends JPanel {
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Reverse");
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, reverse_y-8, 77, 74);
+					    			 g.drawImage(reverse_animation_selected_img.getImage(),lowLevelHeuristicBoxX,reverse_y, reverse_animation_selected_img.getIconWidth(), reverse_animation_selected_img.getIconHeight(), null);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, reverse_y-8, 77, 74);
 					    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Inverse")){
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Inverse");
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, inverse_y-8, 77, 74);
+					    			 g.drawImage(inverse_animation_selected_img.getImage(),lowLevelHeuristicBoxX,inverse_y, inverse_animation_selected_img.getIconWidth(), inverse_animation_selected_img.getIconHeight(), null);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, inverse_y-8, 77, 74);
 					    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Shift")){
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Shift");
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, shift_y-8, 77, 74);
+					    			 g.drawImage(shift_animation_selected_img.getImage(),lowLevelHeuristicBoxX,shift_y, shift_animation_selected_img.getIconWidth(), shift_animation_selected_img.getIconHeight(), null);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, shift_y-8, 77, 74);
 					    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Flip One Bit")){
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Flip One Bit");
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, flip_one_bit_y-8, 77, 74);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, flip_one_bit_y-8, 77, 74);
+					    			 g.drawImage(flip_one_bit_selected_img.getImage(),lowLevelHeuristicBoxX,flip_one_bit_y, flip_one_bit_selected_img.getIconWidth(), flip_one_bit_selected_img.getIconHeight(), null);
 					    		 }else if(f.vsh.lowLevelHeuristic.getName().equals("Steepest Gradient")){
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setForeground(Color.PINK);
 					    			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("Steepest Gradient");
 					    			 g.setColor(Color.RED);
-					    			 g2D.drawRect(lowLevelHeuristicBoxX-8, steepest_gradient_y-8, 77, 74);
+					    			 g.drawImage(steepest_gradient_selected_img.getImage(),lowLevelHeuristicBoxX,steepest_gradient_y, steepest_gradient_selected_img.getIconWidth(), steepest_gradient_selected_img.getIconHeight(), null);
+					    			 //g2D.drawRect(lowLevelHeuristicBoxX-8, steepest_gradient_y-8, 77, 74);
 					    		 }
 			    				if(remainTime>0){
 					    			 g.setColor(Color.YELLOW);
