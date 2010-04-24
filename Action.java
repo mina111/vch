@@ -37,6 +37,10 @@ public class Action implements ActionListener{
 		//分辨率
 		sdm = con.getScreenSize();
 	}
+	public Action(VSHMainFrame f) {
+		// TODO Auto-generated constructor stub
+		this.frame = f;
+	}
 	//======================
 	//事件处理
 	public void actionPerformed(ActionEvent e)
@@ -256,7 +260,7 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.heuristicSelection.setEnabled(true);
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristics.setEnabled(true);
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethod.setEnabled(true);
-			frame.panel.m_panel.p_left.confirm.setEnabled(true);
+			//frame.panel.m_panel.p_left.confirm.setEnabled(true);
 			frame.start = false;
 			frame.stop = true;
 			frame.vsh.sleepTime = 10;
@@ -298,8 +302,74 @@ public class Action implements ActionListener{
 		} else if( e.getActionCommand().equals("help") ) {
 
 			// Someone pressed the "Help" button on the main menu.
-			//System.Out.println("Action->help");
+			System.out.println("Action->help");
 
+		}else if(e.getActionCommand().equals("Square Function")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("f(x) = x ^ 2"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Sin Function")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("f(x) = sin (x*PI/10000)"))
+					frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+
+			}
+		}else if(e.getActionCommand().equals("Log Function")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("f(x) = log (x+1)"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Simple Random")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("Simple Random"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Greedy Random")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("Greedy Random"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Reinforcement Learning")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("Reinforcement Learning"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Only Improving")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("Only Improving"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Improving or Equal")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("Improving and Equal"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("All Moves Accepted")){
+			if(!frame.start){
+				if(!frame.panel.m_panel.initalMenuPanel.benchmarkFunctionInfo.getText().equals("All Moves Accepted"))
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Inverse")){
+			if(!frame.start){
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Reverse")){
+			if(!frame.start){
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Shift")){
+			if(!frame.start){
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Flip One Bit")){
+			if(!frame.start){
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
+		}else if(e.getActionCommand().equals("Steepest Gradient")){
+			if(!frame.start){
+				frame.panel.m_panel.p_left.confirm.setEnabled(true);;
+			}
 		}
 
 	}

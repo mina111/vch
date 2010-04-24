@@ -7,7 +7,7 @@ import javax.swing.JCheckBox;
 
 public class MyCheckBox extends JCheckBox{
 
-	public MyCheckBox (Config con,String img,String rimg,String rsimg,String text){
+	public MyCheckBox (Config con,String img,String rimg,String rsimg,String text,VSHMainFrame frame){
 		ImageIcon btn_img = con.getImgUrl(img);
 		this.setIcon(btn_img);
 		this.setPreferredSize(new Dimension(btn_img.getIconWidth(),btn_img.getIconHeight()));
@@ -17,6 +17,7 @@ public class MyCheckBox extends JCheckBox{
 		this.setSelectedIcon(con.getImgUrl(rsimg));
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setToolTipText(text);
-
+		this.addActionListener(new Action(frame));
+		this.setActionCommand(text);
 	}
 }
