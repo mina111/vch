@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 
 
@@ -11,53 +12,49 @@ import javax.swing.JButton;
 public class Action implements ActionListener{
 	VSHMainFrame frame;
 	JButton button;
-	//======================
-	//配置类
+
 	Config con ;
-	Dimension sdm ;//分辨率
-	//======================
-	//皮肤样式夹
+	Dimension sdm ;
+
 	String img_dir = "skin_black";
-	//======================
-	//重画类
-	//RepaintActionDo action ;
-	//======================
 
 
-	//初始化
 	Action(VSHMainFrame f,JButton btn)
 	{
 		this.frame = f;
 		this.button = btn;
-		//配置类
+
 		con = new Config();
-	//	action = new RepaintActionDo(f);
-		//皮肤文件
+
 		img_dir = con.getSkinDir();
-		//分辨率
+
 		sdm = con.getScreenSize();
 	}
 	public Action(VSHMainFrame f) {
 		// TODO Auto-generated constructor stub
 		this.frame = f;
 	}
-	//======================
-	//事件处理
+
 	public void actionPerformed(ActionEvent e)
 	{
 
 
-		//==================
-		//窗口最小化
+
 		 if(e.getActionCommand().equals("cmd_min"))
 		{
 			frame.setExtendedState(frame.ICONIFIED|frame.getExtendedState());
+		}else if(e.getActionCommand().equals("min_info"))
+		{
+			frame.info.setExtendedState(frame.info.ICONIFIED|frame.info.getExtendedState());
 		}
-		//==================
-		//窗口关闭
+
 		else if(e.getActionCommand().equals("cmd_close"))
 		{
 			System.exit(0);
+		}
+		else if(e.getActionCommand().equals("close_info"))
+		{
+			frame.info.dispose();
 		}
 
 
@@ -311,14 +308,14 @@ public class Action implements ActionListener{
 			} // END if
 
 		} else if( e.getActionCommand().equals("info") ) {
-
+			frame.createInfoFrame();
 			// Someone pressed the "Information" button on the main menu.
 			//System.Out.println("Action->info");
 
 		} else if( e.getActionCommand().equals("help") ) {
 
 			// Someone pressed the "Help" button on the main menu.
-			System.out.println("Action->help");
+			//System.out.println("Action->help");
 
 		}else if(e.getActionCommand().equals("Square Function")){
 			if(!frame.start){
