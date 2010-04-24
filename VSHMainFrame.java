@@ -31,6 +31,7 @@ public class VSHMainFrame extends JFrame{
 	VSH vsh;
 	InfoFrame info;
 	final Point point = new Point();
+	HelpFrame help;
 	VSHMainFrame(String title,VSH vsh)
 	{
 
@@ -183,6 +184,12 @@ public class VSHMainFrame extends JFrame{
 	}
 	public void createInfoFrame(){
 		info = new InfoFrame(con,this);
+		
+		
+	}
+	
+	public void createHelpFrame(){
+		help = new HelpFrame(con,this);
 		
 		
 	}

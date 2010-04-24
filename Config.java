@@ -112,7 +112,7 @@ public class Config
 
 	public void setFrameUI()
 	{
-		Font font = new Font("ËÎÌו", Font.PLAIN, 12);
+		Font font = new Font("Verdana", Font.PLAIN, 12);
 		UIManager.put("Label.font", font);
 		UIManager.put("Button.font", font);
 

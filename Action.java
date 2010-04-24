@@ -46,6 +46,9 @@ public class Action implements ActionListener{
 		}else if(e.getActionCommand().equals("min_info"))
 		{
 			frame.info.setExtendedState(frame.info.ICONIFIED|frame.info.getExtendedState());
+		}else if(e.getActionCommand().equals("min_help"))
+		{
+			frame.help.setExtendedState(frame.help.ICONIFIED|frame.help.getExtendedState());
 		}
 
 		else if(e.getActionCommand().equals("cmd_close"))
@@ -55,6 +58,9 @@ public class Action implements ActionListener{
 		else if(e.getActionCommand().equals("close_info"))
 		{
 			frame.info.dispose();
+		}		else if(e.getActionCommand().equals("close_help"))
+		{
+			frame.help.dispose();
 		}
 
 
@@ -313,7 +319,7 @@ public class Action implements ActionListener{
 			//System.Out.println("Action->info");
 
 		} else if( e.getActionCommand().equals("help") ) {
-
+			frame.createHelpFrame();
 			// Someone pressed the "Help" button on the main menu.
 			//System.out.println("Action->help");
 
