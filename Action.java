@@ -241,12 +241,16 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristics.setEnabled(false);
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethod.setEnabled(false);
 			frame.panel.m_panel.p_left.confirm.setEnabled(false);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.logo);
+			frame.panel.m_panel.p_left.confirmationPanelInUpPanel.setVisible(false);
 			if(!frame.start&&frame.stop){
 				frame.vsh.buildHyperHeuristic();
 			}
 			if(!frame.panel.m_panel.animationPanel.drawBackgroundPic )
 				frame.panel.m_panel.animationPanel.removeAll();
 			frame.panel.m_panel.animationPanel.drawBackgroundPic = true;
+			frame.update(frame.getGraphics());
 			frame.validate();
 			frame.stop = false;
 			frame.play();
@@ -260,6 +264,18 @@ public class Action implements ActionListener{
 			frame.panel.m_panel.initalMenuPanel.heuristicSelection.setEnabled(true);
 			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristics.setEnabled(true);
 			frame.panel.m_panel.initalMenuPanel.acceptanceMethod.setEnabled(true);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.removeAll();
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.squareFunction);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.sinFunction);
+			frame.panel.m_panel.p_left.menuPanelInUpPanel.add(frame.panel.m_panel.p_left.logFunction);
+			frame.panel.m_panel.initalMenuPanel.benchmarkFunctionMenu = true;
+			frame.panel.m_panel.initalMenuPanel.heuristicSelectionMenu = false;
+			frame.panel.m_panel.initalMenuPanel.lowLevelHeuristicsMenu = false;
+			frame.panel.m_panel.initalMenuPanel.acceptanceMethodMenu = false;
+			frame.panel.m_panel.p_left.confirmationPanelInUpPanel.setVisible(true);
+			frame.update(frame.getGraphics());
+			frame.validate();
+				
 			//frame.panel.m_panel.p_left.confirm.setEnabled(true);
 			frame.start = false;
 			frame.stop = true;
