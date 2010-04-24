@@ -3,6 +3,7 @@ import java.awt.Dimension;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -14,7 +15,7 @@ public class CustomizePanel extends JPanel{
 	JPanel blankPanel,menuPanelInUpPanel, confirmationPanelInUpPanel;
 	Config con ;
 
-	ImageIcon split_img ;
+	ImageIcon split_img,logo_img;
 
 	VSHMainFrame frame;
 
@@ -32,6 +33,7 @@ public class CustomizePanel extends JPanel{
 	MyLabel candidateSolutionContent,newSolutionContent,lowLevelHeuristicContent,acceptedContent,countContent;
 	MyLabel blank;
 	int countLowLevelHeuristics = 0;
+	JLabel logo = new JLabel();
 	CustomizePanel(VSHMainFrame frame,int width,int height)
 	{
 		//=============================
@@ -48,6 +50,10 @@ public class CustomizePanel extends JPanel{
 		split_img = con.getImgUrl("b_bg.png");//因为在JButton前就要用,所以在前面先实例化
 		this.setLayout(con.getFlowLayout(1,0,0));
 		this.setPreferredSize(new Dimension(width,height));
+		logo_img = con.getImgUrl("logo1.png");
+		logo.setPreferredSize(new Dimension(logo_img.getIconWidth(),logo_img.getIconHeight()));
+		logo.setIcon(logo_img);
+		logo.setBackground(con.getLeftBgColor());
 		addPanel(width,height);
 	}
 		void addPanel(int width,int height){
