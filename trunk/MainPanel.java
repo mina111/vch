@@ -165,7 +165,7 @@ class MainPanel extends JPanel
 		menupanel = new JPanel();
 		menupanel.setPreferredSize(new Dimension(width,img_menu.getIconHeight()));
 		menupanel.setOpaque(false);
-		menupanel.setLayout(con.getFlowLayout(0,0,0)); // ×ó¶ÔÆë
+		menupanel.setLayout(con.getFlowLayout(0,0,0)); 
 		play = new MyButton(con,"menu-button-play.png","menu-button-play-hover.png","Play");
 		pause = new MyButton(con,"menu-button-pause.png","menu-button-pause-hover.png","Pause");
 		slowDown = new MyButton(con,"menu-button-slowdown.png","menu-button-slowdown-hover.png","Slow Down");

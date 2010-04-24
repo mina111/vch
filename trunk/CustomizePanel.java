@@ -36,7 +36,6 @@ public class CustomizePanel extends JPanel{
 	JLabel logo = new JLabel();
 	CustomizePanel(VSHMainFrame frame,int width,int height)
 	{
-		//=============================
 
 		this.width = width;
 		this.height = height;
@@ -47,7 +46,7 @@ public class CustomizePanel extends JPanel{
 	private void initPanel() {
 		// TODO Auto-generated method stub
 		con = new Config();
-		split_img = con.getImgUrl("b_bg.png");//因为在JButton前就要用,所以在前面先实例化
+		split_img = con.getImgUrl("b_bg.png");
 		this.setLayout(con.getFlowLayout(1,0,0));
 		this.setPreferredSize(new Dimension(width,height));
 		logo_img = con.getImgUrl("logo1.png");
@@ -59,7 +58,7 @@ public class CustomizePanel extends JPanel{
 		void addPanel(int width,int height){
 			int splitbarheight = con.getSplitBarHeight() ;;
 			int upHeight = con.getUpMenuHeight(height) ;
-			int downHeight = height - splitbarheight - upHeight; // 计算右边剩余宽度
+			int downHeight = height - splitbarheight - upHeight; 
 
 			upPanel = new JPanel();
 			upPanel.setPreferredSize(new Dimension(width,upHeight));
