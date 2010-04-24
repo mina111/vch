@@ -6,7 +6,7 @@ import javax.swing.JRadioButton;
 
 
 public class MyRadioButton extends JRadioButton{
-	public MyRadioButton (Config con,String img,String rimg,String rsimg,String text){
+	public MyRadioButton (Config con,String img,String rimg,String rsimg,String text,VSHMainFrame frame){
 		ImageIcon btn_img = con.getImgUrl(img);
 		this.setIcon(btn_img);
 		this.setPreferredSize(new Dimension(btn_img.getIconWidth(),btn_img.getIconHeight()));
@@ -16,6 +16,7 @@ public class MyRadioButton extends JRadioButton{
 		this.setSelectedIcon(con.getImgUrl(rsimg));
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setToolTipText(text);
-
+		this.addActionListener(new Action(frame));
+		this.setActionCommand(text);
 	}
 }
