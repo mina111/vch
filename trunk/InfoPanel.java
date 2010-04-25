@@ -37,12 +37,12 @@ public class InfoPanel extends JPanel{
 		this.mainFrame = mainFrame;
 		this.setLayout(con.getFlowLayout(1,0,0));
 		
-		img_m = con.getImgUrl("exam_b_line.png");
-		img_t_rbg = con.getImgUrl("exam_h_rc.png");
+		img_m = con.getImgUrl("vsh_b_line.png");
+		img_t_rbg = con.getImgUrl("vsh_h_rc.png");
 		btn_min_img= con.getImgUrl("min.png");
 		btn_max_img= con.getImgUrl("max.png");
 		btn_close_img= con.getImgUrl("close.png");
-		img_b_bg = con.getImgUrl("exam_b_bg.png");
+		img_b_bg = con.getImgUrl("vsh_b_bg.png");
 		setTop();
 
 		setMainPanel();
