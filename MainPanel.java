@@ -233,15 +233,15 @@ class MainPanel extends JPanel
 	private void initSkinImg()
 	{
 
-		img_t_l = con.getImgUrl("exam_h_l.png");
+		img_t_l = con.getImgUrl("vsh_h_l.png");
 		img_t_l_w = img_t_l.getIconWidth();
-		img_t_bg = con.getImgUrl("exam_h_lc.png");
+		img_t_bg = con.getImgUrl("vsh_h_lc.png");
 		img_t_bg_w = 120;
-		img_t_mid = con.getImgUrl("exam_h_tag.png");
+		img_t_mid = con.getImgUrl("vsh_h_tag.png");
 		img_t_mid_w = img_t_mid.getIconWidth();
-		img_t_rbg = con.getImgUrl("exam_h_rc.png");
+		img_t_rbg = con.getImgUrl("vsh_h_rc.png");
 		img_t_rbg_w = img_t_rbg.getIconWidth();
-		img_t_r = con.getImgUrl("exam_h_r.png");
+		img_t_r = con.getImgUrl("vsh_h_r.png");
 		img_t_r_w = img_t_r.getIconWidth();
 
 		btn_min_img= con.getImgUrl("min.png");
@@ -253,14 +253,14 @@ class MainPanel extends JPanel
 		img_info = con.getImgUrl("info_bg.png");
 
 
-		img_m = con.getImgUrl("exam_b_line.png");
+		img_m = con.getImgUrl("vsh_b_line.png");
 		img_m_w = img_m.getIconWidth();
 
-		img_b_l = con.getImgUrl("exam_b_l.png");
+		img_b_l = con.getImgUrl("vsh_b_l.png");
 		img_b_l_w = img_b_l.getIconWidth();
-		img_b_bg = con.getImgUrl("exam_b_bg.png");
+		img_b_bg = con.getImgUrl("vsh_b_bg.png");
 		img_b_bg_w = img_b_bg.getIconWidth();
-		img_b_r = con.getImgUrl("exam_b_r.png");
+		img_b_r = con.getImgUrl("vsh_b_r.png");
 		img_b_r_w = img_b_r.getIconWidth();
 	}
 

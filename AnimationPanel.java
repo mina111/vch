@@ -774,7 +774,7 @@ public class AnimationPanel extends JPanel {
 				x10 = 593;
 				y11--;
 			}else{
-				if(x10>164){
+				if(x10>200){
 					g.setColor(Color.YELLOW);
 					int temp = x10;
 					for(int i=0;i<f.vsh.newSolution.length;i++ ){
@@ -1424,6 +1424,7 @@ public class AnimationPanel extends JPanel {
 			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex==i){
 			    								 g2D.setColor(Color.YELLOW);
 			    								 g2D.drawRect(x2-5, y7+25*i-20, bitSpace2*f.vsh.candidateSolution.length+10, 20);
+			    								 g2D.setColor(Color.RED);
 			    							 }
 			    						 }
 			    						 remainTime--;
@@ -2131,6 +2132,7 @@ public class AnimationPanel extends JPanel {
 			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex==i){
 			    								 g2D.setColor(Color.YELLOW);
 			    								 g2D.drawRect(x2-5, y7+25*i-20, bitSpace2*f.vsh.candidateSolution.length+10, 20);
+			    								 g2D.setColor(Color.RED);
 			    							 }
 			    						 }
 			    						 remainTime--;
