@@ -14,7 +14,7 @@ public class InfoFrame extends JFrame{
 		setTitle("About");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VSHMainFrame.class.getResource(con.getSkinDir() + "/" + "icon1.png")));
 		Point mainFramePoint = mainFrame.getLocation();
-		setSize(300, 250);
+		setSize(400, 250);
 		setLocation((mainFrame.getSize().width-300)/2+mainFramePoint.x, (mainFrame.getSize().height-250)/2+mainFramePoint.y);
 		InfoPanel infoPanel = new InfoPanel(con,mainFrame);
 		add(infoPanel);

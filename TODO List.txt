@@ -1,15 +1,4 @@
-Make the left-hand side options go away when you click Play.
-
-Only make the Save Changes button light up when you've actually changed something on a panel. (Makes it more obvious you have to click it)
-
-Make the selected heuristic change to the -selected.png image when it's being used. (Instead of the red square)
-
-Exponential and log graph doesn't set back to correct size after using a sin graph.
-
-Add the 'Info' panel.
-
-Add the 'Help' panel.
-
+BUG: Sometimes the animation slows down drastically, and no amount of "Speed Up" clicking will change it. This may be caused when quitting/starting several new problems. Is this a threading issue?
 
 
 f(x) = sin radio button doesn't have f(x) on it.
