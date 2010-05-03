@@ -24,7 +24,7 @@ public class InfoPanel extends JPanel{
 	
 	Config con;
 	
-	int width = 300;
+	int width = 400;
 	int height = 250;
 	
 	JLabel info = new JLabel();
@@ -67,8 +67,6 @@ public class InfoPanel extends JPanel{
 		btn_min.addActionListener(new Action(mainFrame));
 		toppanel.add(btn_min);
 
-
-
 		btn_close = new JButton(btn_close_img);
 		btn_close.setPreferredSize(new Dimension(btn_close_img.getIconWidth(),btn_close_img.getIconHeight()));
 		btn_close.setBorder(null);
@@ -87,29 +85,30 @@ public class InfoPanel extends JPanel{
 	{
 		int h = height - img_t_rbg.getIconHeight();
 		m_panel = new JPanel();
-		confirm = new MyButton(con,  "confirm_info_on.png", "confirm_info_pressing.png","confirm_info");
-		confirm.setActionCommand("close_info");
-		confirm.addActionListener(new Action(mainFrame));
+		// confirm = new MyButton(con,  "confirm_info_on.png", "confirm_info_pressing.png","confirm_info");
+		// confirm.setActionCommand("close_info");
+		// confirm.addActionListener(new Action(mainFrame));
 		m_panel.setLayout(con.getFlowLayout(1,0,0));
-		info.setPreferredSize(new Dimension(width-img_m.getIconWidth()*2,100));
+		info.setPreferredSize(new Dimension(width-img_m.getIconWidth()*2,150));
 		Font font = new Font("Arial",Font.BOLD ,10);
 		info.setBackground(con.getSplitBgColor());
 		info.setFont(font);
-		info.setText("<html><p>Visualisation Tool for a Selection Hyper-Heuristic(VSH)</p><p></p><p>Version: 1.0.0</p><p></p><p> (c) Copyright VSH contributors, 2010. All rights reserved.</p><p></p></html>");
+		info.setText("<html><body style=\"padding:15px;font-size:10px;\"><div style=\"font-size:14px;font-weight:bold;\">Visualisation Tool for a Selection Hyper-Heuristic (VSH)</div><div style=\"margin-top:10px;\">Version: 1.0.1</div><div style=\"margin-top:10px;\">Copyright &copy; 2010 VSH contributors. All rights reserved.</div></body></html>");
 		info.setCursor(new Cursor(Cursor.TEXT_CURSOR));
 		m_panel.add(info);
-		website.setPreferredSize(new Dimension(width-img_m.getIconWidth()*2,80));
+		website.setPreferredSize(new Dimension(width-img_m.getIconWidth()*2,30));
 		website.setFont(font);
-		website.setText("<html>Website: <a   href='http://code.google.com/p/vch'>http://code.google.com/p/vch</a></html>");
+		website.setText("<html><body style=\"padding:15px;font-size:10px;\"><a href=\"http://code.google.com/p/vch\">http://code.google.com/p/vch</a></body></html>");
 		website.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
 
-				// When someone clicks on the top-bar link:
+				// When someone clicks on the link:
 
 				// Check that we have access to the desktop.
 				if( java.awt.Desktop.isDesktopSupported() ) {
 
+					// If we do, get the relevant desktop.
 					java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 
 					// Check that we are allowed to browse.
@@ -138,7 +137,7 @@ public class InfoPanel extends JPanel{
 		website.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.add(m_panel);
 		this.add(website);
-		this.add(confirm);
+		// this.add(confirm);
 	}
 	
 	public void paintComponent(Graphics g) 

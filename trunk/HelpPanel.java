@@ -82,7 +82,7 @@ public class HelpPanel extends JPanel{
 		int h = height - img_t_rbg.getIconHeight();
 		m_panel = new JPanel();
 		m_panel.setLayout(con.getFlowLayout(1,0,0));
-		info.setPreferredSize(new Dimension(width-img_m.getIconWidth()*2,400));
+		info.setPreferredSize(new Dimension(width-(img_m.getIconWidth()*2),400));
 		info.setIcon(con.getImgUrl("help.png"));	
 		m_panel.add(info);
 

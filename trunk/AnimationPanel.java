@@ -77,7 +77,6 @@ public class AnimationPanel extends JPanel {
 		f = frame;
 		this.con = con;
 		animation_bg_img = con.getImgUrl("animation_bg1.png");
-		selected_mark_img = con.getImgUrl("selected_mark.png");
 		reverse_animation_img = con.getImgUrl("heuristic-reverse.png");
 		inverse_animation_img = con.getImgUrl("heuristic-inverse.png");
 		shift_animation_img = con.getImgUrl("heuristic-shift.png");
