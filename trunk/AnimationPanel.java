@@ -2238,6 +2238,7 @@ public class AnimationPanel extends JPanel {
 			 f.panel.m_panel.p_left.acceptedContent.setText("");
 			 f.panel.m_panel.p_left.countContent.setText("");
 			 f.panel.m_panel.p_left.candidateSolutionContent.setText("");
+			 f.vsh.sleepTime = 1;
 			f.validate();
 			f.repaint();
 
