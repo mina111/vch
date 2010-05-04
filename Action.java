@@ -58,9 +58,11 @@ public class Action implements ActionListener{
 		else if(e.getActionCommand().equals("close_info"))
 		{
 			frame.info.dispose();
+			frame.info = null;
 		}		else if(e.getActionCommand().equals("close_help"))
 		{
 			frame.help.dispose();
+			frame.help = null;
 		}
 
 
@@ -314,11 +316,13 @@ public class Action implements ActionListener{
 			} // END if
 
 		} else if( e.getActionCommand().equals("info") ) {
+			if(frame.info==null)
 			frame.createInfoFrame();
 			// Someone pressed the "Information" button on the main menu.
 			//System.Out.println("Action->info");
 
 		} else if( e.getActionCommand().equals("help") ) {
+			if(frame.help==null)
 			frame.createHelpFrame();
 			// Someone pressed the "Help" button on the main menu.
 			//System.out.println("Action->help");
