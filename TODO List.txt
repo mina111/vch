@@ -1,5 +1,7 @@
 BUG: Sometimes the animation slows down drastically, and no amount of "Speed Up" clicking will change it. This may be caused when quitting/starting several new problems. Is this a threading issue?
 
+BUG: You can create an infinite number of Info/Help windows.
+
 
 f(x) = sin radio button doesn't have f(x) on it.
 	Ben: 	This is actually because the image for that radio button (and the space allowed for it) is too small for me to fit all that text on at a size that's easily readable.
