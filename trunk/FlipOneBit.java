@@ -28,17 +28,17 @@ public class FlipOneBit extends LowLevelHeuristic{
 	 *  Override the method to generate new solution by flipping one bit in candidate solution
 	 */
 	@Override
-	int[] generateNewSolution(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		
-		int newSoluatuon[] = new int[candidateSoluation.length];
-		for(int i =0;i<candidateSoluation.length;i++)
-			newSoluatuon[i]=candidateSoluation[i];
+		int newSolution[] = new int[candidateSolution.length];
+		for(int i =0;i<candidateSolution.length;i++)
+			newSolution[i]=candidateSolution[i];
 		// TODO Auto-generated method stub
 		postion = getStartPostion();
-		if(newSoluatuon[postion]==1){
-			newSoluatuon[postion] = 0;
+		if(newSolution[postion]==1){
+			newSolution[postion] = 0;
 		}else{
-			newSoluatuon[postion] = 1;
+			newSolution[postion] = 1;
 		}
 		return newSoluatuon;
 	}

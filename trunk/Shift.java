@@ -35,36 +35,36 @@ public class Shift extends LowLevelHeuristic{
 	 *  Override the method to generate new solution by a selected area being shift.
 	 */
 	@Override
-	int[] generateNewSolution(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		modifiedDigitNum = getModifiedDigitNum();
 		startPostion = getStartPostion();
 		endPostion = getEndPostion(startPostion,modifiedDigitNum);
 		// TODO Auto-generated method stub
-		int newSoluatuon[] = new int[candidateSoluation.length];
-		for(int i =0;i<candidateSoluation.length;i++)
-			newSoluatuon[i]=candidateSoluation[i];
+		int newSolution[] = new int[candidateSolution.length];
+		for(int i =0;i<candidateSolution.length;i++)
+			newSolution[i]=candidateSolution[i];
 
 		if(startPostion<endPostion){
-			int temp = newSoluatuon[startPostion];
+			int temp = newSolution[startPostion];
 			for(int i = startPostion;i<endPostion;i++){
-				newSoluatuon[i]= newSoluatuon[i+1];
+				newSolution[i]= newSolution[i+1];
 			}
-			newSoluatuon[endPostion] = temp;
-			return newSoluatuon;
+			newSolution[endPostion] = temp;
+			return newSolution;
 		}else{
-			int temp = newSoluatuon[startPostion];
+			int temp = newSolution[startPostion];
 			for(int i = startPostion;i<HyperHeuristic.DIGIT_NUM ;i++){
 				if(i==HyperHeuristic.DIGIT_NUM -1){
-					newSoluatuon[i]=newSoluatuon[0];
+					newSolution[i]=newSolution[0];
 				}else{
-					newSoluatuon[i]= newSoluatuon[i+1];
+					newSolution[i]= newSolution[i+1];
 				}
 			}
 			for(int i = 0;i<endPostion;i++){				
-				newSoluatuon[i]= newSoluatuon[i+1];
+				newSolution[i]= newSolution[i+1];
 			}
-			newSoluatuon[endPostion] = temp;
-			return newSoluatuon;
+			newSolution[endPostion] = temp;
+			return newSolution;
 		}
 		
 	}

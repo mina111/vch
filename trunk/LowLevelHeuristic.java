@@ -106,9 +106,9 @@ public abstract  class LowLevelHeuristic {
 	
 	/**
 	 * return the new solution
-	 * @param candidateSoluation
+	 * @param candidateSolution
 	 * @return the new solution
 	 */
-	abstract int[] generateNewSolution(int[] candidateSoluation);
+	abstract int[] generateNewSolution(int[] candidateSolution);
 	
 }

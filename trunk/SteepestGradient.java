@@ -45,40 +45,40 @@ public class SteepestGradient extends LowLevelHeuristic{
 	/**
 	 *  Override the method to generate new solution by SteepestGradient.
 	 */
-	int[] generateNewSolution(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		// TODO Auto-generated method stub
-		int[] optimumSoluation = new int[candidateSoluation.length ];
-		for(int i=0;i<candidateSoluation.length ;i++){
+		int[] optimumSolution = new int[candidateSolution.length ];
+		for(int i=0;i<candidateSolution.length ;i++){
 			
-			optimumSoluation[i] = candidateSoluation[i];
+			optimumSolution[i] = candidateSolution[i];
 		}
 		
-		if(optimumSoluation[0]==0)
-			optimumSoluation[0]=1;
+		if(optimumSolution[0]==0)
+			optimumSolution[0]=1;
 		else
-			optimumSoluation[0]=0;
-		for(int i=1;i<candidateSoluation.length ;i++){
-			if(candidateSoluation[i]==1)
-				candidateSoluation[i]=0;
+			optimumSolution[0]=0;
+		for(int i=1;i<candidateSolution.length ;i++){
+			if(candidateSolution[i]==1)
+				candidateSolution[i]=0;
 			else
-				candidateSoluation[i]=1;
+				candidateSolution[i]=1;
 	
-			if(ie.checkIfAcceptance(optimumSoluation,candidateSoluation)){
+			if(ie.checkIfAcceptance(optimumSolution,candidateSolution)){
 				optimumSolutionIndex = i;	
-				for(int j=0;j<candidateSoluation.length;j++){
+				for(int j=0;j<candidateSolution.length;j++){
 					
-					optimumSoluation[j] = candidateSoluation[j];
+					optimumSolution[j] = candidateSolution[j];
 				}	
 			}
-			if(candidateSoluation[i]==1)
-				candidateSoluation[i]=0;
+			if(candidateSolution[i]==1)
+				candidateSolution[i]=0;
 			else
-				candidateSoluation[i]=1;			
+				candidateSolution[i]=1;			
 			
 				
 		}
 		
-		return optimumSoluation;
+		return optimumSolution;
 	}
 	
 	/**

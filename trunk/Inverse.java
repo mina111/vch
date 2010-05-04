@@ -35,41 +35,41 @@ public class Inverse extends LowLevelHeuristic{
 	 *  Override the method to generate new solution by a selected area being inverse.
 	 */
 	@Override
-	int[] generateNewSolution(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		// TODO Auto-generated method stub
 		modifiedDigitNum = getModifiedDigitNum();
 		startPostion = getStartPostion();
 		endPostion = getEndPostion(startPostion,modifiedDigitNum);
-		int newSoluatuon[] = new int[candidateSoluation.length];
-		for(int i =0;i<candidateSoluation.length;i++)
-			newSoluatuon[i]=candidateSoluation[i];
+		int newSolution[] = new int[candidateSolution.length];
+		for(int i =0;i<candidateSolution.length;i++)
+			newSolution[i]=candidateSolution[i];
 
 		if(startPostion<endPostion){
 			for(int i= startPostion;i<=endPostion;i++){
-				if(newSoluatuon[i] == 0){
-					newSoluatuon[i] = 1;
+				if(newSolution[i] == 0){
+					newSolution[i] = 1;
 				}else{
-					newSoluatuon[i] = 0;					
+					newSolution[i] = 0;					
 				}
 			}
 			
-			return newSoluatuon;
+			return newSolution;
 		}else{
-			for(int i= startPostion;i<newSoluatuon.length;i++){
-				if(newSoluatuon[i] == 0){
-					newSoluatuon[i] = 1;
+			for(int i= startPostion;i<newSolution.length;i++){
+				if(newSolution[i] == 0){
+					newSolution[i] = 1;
 				}else{
-					newSoluatuon[i] = 0;					
+					newSolution[i] = 0;					
 				}
 			}
 			for(int i=0; i<=endPostion;i++ ){
-				if(newSoluatuon[i] == 0){
-					newSoluatuon[i] = 1;
+				if(newSolution[i] == 0){
+					newSolution[i] = 1;
 				}else{
-					newSoluatuon[i] = 0;					
+					newSolution[i] = 0;					
 				}
 			}
-			return newSoluatuon;
+			return newSolution;
 		}
 		
 	}
