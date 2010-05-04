@@ -40,7 +40,7 @@ public class FlipOneBit extends LowLevelHeuristic{
 		}else{
 			newSolution[postion] = 1;
 		}
-		return newSoluatuon;
+		return newSolution;
 	}
 
 	/**

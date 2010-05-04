@@ -56,10 +56,10 @@ public class Reverse extends LowLevelHeuristic{
 			}
 			startPostion = tempStartPostion;
 			endPostion = tempEndPostion;
-			for(int i=0;i<newSolution.length;i++)
+			//for(int i=0;i<newSolution.length;i++)
 				// System.out.print(candidateSolution[i]);
 			// System.out.println("New");
-			for(int i=0;i<newSolution.length;i++)
+			//for(int i=0;i<newSolution.length;i++)
 				// System.out.print(newSolution[i]);
 			// System.out.println("");
 			return newSolution;
