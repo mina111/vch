@@ -68,11 +68,11 @@ public class GreedyRandom extends HeuristicsSelection {
 		optimumSolution = lowLevelHeuristic.generateNewSolution(candiateSolution);
 		histories[0] = optimumSolution;
 		for(int i=1; i<hyperHeuristic.lowLevelHeuristics.size();i++){
-			int[] newSoluation = hyperHeuristic.lowLevelHeuristics.get(i).generateNewSolution(candiateSolution);
-			histories[i] = newSoluation;
-			if( hyperHeuristic.function.evaluate(newSoluation) <= hyperHeuristic.function.evaluate(optimumSolution)    ){
+			int[] newSolution = hyperHeuristic.lowLevelHeuristics.get(i).generateNewSolution(candiateSolution);
+			histories[i] = newSolution;
+			if( hyperHeuristic.function.evaluate(newSolution) <= hyperHeuristic.function.evaluate(optimumSolution)    ){
 				lowLevelHeuristic = hyperHeuristic.lowLevelHeuristics.get(i);
-				optimumSolution = newSoluation;
+				optimumSolution = newSolution;
 				optimumSolutionIndex = i;
 			}
 				

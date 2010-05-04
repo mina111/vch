@@ -35,41 +35,41 @@ public class Reverse extends LowLevelHeuristic{
 	 *  Override the method to generate new solution by a selected area being reverse.
 	 */
 	@Override
-	int[] generateNewSolution(int[] candidateSoluation) {
+	int[] generateNewSolution(int[] candidateSolution) {
 		modifiedDigitNum = getModifiedDigitNum();
 		startPostion = getStartPostion();
 		endPostion = getEndPostion(startPostion,modifiedDigitNum);
 		int tempStartPostion = startPostion;
 		int tempEndPostion = endPostion;	
 		// TODO Auto-generated method stub
-		int newSoluatuon[] = new int[candidateSoluation.length];
-		for(int i =0;i<candidateSoluation.length;i++)
-			newSoluatuon[i]=candidateSoluation[i];
+		int newSolution[] = new int[candidateSolution.length];
+		for(int i =0;i<candidateSolution.length;i++)
+			newSolution[i]=candidateSolution[i];
 		
 		if(startPostion<endPostion){
 			while(startPostion<endPostion){
-				int temp = newSoluatuon[startPostion];
-				newSoluatuon[startPostion] = newSoluatuon[endPostion];
-				newSoluatuon[endPostion] = temp;
+				int temp = newSolution[startPostion];
+				newSolution[startPostion] = newSolution[endPostion];
+				newSolution[endPostion] = temp;
 				startPostion++;
 				endPostion--;
 			}
 			startPostion = tempStartPostion;
 			endPostion = tempEndPostion;
-			for(int i=0;i<newSoluatuon.length;i++)
-				System.out.print(candidateSoluation[i]);
-			System.out.println("New");
-			for(int i=0;i<newSoluatuon.length;i++)
-				System.out.print(newSoluatuon[i]);
-			System.out.println("");
-			return newSoluatuon;
+			for(int i=0;i<newSolution.length;i++)
+				// System.out.print(candidateSolution[i]);
+			// System.out.println("New");
+			for(int i=0;i<newSolution.length;i++)
+				// System.out.print(newSolution[i]);
+			// System.out.println("");
+			return newSolution;
 		}else{
 			int middlePostion = startPostion + modifiedDigitNum/2;
 			if(middlePostion <= HyperHeuristic.DIGIT_NUM ){
 				while(startPostion < middlePostion){
-					int temp = newSoluatuon[startPostion];
-					newSoluatuon[startPostion] = newSoluatuon[endPostion];
-					newSoluatuon[endPostion] = temp;
+					int temp = newSolution[startPostion];
+					newSolution[startPostion] = newSolution[endPostion];
+					newSolution[endPostion] = temp;
 					startPostion++;
 					if(endPostion==0){
 						endPostion = HyperHeuristic.DIGIT_NUM-1 ;
@@ -79,9 +79,9 @@ public class Reverse extends LowLevelHeuristic{
 				}
 			}else{
 				while(endPostion > (middlePostion - HyperHeuristic.DIGIT_NUM -1)){
-					int temp = newSoluatuon[startPostion];
-					newSoluatuon[startPostion] = newSoluatuon[endPostion];
-					newSoluatuon[endPostion] = temp;
+					int temp = newSolution[startPostion];
+					newSolution[startPostion] = newSolution[endPostion];
+					newSolution[endPostion] = temp;
 					if(startPostion==HyperHeuristic.DIGIT_NUM-1 ){
 						startPostion=0;
 					}else{
@@ -92,7 +92,7 @@ public class Reverse extends LowLevelHeuristic{
 			}
 			startPostion = tempStartPostion;
 			endPostion = tempEndPostion;
-			return newSoluatuon;
+			return newSolution;
 		}
 		
 	}
