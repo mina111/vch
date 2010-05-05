@@ -2228,7 +2228,7 @@ public class AnimationPanel extends JPanel {
 		 drawToAcceptanceMethod = false;
 		 drawAcceptanceMethod = false;
 		 drawBackgroundPic = false;
-		 f.vsh.history = new int[1000][15];
+		 f.vsh.history = new int[10000][15];
 		 f.vsh.count = 0;
 			lowLevelHeuristicsCount = 0;
 			f.panel.m_panel.flowchart.setBounds(new Rectangle((f.panel.m_panel.animationPanel.getWidth()-f.panel.m_panel.flowchart.label_img.getIconWidth())/2,(f.panel.m_panel.animationPanel.getHeight()-f.panel.m_panel.flowchart.label_img.getIconHeight())/2,f.panel.m_panel.flowchart.label_img.getIconWidth(),f.panel.m_panel.flowchart.label_img.getIconHeight()));
