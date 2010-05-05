@@ -25,11 +25,11 @@ public class Config
 	Config()
 	{
 		skin_dir = "icon";
-		width = 1050 ; 
+		width = 1024 ; 
 		height = 728 ; 
 		iffulltop = true ; 
 		ifnormaltop = false ; 
-		leftmenuwidth = 176 ; 
+		leftmenuwidth = 150 ; 
 		splitbarwidth = 6 ; 
 		splitbarHeight = 6;
 		openfull = false ; 
