@@ -30,7 +30,7 @@ public class VSH {
 	int newSolution[] = new int[candidateSolution.length];
 	LowLevelHeuristic lowLevelHeuristic;
 	int count = 0;
-	int [][] history = new int[1000][15];
+	int [][] history = new int[10000][15];
 	int sleepTime = 1;
 	String functionNmae = "f(x)=x^2", acceptanceMethodName = "Improving or Equal", heuristicSelectionName = "Simple Random";
 	String [] lowLevelHeuristicNames = {"Reverse","Inverse","Shift","Flip One Bit","Steepest Gradient"};
