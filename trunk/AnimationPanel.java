@@ -69,14 +69,14 @@ public class AnimationPanel extends JPanel {
 	double y10 =0;
 	double x9 = 0;
 	public boolean drawToAcceptanceMethod = false,drawAcceptanceMethod= false;
-
+	public boolean checkNewSolution = false;
 	Font F2=new Font("Arial",Font.PLAIN,12);
     Font F4=new Font("Arial",Font.PLAIN,16);
     String newSolutionString = "";
 	public AnimationPanel(VSHMainFrame frame,Config con){
 		f = frame;
 		this.con = con;
-		animation_bg_img = con.getImgUrl("animation_bg1.png");
+		animation_bg_img = con.getImgUrl("animation_bg3.png");
 		reverse_animation_img = con.getImgUrl("heuristic-reverse.png");
 		inverse_animation_img = con.getImgUrl("heuristic-inverse.png");
 		shift_animation_img = con.getImgUrl("heuristic-shift.png");
@@ -104,6 +104,7 @@ public class AnimationPanel extends JPanel {
 			Font AF1 = new Font("Courier", Font.PLAIN,  12);
 			
 			 String candidateSolutionString = "";
+			 String bestSolutionString = "";
 			 newSolutionString = "";
 			 f.panel.m_panel.p_left.newSolutionContent.setText(newSolutionString);
 			 f.panel.m_panel.p_left.lowLevelHeuristicContent.setText("");
@@ -111,18 +112,21 @@ public class AnimationPanel extends JPanel {
 
 			 for(int i=0;i<f.vsh.candidateSolution.length;i++){
 				 candidateSolutionString = candidateSolutionString+f.vsh.candidateSolution[i];
+				 bestSolutionString = bestSolutionString + f.vsh.bestSolution[i];
 			 }
 			 f.panel.m_panel.p_left.candidateSolutionContent.setForeground(Color.RED);
 			 f.panel.m_panel.p_left.candidateSolutionContent.setText(candidateSolutionString);
 			 f.panel.m_panel.p_left.countContent.setForeground(new Color(102,255,255));
 			 f.panel.m_panel.p_left.countContent.setText(""+f.vsh.count);
 			 g2D.drawImage(animation_bg_img.getImage(),0,0, this.getWidth(), this.getHeight(), null);
-
+			 
 
 		     this.setOpaque(true);
 
 
 		     g2D.setFont(F3);
+		     g2D.setColor(Color.GREEN);
+			 g2D.drawString(bestSolutionString, 93, 130);
 			 g2D.setColor(Color.RED);
 			 g2D.drawString("Candidate Solution", 400, 590);
 			 g2D.drawLine(510, 585, 550,585);
@@ -652,6 +656,13 @@ public class AnimationPanel extends JPanel {
 						 g2D.draw(new Line2D.Double((HyperHeuristic.bit2int(f.vsh.newSolution)/SCALEX)+OFFSETX-x9, (GRAPHY-(value2/SCALEY))+OFFSETY, (HyperHeuristic.bit2int(f.vsh.newSolution)/SCALEX)+OFFSETX, (GRAPHY-(value2/SCALEY))+OFFSETY));
 						 x9=x9+1;
 					 }else{
+						 if(!checkNewSolution){
+							 if(f.vsh.hyperHeuristic.function.evaluate(f.vsh.newSolution)<f.vsh.hyperHeuristic.function.evaluate(f.vsh.bestSolution)){
+								 for(int i=0;i<f.vsh.bestSolution.length;i++)
+									 f.vsh.bestSolution[i]= f.vsh.newSolution[i];
+							 }
+							 checkNewSolution = true;
+						 }
 						 if(!drawAcceptanceMethod){
 							 drawAcceptanceMethod(g2D);
 						 }else{
@@ -686,6 +697,7 @@ public class AnimationPanel extends JPanel {
 							 drawToAcceptanceMethod = false;
 							 drawAcceptanceMethod = false;
 								lowLevelHeuristicsCount = 0;
+								checkNewSolution = false;
 						 }
 					 }
 				 }
@@ -2228,6 +2240,7 @@ public class AnimationPanel extends JPanel {
 		 drawToAcceptanceMethod = false;
 		 drawAcceptanceMethod = false;
 		 drawBackgroundPic = false;
+		 checkNewSolution = false;
 		 f.vsh.history = new int[10000][15];
 		 f.vsh.count = 0;
 			lowLevelHeuristicsCount = 0;

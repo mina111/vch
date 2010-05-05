@@ -31,6 +31,7 @@ public class VSH {
 	LowLevelHeuristic lowLevelHeuristic;
 	int count = 0;
 	int [][] history = new int[10000][15];
+	int bestSolution[] = new int[HyperHeuristic.DIGIT_NUM]; 
 	int sleepTime = 1;
 	String functionNmae = "f(x)=x^2", acceptanceMethodName = "Improving or Equal", heuristicSelectionName = "Simple Random";
 	String [] lowLevelHeuristicNames = {"Reverse","Inverse","Shift","Flip One Bit","Steepest Gradient"};
@@ -85,6 +86,7 @@ public class VSH {
 		for(int i =0; i<candidateSolution.length;i++){
 			candidateSolution[i] = random.nextInt(2);
 			history[0][i]=candidateSolution[i];
+			bestSolution[i]=candidateSolution[i];
 		}
 
 
