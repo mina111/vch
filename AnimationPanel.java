@@ -2128,7 +2128,7 @@ public class AnimationPanel extends JPanel {
 				    						 }
 			    							 x2 = 185;
 			    	//System.out.println(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex+"SSS");
-			    							 if(((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex==i){
+			    							 if(((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).SGoptimumSolutionIndex==i){
 			    								 g2D.setColor(Color.YELLOW);
 			    								 g2D.drawRect(x2-5, y7+25*i-20, bitSpace2*f.vsh.candidateSolution.length+10, 20);
 			    								 g2D.setColor(Color.RED);
@@ -2138,17 +2138,17 @@ public class AnimationPanel extends JPanel {
 		    						 }else{
 
 		    								 g2D.setColor(Color.YELLOW);
-		    								 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6)!=steepest_gradient_y+68){
-		    									 if(((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6)>steepest_gradient_y+68){
+		    								 if(((int) (y7+25*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).SGoptimumSolutionIndex)-x6)!=steepest_gradient_y+68){
+		    									 if(((int) (y7+25*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).SGoptimumSolutionIndex)-x6)>steepest_gradient_y+68){
 		    										 for(int i=0;i<f.vsh.newSolution.length;i++){
-		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6));
+		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).SGoptimumSolutionIndex)-x6));
 		    											 x2=x2+bitSpace2;
 		    										 }
 		    										 x2 = 185;
 		    										 x6++;
 		    									 }else {
 		    										 for(int i=0;i<f.vsh.newSolution.length;i++){
-		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6));
+		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],x2, ((int) (y7+25*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).SGoptimumSolutionIndex)-x6));
 		    											 x2=x2+bitSpace2;
 		    										 }
 		    										 x2 = 185;
@@ -2161,7 +2161,7 @@ public class AnimationPanel extends JPanel {
 		    									 if(x12>lowLevelHeuristicBoxX-20){
 		    										 int temp = x12;
 		    										 for(int i=0;i<f.vsh.newSolution.length;i++){
-		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],temp, ((int) (y7+25*((SteepestGradient)f.vsh.lowLevelHeuristic).optimumSolutionIndex)-x6));
+		    											 g2D.drawString(""+((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).histories[lowLevelHeuristicsCount][i],temp, ((int) (y7+25*((GreedyRandom)f.vsh.hyperHeuristic.heuristicsSelection).SGoptimumSolutionIndex)-x6));
 		    											 temp=temp+bitSpace2;
 		    										 }
 		    										 x12--;

@@ -36,7 +36,7 @@ public class GreedyRandom extends HeuristicsSelection {
 	 *  the index of optimum solution
 	 */
 	int optimumSolutionIndex;
-	
+	int SGoptimumSolutionIndex;
 	/**
 	 * Defines an GreedyRandom object with a instance of HyperHeuristic 
 	 * @param hyperHeuristic
@@ -69,6 +69,9 @@ public class GreedyRandom extends HeuristicsSelection {
 		histories[0] = optimumSolution;
 		for(int i=1; i<hyperHeuristic.lowLevelHeuristics.size();i++){
 			int[] newSolution = hyperHeuristic.lowLevelHeuristics.get(i).generateNewSolution(candiateSolution);
+			if(hyperHeuristic.lowLevelHeuristics.get(i).getName().equals("Steepest Gradient")){
+				SGoptimumSolutionIndex = ((SteepestGradient)hyperHeuristic.lowLevelHeuristics.get(i)).optimumSolutionIndex;
+			}
 			histories[i] = newSolution;
 			if( hyperHeuristic.function.evaluate(newSolution) <= hyperHeuristic.function.evaluate(optimumSolution)    ){
 				lowLevelHeuristic = hyperHeuristic.lowLevelHeuristics.get(i);
