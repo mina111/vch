@@ -124,20 +124,24 @@ public class AnimationPanel extends JPanel {
 		     this.setOpaque(true);
 
 
+			// Draw the best solution string
 		     g2D.setFont(F3);
 		     g2D.setColor(Color.GREEN);
-			 g2D.drawString(bestSolutionString, 93, 130);
+			 g2D.drawString(bestSolutionString, 89, 131);
+			 
+			 // Draw Graph Key
 			 g2D.setColor(Color.RED);
-			 g2D.drawString("Candidate Solution", 400, 590);
-			 g2D.drawLine(510, 585, 550,585);
+			 g2D.drawString("Candidate Solution", 400, 595);
+			 g2D.drawLine(510, 585, 550,590);
 			 g2D.setColor(Color.YELLOW);
-			 g2D.drawString("New Solution", 560, 590);
-			 g2D.drawLine(640, 585, 680,585);
+			 g2D.drawString("New Solution", 560, 595);
+			 g2D.drawLine(640, 585, 680,590);
 			 g2D.setColor(Color.BLUE);
-			 g2D.drawString("Previous Solutions", 690, 590);
-			 g2D.drawLine(800, 585, 840,585);
-		     g.setColor(new Color(214,214,214));
-		
+			 g2D.drawString("Previous Solutions", 690, 595);
+			 g2D.drawLine(800, 585, 840,590);
+			 
+			 
+			 g.setColor(new Color(214,214,214));
 			 g2D.setFont(AF1);
 			 int fontHeight = fm.getHeight();
 		     if(f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx")||f.vsh.hyperHeuristic.function.getName().equals("f(x)=sinx^2")){
