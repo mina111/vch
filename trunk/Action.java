@@ -16,7 +16,7 @@ public class Action implements ActionListener{
 	Config con ;
 	Dimension sdm ;
 
-	String img_dir = "skin_black";
+	String img_dir = "skin";
 
 
 	Action(VSHMainFrame f,JButton btn)
@@ -32,7 +32,7 @@ public class Action implements ActionListener{
 	}
 	public Action(VSHMainFrame f) {
 		// TODO Auto-generated constructor stub
-		this.frame = f;
+		this.frame = f1;
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -261,9 +261,13 @@ public class Action implements ActionListener{
 			frame.play();
 			frame.pause = false;
 			frame.start = true;
+			frame.panel.pause.setIcon(con.getImgUrl("menu-button-pause.png"));
+			frame.panel.play.setIcon(con.getImgUrl("menu-button-play-hover.png"));
 
 		}else if(e.getActionCommand().equals("pause")){
 			frame.pause = true;
+			frame.panel.play.setIcon(con.getImgUrl("menu-button-play.png"));
+			frame.panel.pause.setIcon(con.getImgUrl("menu-button-pause-hover.png"));
 		}else if(e.getActionCommand().equals("stop")){
 			frame.panel.m_panel.initalMenuPanel.benchmarkFunction.setEnabled(true);
 			frame.panel.m_panel.initalMenuPanel.heuristicSelection.setEnabled(true);
